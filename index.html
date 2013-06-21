@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Deploying, Scaling, and Running Grails on AWS and VPC</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -38,62 +38,144 @@
 			<div class="slides">
 
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
+					<h3>Standard practices to make your Grails app purr!!</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+                    <h2>What We Will Cover</h2>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+
+                    <ul>
+                        <li class="fragment"><strong>VPC</strong></li>
+                        <li class="fragment"><strong>S3</strong></li>
+                        <li class="fragment"><strong>ElasticWolf</strong></li>
+                        <li class="fragment"><strong>Grails Plugins</strong></li>
+                        <li class="fragment"><strong>Elastic Load Balancers</strong></li>
+                        <li class="fragment"><strong>Autoscaling</strong></li>
+                        <li class="fragment"><strong>Others misc tips</strong></li>
+
+                    </ul>
+
+                    <aside class="notes">
+                        Top level overview
+                    </aside>
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
+						<h2>VPC</h2>
+                        <P>
+                            Virtual Private Cloud
+
+                        </P>
+
+
+                        <ul style="list-style-type: none;">
+                            <li class="fragment"><strong>Routing</strong></li>
+                            <li class="fragment"><strong>NAT</strong></li>
+                            <li class="fragment"><strong>ACL Firewall</strong></li>
+                            <li class="fragment"><strong>Suggested Subnets</strong></li>
+                            <li class="fragment"><strong>Security Groups</strong></li>
+                            <li class="fragment"><strong>DHCP Tips</strong></li>
+                            <li class="fragment"><strong>Others misc tips</strong></li>
+
+                        </ul>
+						<!--<p>
+
 							try pressing <a href="#" class="navigate-down">down</a>.
 						</p>
 						<a href="#" class="image navigate-down">
 							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+						</a>-->
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
+						<h2>VPC Overview</h2>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Now required on new AWS accounts</li>
+                            <li class="fragment">Very different that EC2 'Classic' which has no private network layer</li>
+                            <li class="fragment">Costs nothing extra - you have nothing to lose</li>
+                        </UL>
 					</section>
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
+						<h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-subnet-default.png"  />
+
 					</section>
+
 					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
+						<h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-subnet-3rdsubnet.png"  />
 					</section>
-				</section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3> adding a 3rd subnet - this gives a helping hand</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">auto-scaling instances can access internet through NAT</li>
+                            <li class="fragment">Web Servers, Web facing apps can live behind ELB yet be able to run OS updates </li>
+                            <li class="fragment">S3 Buckets accessible</li>
+                            <li class="fragment">can access your secure subnet as well</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-overview-big-3rdsubnet.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-screenshot-console-subnet.png"  />
+
+                    </section>
+
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-vpc-screenshot-console-subnet-details.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-vpc-console-route-table.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets - Se</h2>
+                        <h3>Security ACLs</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">ACLs like a full firewall - unlike groups</li>
+                            <li class="fragment">Protect subnets instead of EC2 instances</li>
+                            <li class="fragment">Processed in order of rule #</li>
+                            <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
+                            <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets - Se</h2>
+                        <h3>Security Groups</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">VPC Security Groups are different than EC2 Groups - use different and descriptive names if both used</li>
+                            <li class="fragment">You can use a security group ID (starting with sgXXXXX) in blace </li>
+                            <li class="fragment">Processed in order of rule #</li>
+                            <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
+                            <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
+                        </UL>
+                    </section>
+                </section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
+					<h2>S3 Storage</h2>
+                    <h3></h3>
+                    <UL style="list-style-type: none;">
+                        <li class="fragment">Limitations</li>
+                        <li class="fragment">Common tools</li>
+                        <li class="fragment">Regions with different functionality</li>
+                        <li class="fragment">Glacier</li>
+                        <li class="fragment">Grails S3 Plugin</li>
+                    </UL>
 				</section>
 
 				<section>
