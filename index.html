@@ -14,9 +14,11 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
-
+        <!--<link rel="stylesheet" type="text/css" href="fdw-demo.css" media="all" />-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="style2.css">
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -46,7 +48,11 @@
 				</section>
 
 				<section>
-                    <h2>What We Will Cover</h2>
+                    <ul class="text-animation-exuberant-title-top">
+                        <li><h2>What We Will Cover</h2></li>
+
+                    </ul>
+                    <!--<h2 class="text-animation">What We Will Cover</h2>-->
 
 
                     <ul>
@@ -68,11 +74,11 @@
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>VPC</h2>
-                        <P>
-                            Virtual Private Cloud
 
-                        </P>
+                        <ul class="text-animation-exuberant-title-top">
+                            <li class="fragment"><h2>VPC - Virtual Private Cloud</h2></li>
+
+                        </ul>
 
 
                         <ul style="list-style-type: none;">
@@ -143,7 +149,7 @@
 
                     </section>
                     <section>
-                        <h2>VPC - Routing/Subnets - Se</h2>
+                        <h2>VPC - Routing/Subnets</h2>
                         <h3>Security ACLs</h3>
                         <UL style="list-style-type: none;">
                             <li class="fragment">ACLs like a full firewall - unlike groups</li>
@@ -154,14 +160,76 @@
                         </UL>
                     </section>
                     <section>
-                        <h2>VPC - Routing/Subnets - Se</h2>
+                        <h2>VPC - Routing/Subnets</h2>
                         <h3>Security Groups</h3>
                         <UL style="list-style-type: none;">
-                            <li class="fragment">VPC Security Groups are different than EC2 Groups - use different and descriptive names if both used</li>
+                            <li class="fragment roll-in">VPC Security Groups are different than EC2 Groups - use different and descriptive names if both used</li>
                             <li class="fragment">You can use a security group ID (starting with sgXXXXX) in blace </li>
-                            <li class="fragment">Processed in order of rule #</li>
+                            <li class="fragment">Pro cessed in order of rule #</li>
                             <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
                             <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3>DHCP Options</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Determine What DNS DHCP clients use</li>
+                            <li class="fragment">Can things like default domain, whether to use internal or external DNS for your VPC</li>
+                            <li class="fragment">From Web UI, assign only 1 option set at a time</li>
+                            <li class="fragment">Using amazon provided DNS, using naming scheme of 10.0.1.x, default domain ec2.internal</li>
+                            <li class="fragment">Can assign your own DNS server names, or even Netbios name servers or NTP servers</li>
+                            <li class="fragment">Options are semicolor delimited name value pairs, i.e. 'domain-name=something.com; domain-name-severs=AmazonProvidedDNSs</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - IAM Roles</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Don't use root account anymore. Traditional secutiry page will be retired</li>
+                            <li class="fragment">Set up your IAM roles for each user</li>
+                            <li class="fragment">Use new resource level security with IAM to tier access to instances/resources</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Reboot != Reboot</li>
+                            <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage</li>
+                            <li class="fragment">If you issue an OS reboot or a 'stop' command you machine will move and lose ephemeral state</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">VPN</li>
+                            <li class="fragment">Use OpenVPN instead of metered AWS VPN - it runs fine on a tiny instance</li>
+                            <li class="fragment">Use OpenVPN client to leave remote servers connected to VPC - it auto-reconnects</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Load Balancer</li>
+                            <li class="fragment">60s timeout on idle max - can file ticket for extension to 15+ minutes</li>
+                            <li class="fragment">Use Haproxy for anything very advanced, can accommodate many options</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">EBS Based Instances</li>
+                            <li class="fragment">Use EBS backed instances for anything not build for cloud</li>
+                            <li class="fragment">If you can build server on the fly with Chef/Puppet like tools, go for ephemeral based</li>
+                            <li class="fragment">EBS backed instances have no swap by default - be sure to specify ephemeral disks on launch, use as swap</li>
+                            <li class="fragment">EBS backed instances have no ephemeral disks on by default be sure to use them on launch of instance and AMIs</li>
                         </UL>
                     </section>
                 </section>
@@ -176,16 +244,122 @@
                         <li class="fragment">Glacier</li>
                         <li class="fragment">Grails S3 Plugin</li>
                     </UL>
-				</section>
+                    <section>
+                        <h2>S3 Storage</h2>
 
+                        <UL style="list-style-type: none;">
+                            <h3>Limitations - Eventual Consistency</h3>
+                            <li class="fragment">This means after write/update it will EVENTUALLY be consistent</li>
+                            <li class="fragment">Make your app retry on read fail - it might not be synced yet</li>
+                            <li class="fragment">Different regions have different consistency rules</li>
+                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
+                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Limitations - large files</h3>
+                            <li class="fragment">Files over 5GB supported, but most tools don't handle properly</li>
+                            <li class="fragment">S3 Tools must support mime/multipart</li>
+                            <li class="fragment">s3cmd(Linux) / CyberDuck 4(Mac/Win32) / S3 Browser(Win32) / Cloudberry Explorer(PRO Win32) / Bucket Explorer</li>
+                            <li class="fragment">File > 5GB files work with these tools, it is EXTREMELY slow</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Tools</h3>
+                            <li class="fragment">s3fs - mount as filesystem - but >5GB files broken, beware of consistency!</li>
+                            <li class="fragment">Make sure FUSE is in kernel</li>
+                            <li class="fragment">s3cmd is best free command line tools</li>
+                            <li class="fragment">Bucket Explorer & CloudBerry Backup are good solid windows clients that parallelize multi-part uploads to ease the pain</li>
+                            <li class="fragment">s3 Browser is ok free tool</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Different Function Between Different Regions</h3>
+                            <li class="fragment">US-East-1 Cheapest for full redundancy otherwise to save $ you can use RRS (Or Glacier)
+                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
+                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
+                            <li class="fragment">Barring these limitations (and budget!), use the region closed to your VPC instances and regions</li>
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>S3 Storage</h2>
+                        <h2>Grails S3 Plugin</h2>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Looks unmaintained, but still works fine on latest Grails versions (no JIRA bugs pending!)
+                            <li class="fragment">Delete Buckets (See <a href="file://">org.grails.s3.BucketService</a>)</li>
+                            <li class="fragment">Uploads and catalogs assets (will use bucket name you give as base for its bucket name)</li>
+                            <li class="fragment">Names files inside bucket with UUIDs to avoid collisions</li>
+                            <li class="fragment">Can give each asset a bucket and key pair or global</li>
+                        </UL>
+                    </section>
+				</section>
+                <section>
+                    <h2>General AWS Grails Plugins</h2>
+
+                    <UL style="list-style-type: none;">
+
+                        <li class="fragment">Grails AWS Plugin</li>
+                        <li class="fragment">AWS SDK Plugin</li>
+                        <li class="fragment">DynamoDB GORM Plugin</li>
+                        <li class="fragment">Amazon Flexible Payments</li>
+                        <li class="fragment">SimpleDB GORM Plugin</li>
+                    </UL>
+                    <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>Has handy Gant scripts installed</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">AwsSesGetSendQuota</li>
+                            <li class="fragment">AwsSwsGetSendStatistics</li>
+                            <li class="fragment">AwsSesListVerifiedEmails</li>
+                            <li class="fragment">AwsSesSendPingMail</li>
+                            <li class="fragment">AwsSesVerifyEmail</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>AwsSesGetSendQuota</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Gets your current Quota for Simple Email Service</li>
+                            <li class="fragment">Shows email limit per day, per second, # of emails </li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>AwsSwsGetSendStatistics</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Gets your current Quota for Simple Email Service</li>
+                            <li class="fragment">Shows email limit per day, per second, # of emails </li>
+
+                        </UL>
+                    </section>
+                </section>
 				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+                    <h2>ElasticWolf</h2>
+
+                    <UL style="list-style-type: none;">
+
+                        <li class="fragment">More powerful than web console gui</li>
+                        <li class="fragment">Can control things like auto-scaling</li>
+
+                    </UL>
 				</section>
 
 				<section>
@@ -414,7 +588,7 @@ function linkify( selector ) {
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+		<script src="js/reveal.js"></script>
 
 		<script>
 
