@@ -233,10 +233,10 @@
                         </UL>
                     </section>
                 </section>
-
-				<section>
+                <section>
+				    <section>
 					<h2>S3 Storage</h2>
-                    <h3></h3>
+
                     <UL style="list-style-type: none;">
                         <li class="fragment">Limitations</li>
                         <li class="fragment">Common tools</li>
@@ -244,6 +244,7 @@
                         <li class="fragment">Glacier</li>
                         <li class="fragment">Grails S3 Plugin</li>
                     </UL>
+                    </section>
                     <section>
                         <h2>S3 Storage</h2>
 
@@ -305,52 +306,310 @@
                     </section>
 				</section>
                 <section>
-                    <h2>General AWS Grails Plugins</h2>
+                    <section>
+                        <h2>General AWS Grails Plugins</h2>
 
-                    <UL style="list-style-type: none;">
+                        <UL style="list-style-type: none;">
 
-                        <li class="fragment">Grails AWS Plugin</li>
-                        <li class="fragment">AWS SDK Plugin</li>
-                        <li class="fragment">DynamoDB GORM Plugin</li>
-                        <li class="fragment">Amazon Flexible Payments</li>
-                        <li class="fragment">SimpleDB GORM Plugin</li>
-                    </UL>
+                            <li class="fragment">Grails AWS Plugin</li>
+                            <li class="fragment">AWS SDK Plugin</li>
+                            <li class="fragment">DynamoDB GORM Plugin</li>
+                            <li class="fragment">Amazon Flexible Payments</li>
+                            <li class="fragment">SimpleDB GORM Plugin</li>
+                        </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Actual Groovy/Grails Code to Manage S3 storage and SES Service</h3>
+
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Has handy Gant scripts installed - used for SES stats</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Aws-Ses-Get-Send-Quota</li>
+                                <li class="fragment">Aws-Sws-Get-Send-Statistics</li>
+                                <li class="fragment">Aws-Ses-List-Verified-Emails</li>
+                                <li class="fragment">Aws-Ses-Send-Ping-Mail</li>
+                                <li class="fragment">Aws-Ses-Verify-Email</li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Aws-Ses-Get-Send-Quota</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Gets your current Quota for Simple Email Service</li>
+                                <li class="fragment">Shows email limit per day, per second, # of emails </li>
+                                <li class="fragment">Output looks like this:<br/>
+                                    <p>
+                                        [AWS SES] The maximum number of emails the user is allowed to send in a 24-hour interval: 10000.0<br/>
+                                        [AWS SES] The maximum number of emails the user is allowed to send per second: 5.0               <br/>
+                                        [AWS SES] The number of emails sent during the previous 24 hours: 15.0                           <br/>
+                                    </p>
+
+
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Aws-Sws-Get-Send-Statistics</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Gets your email sending statistics</li>
+                                <li class="fragment">The output is a list of items, for the last two weeks of sending activity.</li>
+                                <li class="fragment">Example output:
+                                    <p>
+                                        [AWS SES]  -------------------------------------------------------------------------------
+                                        <br/>[AWS SES] |    time range    | attemps | rejects (SES) | complaints (recipient) | bounces |
+                                        <br/>[AWS SES] |-------------------------------------------------------------------------------|
+                                        <br/>[AWS SES] | 2013/06/26 22:42 |    1    |       0       |           0            |    0    |
+
+                                    </p>
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-list-verified-emails</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Shows a list of all verified emails with</li>
+                                <li class="fragment">The output is a list of emails authorized to send email FROM</li>
+                                <li class="fragment">Example output:
+                                    <p>
+                                        [AWS SES] 1) support@reachforce.com
+
+                                    </p>
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-send-ping-mail</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">ScripT will verify a given email has been 'verified' by Amazon</li>
+
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-verify-email</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
+
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-verify-email</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
+
+                            </UL>
+                        </section>
+
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>S3 File Management</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Demo</li>
+
+                            </UL>
+                        </section>
+
+                      <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>S3 File Management</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Handy for storing existing assets into S3</li>
+                            <li class="fragment">
+                                <i>Convert local File to S3 Storage</i><br>
+                                def s3file = new File("/tmp/test.txt").s3upload {
+                            path "folder/to/my/file/"
+                            }
+
+                            </li>
+                            <li class="fragment">
+                                <i>Upload directly from Stream</i>:<br>
+                                def file = request.getFile('photo')
+                                def uploadedFile = file.inputStream.s3upload(file.originalFilename) {
+                                bucket "file-upload-from-inputstream"
+                                }
+                            </li>
+
+                        </UL>
+                     </section>
+
                     <section>
                         <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
 
-                        <h3>Has handy Gant scripts installed</h3>
+                        <h3>SES Management</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">AwsSesGetSendQuota</li>
-                            <li class="fragment">AwsSwsGetSendStatistics</li>
-                            <li class="fragment">AwsSesListVerifiedEmails</li>
-                            <li class="fragment">AwsSesSendPingMail</li>
-                            <li class="fragment">AwsSesVerifyEmail</li>
+                            <li class="fragment">AFAIK skip this - the mail plugin handles all of this</li>
+                            <li class="fragment">
+                                // settings for mail plugin to work with SES
+                                grails {
+                                mail {
+                                host = "email-smtp.us-east-1.amazonaws.com"
+                                port = 25
+                                username = "SESUsername"
+                                password = "SESPassword"
+                                props = ["mail.smtp.starttls.enable":"true",
+                                "mail.smtp.port":"587","mail.debug":"true","mail.smtp.auth":"true"]
+                                // uncomment to force all emails to one address
+                                // grails.mail.overrideAddress="test@address.com"
+                                grails.mail.default.from = "support@reachforce.com"
+                                }
+                                }
+
+                            </li>
+
+                        </UL>
+                    </section>
+
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Wrapper for AWS Java SDK</li>
+                            <li class="fragment">
+                                This is the one to use for most powerful work of services - can access almost all of AWS services that JDK supports
+
+                            </li>
+                            <li>Uses AWS Web Service API wrapped in a Java Library</li>
+                            <li>Error handing can be more difficult than using web service api directly</li>
+
+
+
                         </UL>
                     </section>
                     <section>
-                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
-                        <h3>AwsSesGetSendQuota</h3>
+
+                        <h3>Services Supported</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Gets your current Quota for Simple Email Service</li>
-                            <li class="fragment">Shows email limit per day, per second, # of emails </li>
+                            <li class="fragment">EC2 - ELB,CloudWatch, Elastic Beanstalk</li>
+                            <li class="fragment">RDS - Elastic Mapreduce, SDB, Dynamo, Redshift, SimpleDB</li>
+                            <li class="fragment">S3/Glacier</li>
+                            <li class="fragment">SES (us-east-1 only)</li>
+                            <li class="fragment">SQS, SWF</li>
+                            <li class="fragment">CloudFormation,CloudFront</li>
+                            <li class="fragment">Elastic Beanstalk, Transcoder, Opsworks(Old Chef) </li>
+                            <li class="fragment">Cloudformation, CloudSearch, Elasticache </li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>EC2</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Grails service wrapper is 'amazonWebService'</li>
+                            <li class="fragment">Call amazonWebService.ec2. - for default region, call amazonWebService.getEc2('region'). for others</li>
+                            <li class="fragment">RunInstancesRequest class defines parameters to launch an instance (It seems picky about nulls)</li>
+                            <li class="fragment">use amazonWebService.runInstances() to start instances</li>
+                            <li class="fragment">Complete docs at: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/</li>
 
                         </UL>
                     </section>
                     <section>
-                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
-                        <h3>AwsSwsGetSendStatistics</h3>
+
+                        <h3>Demo - EC2 Grails Demo App</h3>
+
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>RDS</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Gets your current Quota for Simple Email Service</li>
-                            <li class="fragment">Shows email limit per day, per second, # of emails </li>
+                            <li class="fragment">Not sure why you would spin up entire databases, but you can!</li>
+                            <li class="fragment">Most practical use would be to automate snapshots of the database</li>
+                            <li class="fragment">If you have a small simple database, service is good</li>
+                            <li class="fragment">Cannot start/top RDS instances, and pay premium to use their licenses if using commercial DBs</li>
+                            <li class="fragment">If you have the skill or have large DB requirements, set up your own database - there is probably an AMI for it </li>
+                            <li class="fragment">Has good multi-az failover (but pricey!) with PIOPS EBS Volumes</li>
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>S3</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">manage buckets, upload/download and delete files</li>
+                            <li class="fragment">Transfer Manager - handles multipart uploads (big files, batch, fast!)</li>
+                            <li class="fragment">full docs here: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/package-summary.html</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Glacier</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">cold storage for data - not immediately available on demand</li>
+                            <li class="fragment">vaults - organize your archives and policies (where your files go)</li>
+                            <li class="fragment">Upload files via amazonWebService.glacier.uploadArchive(UploadArchiveRequest uploadArchiveRequest) or UploadMultiPart </li>
+                            <li class="fragment">Files are retrieved via 'initiateJob'</li>
+                            <li class="fragment">Call 'listJobs' until your job is done.</li>
+                            <li class="fragment">Can use Amazon SNS to notify you when jobs are complete</li>
+                            <li class="fragment">When done get files from your vault via GetJobOutput</li>
+
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>SQS</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Simple queue service</li>
+                            <li class="fragment">Create / Delete Queues</li>
+                            <li class="fragment">Receive Message</li>
+                            <li class="fragment">Can also assign permissions and batch messages</li>
+
+
 
                         </UL>
                     </section>
                 </section>
+
+                <section>
 				<section>
                     <h2>ElasticWolf</h2>
 
@@ -358,230 +617,54 @@
 
                         <li class="fragment">More powerful than web console gui</li>
                         <li class="fragment">Can control things like auto-scaling</li>
+                        <li class="fragment">Created partly for new GovCloud because they had no UI at all initially</li>
+                        <li class="fragment">Managed by sales organization instead of IT</li>
+                        <li class="fragment">Actively Maintained on Github</li>
+
 
                     </UL>
 				</section>
+                    <section>
+                        <h2>ElasticWolf</h2>
 
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
+                        <UL style="list-style-type: none;">
 
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+                            <li class="fragment">Demo</li>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
 
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+                        </UL>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Autoscaling Overview</h2>
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+                        <UL style="list-style-type: none;">
 
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+                            <li class="fragment">Autoscaling can be used for fault-tolernance (min 1)</li>
+                            <li class="fragment">Most efficient user of instance</li>
+                            <li class="fragment">Set Policies using templates for how more servers created/terminated</li>
+                            <li class="fragment">Control Spot instance bit price</li>
+                            <li class="fragment">You app must be able to handle 'sudden death'</li>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>Autoscaling Setup</h2>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> -
-						<a href="?#/themes">Default</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
+                        <UL style="list-style-type: none;">
 
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This lets you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#" class="image navigate-next">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(-90deg);">
-						</a>
-					</section>
-				</section>
+                            <li class="fragment">Step 1: Create Launch Config(Just like launching instance but a template)</li>
+                            <li class="fragment">Step 2: Create Autoscale Group</li>
+                            <li class="fragment">Step 3: Create Policies</li>
+                            <li class="fragment">Demo with ElasticWolf</li>
 
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
+                        </UL>
+                    </section>
+                </section>
 
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
-
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
 
 			</div>
 
