@@ -41,11 +41,24 @@
 
 				<section>
 					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
-					<h3>Standard practices to make your Grails app purr!!</h3>
+					<h3>Learn the ropes to maximize your application's potential</h3>
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
 					</p>
 				</section>
+
+                <section>
+                    <h2>About Me</h2>
+                    <h3>Learn the ropes to maximize your application's potential</h3>
+                    <ul>
+                        <li>Chief Architect @ ReachForce</li>
+                        <li>Co-Chair Austin Groovy and Grails User Group</li>
+                        <li>Help maintain Grails Quartz plugin</li>
+                        <li>Maintain GVPS Plugin (Grails Video Pseudo Streamer)</li>
+                        <li>Maintain Struts-1 Plugin</li>
+                        <li>Submit pull requests for others when I can!</li>
+                    </ul>
+                </section>
 
 				<section>
                     <ul class="text-animation-exuberant-title-top">
@@ -186,8 +199,8 @@
                         <h2>VPC - IAM Roles</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Don't use root account anymore. Traditional secutiry page will be retired</li>
-                            <li class="fragment">Set up your IAM roles for each user</li>
+                            <li class="fragment">Don't use root account anymore. Traditional security page will be retired</li>
+                            <li class="fragment">Set up your IAM roles for each user and use designated login url they give you</li>
                             <li class="fragment">Use new resource level security with IAM to tier access to instances/resources</li>
                         </UL>
                     </section>
@@ -206,7 +219,7 @@
 
                         <UL style="list-style-type: none;">
                             <li class="fragment">VPN</li>
-                            <li class="fragment">Use OpenVPN instead of metered AWS VPN - it runs fine on a tiny instance</li>
+                            <li class="fragment">Use OpenVPN instead of metered AWS VPN - it runs fine on a tiny instance- save $$</li>
                             <li class="fragment">Use OpenVPN client to leave remote servers connected to VPC - it auto-reconnects</li>
 
                         </UL>
@@ -278,6 +291,7 @@
                             <li class="fragment">s3cmd is best free command line tools</li>
                             <li class="fragment">Bucket Explorer & CloudBerry Backup are good solid windows clients that parallelize multi-part uploads to ease the pain</li>
                             <li class="fragment">s3 Browser is ok free tool</li>
+                            <li class="fragment">For install on Ubuntu: http://zentraal.com/docs/installing-s3fs-on-ubuntu/</li>
                         </UL>
                     </section>
                     <section>
@@ -302,6 +316,7 @@
                             <li class="fragment">Uploads and catalogs assets (will use bucket name you give as base for its bucket name)</li>
                             <li class="fragment">Names files inside bucket with UUIDs to avoid collisions</li>
                             <li class="fragment">Can give each asset a bucket and key pair or global</li>
+                            <li class="fragment">Demo - s3-demo project</li>
                         </UL>
                     </section>
 				</section>
@@ -313,15 +328,15 @@
 
                             <li class="fragment">Grails AWS Plugin</li>
                             <li class="fragment">AWS SDK Plugin</li>
-                            <li class="fragment">DynamoDB GORM Plugin</li>
-                            <li class="fragment">Amazon Flexible Payments</li>
-                            <li class="fragment">SimpleDB GORM Plugin</li>
+                            <li class="fragment">DynamoDB GORM Plugin - not covered</li>
+                            <li class="fragment">Amazon Flexible Payments - not covered</li>
+                            <li class="fragment">SimpleDB GORM Plugin - not convered</li>
                         </UL>
                         </section>
                         <section>
                             <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
 
-                            <h3>Actual Groovy/Grails Code to Manage S3 storage and SES Service</h3>
+                            <h3>Actual Groovy/Grails Code to Manage S3 storage and SES Service (vs Java wrapper)</h3>
 
                         </section>
                         <section>
@@ -397,7 +412,7 @@
                             <h3>aws-ses-send-ping-mail</h3>
                             <UL style="list-style-type: none;">
 
-                                <li class="fragment">ScripT will verify a given email has been 'verified' by Amazon</li>
+                                <li class="fragment">Script will verify a given email has been 'verified' by Amazon</li>
 
                             </UL>
                         </section>
@@ -537,13 +552,7 @@
 
                         </UL>
                     </section>
-                    <section>
-                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
-
-                        <h3>Demo - EC2 Grails Demo App</h3>
-
-                    </section>
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
@@ -556,7 +565,7 @@
                             <li class="fragment">If you have a small simple database, service is good</li>
                             <li class="fragment">Cannot start/top RDS instances, and pay premium to use their licenses if using commercial DBs</li>
                             <li class="fragment">If you have the skill or have large DB requirements, set up your own database - there is probably an AMI for it </li>
-                            <li class="fragment">Has good multi-az failover (but pricey!) with PIOPS EBS Volumes</li>
+                            <li class="fragment">Has good multi-az failover (but pricey!) with PIOPS EBS Volumes (You can raid your own PIOPS drives!)</li>
                         </UL>
                     </section>
 
@@ -570,7 +579,7 @@
                             <li class="fragment">manage buckets, upload/download and delete files</li>
                             <li class="fragment">Transfer Manager - handles multipart uploads (big files, batch, fast!)</li>
                             <li class="fragment">full docs here: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/package-summary.html</li>
-
+                            <li class="fragment">s3browser demo</li>
                         </UL>
                     </section>
                     <section>
@@ -595,6 +604,13 @@
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
+                        <h3>Glacier</h3>
+                        <img src="./aws-glacier.png"/>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
                         <h3>SQS</h3>
                         <UL style="list-style-type: none;">
 
@@ -602,7 +618,7 @@
                             <li class="fragment">Create / Delete Queues</li>
                             <li class="fragment">Receive Message</li>
                             <li class="fragment">Can also assign permissions and batch messages</li>
-
+                            <li class="fragment">Messages can remain in queue for 12 hours</li>
 
 
                         </UL>
@@ -647,6 +663,7 @@
                             <li class="fragment">Set Policies using templates for how more servers created/terminated</li>
                             <li class="fragment">Control Spot instance bit price</li>
                             <li class="fragment">You app must be able to handle 'sudden death'</li>
+                            <li class="fragment">Make sure your debug your AMI BEFORE adding to a autoscale group (debugging failed autoscaled instances is no way to go through life son!) </li>
 
                         </UL>
                     </section>
@@ -663,8 +680,36 @@
 
                         </UL>
                     </section>
-                </section>
 
+                    <section>
+                        <h2>Elastic Beanstalk</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
+                            <li class="fragment">Elastic Beantalk in 3 simple steps: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk</li>
+
+
+
+                        </UL>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Useful resources</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Elastic Beanstalk Intro @ Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
+                            <li class="fragment">Another Beanstalk: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk/</li>
+                            <li class="fragment">Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
+                            <li class="fragment">Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
+                            <li class="fragment">Building an S3 Browser in Grails http://aws.amazon.com/articles/Amazon-S3/4000</li>
+
+                        </UL>
+                    </section>
+
+                </section>
 
 			</div>
 
