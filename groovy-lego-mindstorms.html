@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -49,7 +49,11 @@
         <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
     </p>
 </section>
+<section>
 
+    <div style="" > <img src="Duke_Blocks.gif" height="150" width="150"> <span style="display: block; margin: 0px auto; text-align: center;">+</span> </font><img src="groovy-logo-medium.png" height="150" width="200"> <span style="display: block; margin: 0px auto; text-align: center;">+</span> <IMG SRC="mindstorms.png" height="150" width="150"/> <span style="display:table-cell; vertical-align:middle;">= FUN!</span>
+    </div>
+</section>
 <section>
     <h2>About Me</h2>
 
@@ -134,6 +138,8 @@
         <p>Available in 3 flavors: RCX, NXJ, and EV3 that are all still maintained</p>
 
     </section>
+
+
     <section>
         <h2>What is LeJOS?</h2>
         <ul>
@@ -169,6 +175,7 @@
         </ul>
     </section>
     <section>
+    <section>
         <h2>OS Image</h2>
         <p>This is the base linux install image leJOS runs on</p>
 
@@ -192,6 +199,7 @@
             <li class="fragment">There isn't really enough RAM to run more than 1 VM besides what leJOS uses (hello oom killer!)</li>
         </ul>
     </section>
+    </section>
     <section>
     <h2>DBusJava</h2>
     <p>JNI Layer that interacts with physical hardware</p>
@@ -203,6 +211,8 @@
         <li class="fragment">Feel free to use the artifact on my Bintray account, compile your own with the scripts, or use your own artifact server</li>
     </ul>
 </section>
+
+<section>
 <section>
     <h2>EV3Classes</h2>
     <p>Supporting Java classes for leJOS</p>
@@ -270,6 +280,16 @@
         <li class="fragment">geometry - geometric shape support using float co-ordinates</li>
         <li class="fragment">localization - BeaconPoseProvider, CompassPoseProvider, MCLPoseProvider, OdometryPostProvider</li>
         <li class="fragment">mapping - adds support for maps- Main class is EV3NavigationModel which takes Pilot, Navigator, PoseProvider, RangeScanner, FeatureFinder</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Robotics - continued</p>
+
+    <ul>
+
         <li class="fragment">navigation - classes for physically navigating the robot around - DifferentialPilot, SteeringPilot, OmniPilot</li>
         <li class="fragment">object detection - Feature detector, Fusor detector, RangeFeature, and TouchFeature</li>
         <li class="fragment">pathfinding - most of these use a map to determine a path for the robot to take (Dijkstra, Random, Shortest, Node)</li>
@@ -287,7 +307,79 @@
     </ul>
 
 </section>
+
+
 </section>
+<section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming</p>
+
+    <ul>
+        <li class="fragment">Why? Creates less spaghetti code of if-then-else statements</li>
+        <li class="fragment">Uses threads to keep multiple things going on to allow different 'behaviors' to react </li>
+        <li class="fragment">Interface uses only 3 methods - action, suppress, and takeControl</li>
+        <li class="fragment">Uses to main Interfaces - Behavior and Artibrator</li>
+
+
+    </ul>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming</p>
+
+    <img src="lejos-behavior1.png"/>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - continued</p>
+
+    <ul>
+
+
+        <li class="fragment">Artibrator takes over from your 3 behavior classes after they are complete</li>
+        <li class="fragment">Artibrator regulates when behaviors become active</li>
+        <li class="fragment">Enter and escape will stop unless returnwheninactive is set upon creation</li>
+        <li class="fragment">Takes an array of behaviors</li>
+
+
+    </ul>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - continued</p>
+
+    <ul>
+
+
+        <li class="fragment">Simple to use, only method is start() - higher level behaviors suppress lower ones</li>
+        <li class="fragment">The array of behaviors passed in, index order determines priority of arbitrator to control behaviors</li>
+        <li class="fragment">Recommended design pattern - define boolean flag 'supppressed' for each behavior, set variable to true by supress method, test in each action method. first thing in action method is to set this to false</li>
+        <li class="fragment">Action must be coded for prompt exit from method</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - suppression</p>
+
+    <a href="http://www.lejos.org/nxt/nxj/tutorial/Behaviors/BehaviorProgramming.htm" target="_new"><img src="lejos-behavior-suppress1.png"/></a>
+
+</section>
+
+    <section>
+        <h2>Programming Model</h2>
+        <p>Let's work on our example!</p>
+
+    </section>
+
+
+</section>
+
 <section>
     <h2>Slides</h2>
     <p>
