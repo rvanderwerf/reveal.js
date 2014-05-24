@@ -428,7 +428,7 @@
 
     </section>
     <section>
-        <h2>Advanced - Sensors and Events</h2>
+        <h2>Advanced - Sensors and Events - Filters</h2>
         <p>Filters</p>
 
         <p>
@@ -466,6 +466,105 @@
             average.fetchSample(sample, 0);
         </code></pre>
         </p>
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events - Threads</h2>
+        <p>Filters</p>
+
+        <p>
+            Threads are spawned to facilitate:
+        </p>
+        <ul>
+            <li class="fragment">listeners</li>
+            <li class="fragment">regulated motors</li>
+            <li class="fragment">bluetooth</li>
+            <li class="fragment">timers</li>
+            <li class="fragment">navigation classes (Like NavPathController)</li>
+            <li class="fragment">On threads that don't need to terminate when program is done use setDaemon(true)</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events - Threads</h2>
+        <p>Threads - example from startup menu</p>
+
+        <p>
+           <code><pre>
+class Indicators extends Thread {
+  private boolean io = false;
+
+  public void ioActive() {
+    io = true;
+  }
+
+  public void run() {
+    String[] ioProgress = { ".   ", " .  ", "  . " };
+    int ioIndex = 0;
+    boolean rewrite = false;
+    while (true) {
+      try {
+        if (io) {
+          StartUpText.g.drawString("     ", 76, 0);
+          ioIndex = (ioIndex + 1) % ioProgress.length;
+          StartUpText.g.drawString(ioProgress[ioIndex], 78, 0);
+          io = false;
+          rewrite = true;
+        } else if (rewrite) {
+          LCD.drawString("   ", 13, 0);
+          // invert when power is off
+          StartUpText.g.drawString(" BT", 82, 0, !StartUpText.btPowerOn);
+          StartUpText.g.refresh();
+          rewrite = false;
+        }
+        Thread.sleep(1000);
+      } catch (InterruptedException ie) {
+      }
+    }
+  }
+}
+           </pre></code>
+        </p>
+       <p> <code><pre>
+           //startup the code
+Indicators ind = new Indicators();
+ind.setDaemon(true);
+ind.start();
+       </pre></code>
+
+       </p>
+
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events</h2>
+        <p>Listeners &amp; Events</p>
+
+        <p>
+            The listener thread supports Button Listeners &amp; Sensor Port Listeners
+        </p>
+        <ul>
+            <li class="fragment">Button listeners are used to detect when a button is pressed, whatever your program is doing at the time</li>
+            <li class="fragment">To listen for a press of a specific button, you register as listener for that button</li>
+            <li class="fragment">
+        <p><code><pre>
+public class ListenForButtons {
+  public static void main(String[] args) throws Exception {
+    Button.ENTER.addButtonListener(new ButtonListener() {
+      public void buttonPressed(Button b) {
+        LCD.drawString("ENTER pressed", 0, 0);
+      }
+
+      public void buttonReleased(Button b) {
+        LCD.clear();
+      }
+    });
+
+    Button.ESCAPE.waitForPressAndRelease();
+  }
+}
+        </pre></code></p></li>
+        </ul>
+
     </section>
 </section>
 <section>
