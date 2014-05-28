@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Deploying, Scaling, and Running Grails on AWS and VPC</title>
+		<title>Getting Grails Into The Enterprise</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -40,7 +40,7 @@
 			<div class="slides">
 
 				<section>
-					<h2>Getting Grails into the Enterprises</h2>
+					<h2>Getting Grails into the Enterprise</h2>
 					<h3>How to talk your favorite technology into your company and keep it there</h3>
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
@@ -168,10 +168,144 @@
 
 
                     </section>
+                    <section>
+                        <h2>Selling to Management</h2>
+                        <p>You must have a plan before you begin - responsible thing to do</p>
+                        <UL >
+                            <li class="fragment">Gain development efficiencies, no constant server restarts during development</li>
+                            <li class="fragment">Plugin ecosystem – won't have to re-invent the wheel so many great useful plugins to save time (and most of the source, you can contribute most of them to make them better)</li>
+                            <li class="fragment">Easy for Java developers to understand (See 'Making Java Groovy by Ken Kousen')</li>
+                            <li class="fragment">Still deploys as a WAR file to the container, no significant infrastructure changes</li>
+                            <li class="fragment">Can build a hybrid product to bridge the gap between new a old, giving a long term plan to modernize as you go</li>
+
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Facilities You Will Need To Put In Place</h2>
+                        <p>You'll need some of these infrastructure items</p>
+                        <UL >
+                            <li class="fragment">CI Server – Hudson/Jenkins most popular free choice, works great with Grails
+                                 <ul><li class="fragment">
+                                     setup jobs on CI Server to run tests
+                                 </li>
+                                 <li class="fragment">trigger builds by watching SCM for changes</li>
+                                 <li class="fragment">use coverage tools like Cobertura or Emma</li>
+                                 <li class="fragment">use code analysis tools like FindBugs or CodeNarc</li>
+                                     <li class="fragment">Make your CI server fun, little things like the chuck norris plugin or integration game keep developers entergized and interested (A little competition for a prize never hurts!)</li>
+                                     <li class="fragment">Use a service like Cloudbees if you can't run it yourself</li>
+                                 </ul>
+                            </li>
+                            <li class="fragment">Some kind of deployment tool. Roll your own in Grails, or use artifact deployers in Hudson, or tools like Cargo, Chef, Puppet, Ansible, Docker to help you</li>
 
 
 
-                <section>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Struts 1 Plugin</h2>
+                        <p>You'd be shocked how many big places still heavily use Struts 1!</p>
+                        <UL >
+                            <li class="fragment">Lets you merge Struts applications into a Grails application
+
+                            </li>
+
+                            <li class="fragment">Often overlooked option that works quite well to get Grails 'in the door' to help aging applications</li>
+                            <li class="fragment">You can even write Struts actions in Groovy</li>
+                            <li class="fragment">Easy win to run old legacy code and new Grails functionality in parallel</li>
+                            <li class="fragment">Version on Grails Portal currently only works with Grails 1.3.x. For Grails 2.x, go to https://github.com/rvanderwerf/grails-struts1
+                            </li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Struts 1 Plugin</h2>
+
+                        <UL >
+                            <li class="fragment">Handle exceptions well for legacy code. In Grails 1.3.x, exceptions on a 500 server error page in your legacy application will be wrapped in a Grails stack. This will frequently cause blame on Grails for legacy bugs and give opponents ammunition to not go forward with Grails. Stack traces in Grails 2 are much cleaner and also avoid this error
+                                     <code><pre>
+multipartResolver(org.codehaus.grails.struts.StrutsAwareMultipartResolver) {
+    strutsActionExtension = ".do"
+
+}
+                                     </pre></code>
+                            </li>
+
+                            <li class="fragment">(If using Grails 2.x version from Github, the plugin does this for you)</li>
+                            <li class="fragment">If Using Grails 2, the ControllerActionProxy (TODO to fix this) </li>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Struts 1 Plugin</h2>
+                             <p>Demo</p>
+
+
+
+                    </section>
+
+
+                    <section>
+                        <h2>Continuous Integration Server</h2>
+
+                        <UL >
+                            <li class="fragment">Do you have a server to run it on? If yes, you have lots of options:
+                                <ul>
+                                    <li class="fragment">Jenkins / Hudson (recommended for Grails)</li>
+                                    <li class="fragment">Cruise Control</li>
+                                    <li class="fragment">Continuum</li>
+                                    <li class="fragment">Team City</li>
+                                    <li class="fragment">Travis</li>
+                                    <li class="fragment">Bamboo</li>
+                                </ul>
+                            </li>
+
+                            <li class="fragment">If no there are cloud based options:
+                            <ul>
+                                <li class="fragment">Cloudbees</li>
+                                <li class="fragment">drone.io</li>
+                                <li class="fragment">CircleCi</li>
+                                <li class="fragment">CodeShip</li>
+                                <li class="fragment">Travis</li>
+                                <li class="fragment">Elastic Bamboo</li>
+                                <li class="fragment">Run your own instance of Jenkins/Hudson on a EC2 or other cloud provider OS image (and maintain yourself)</li>
+                            </ul></li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Database Reverse Engineering</h2>
+
+                        <UL >
+                            <li class="fragment">2 Common Options to generate domain model from Database
+                                <ul>
+                                    <li class="fragment">Grails Reverse Engineering Plugin (Only works properly on a separate 1.3.x project due to Hibernate version issues)</li>
+                                    <li class="fragment">The GRails Application Generator (GRAG) Standalone application</li>
+
+                                </ul>
+                            </li>
+
+                            <li class="fragment">Mirror domain objects to legacy tables is key to implementing new features in Grails and leaving legacy code alone (If you won't have hbm files to import to Grails)
+
+                            </li>
+                            <li class="fragment">
+                                Mirror domain objects to legacy tables is key to implementing new features in Grails and leaving legacy code alone (If you won't have hbm files to import to Grails)
+                            </li>
+                            <li class="fragment">When you have a domain object and a legacy bean make sure you handle cache consistency when writing objects</li>
+                        </UL>
+
+
+                    </section>
+                    <section>
                     <section>
                         <h2>Useful resources</h2>
 
