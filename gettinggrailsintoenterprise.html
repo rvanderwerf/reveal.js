@@ -306,16 +306,188 @@ multipartResolver(org.codehaus.grails.struts.StrutsAwareMultipartResolver) {
 
                     </section>
                     <section>
+                        <h2>Database Management</h2>
+
+                        <UL >
+                            <li class="fragment">Database change management
+                                <ul>
+                                    <li class="fragment">Use Grails Database Migration Plugin (wraps Liquibase)</li>
+                                    <li class="fragment">Liquibase Directly</li>
+                                    <li class="fragment">Most other plugins like liquibase and autobase are deprecated in favor of the Database Migration Plugin</li>
+                                    <li class="fragment">Your DBAs may already have a process and procedure - you may not win this one</li>
+                                </ul>
+                            </li>
+
+                            <li class="fragment">Do NOT use the 'dbCreate'  option in Grails for any kind of production system – it is not smart enough to handle field renaming of columns
+                            </li>
+                            <li class="fragment">
+                                If using the Grails Database Migration Plugin, use the changelog.groovy format and not the xml format, due to bugs in the functionality that handles xml changelogs in the plugin
+                            </li>
+                            <li class="fragment">If you must use the xml format, use Liquibase directly</li>
+                            <li class="fragment">Create separate project and install the migration plugin just for it (Due to Hibernate 3 vs 4 versioning issues)</li>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Modularity</h2>
+
+                        <UL >
+                            <li class="fragment">Split up major functional areas of the legacy applications into separate plugins, but keep some things in mind:
+                                <ul>
+                                    <li class="fragment">JSPs do not serve well from plugins, start with just the java code, then work your way to converting JSPs to GSPs called from the plugins</li>
+                                    <li class="fragment">Beware of cyclic dependencies, Grails does not tolerate them (Good design should avoid this, but sometimes it's hard to break of legacy spaghetti code)</li>
+                                    <li class="fragment">Do not use the lib folder for jar files, keep dependencies clean....</li>
+                                </ul>
+                            </li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Dependency Management</h2>
+
+                        <UL >
+                            <li class="fragment">When migrating legacy app to Grails format, and you use Ant and not Maven, follow these tips:
+                                <ul>
+                                    <li class="fragment">Don't just copy jars into the grails/lib folder, set up dependencies in BuildConfig.groovy as much as possible(If no repo, use Bintray or Artifactory)</li>
+                                    <li class="fragment">Run dependency-report  to help work out conflicts</li>
+                                    <li class="fragment">Do not use the lib folder for jar files, keep dependencies clean....</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                If your legacy project is Maven based, Grails 2.1 has excellent Maven support built in via 'grails create-pom' command  (POM demo struts-demo21)
+                            </li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Maven Project Management</h2>
+
+                        <UL >
+                            <li class="fragment">Grails 2.1+ required:
+                                grails create-pom <code><pre><company.group></pre></code>
+
+                            </li>
+                            <li class="fragment">
+                                Uses created pom.xml to build and manage dependencies instead of BuildConfig.groovy
+                            </li>
+                            <li class="fragment">Advantage is easier for developers used to pure Maven build and depenency management instead of Ivy</li>
+                            <li class="fragment">Very new so there may be dragons ahead, but so far works well</li>
+                            <li class="fragment">Could work around some build/packaging bugs on Ivy (Concurrent building, etc)</li>
+                            <li class="fragment">Available goals by default:
+                                validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-clean, clean, post-clean, pre-site, site, post-site, site-deploy</li>
+
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Maven Project Management</h2>
+
+                        <UL >
+                            <li class="fragment">Multi-module support (From docs):
+                                <code><pre>
+create-multi-project-build
+
+grails create-app myapp
+grails create-plugin plugin-a
+grails create-plugin plugin-b
+grails create-multi-project-build com.mycompany:parent:1.0-SNAPSHOT
+mvn install
+                                </pre></code>
+
+                            </li>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Release Plugin</h2>
+
+                        <UL >
+                            <li class="fragment">Used to push plugins to maven repository (or your own plugins to the public!)
+
+
+
+                            </li>
+                            <li class="fragment">Add the following to your BuildConfig.groovy:
+                            <code><pre>
+       grails.project.repos.default = "PluginSnapShots"
+	   grails.project.repos.PluginSnapShots.url = "http://127.0.0.1:8081/artifactory/plugins-snapshot-local"
+       grails.project.repos.PluginSnapShots.type = "maven"
+       grails.project.repos.PluginSnapShots.username = "admin"
+       grails.project.repos.PluginSnapShots.password = "password"
+
+                            </pre></code>
+                            </li>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Localization Plugin</h2>
+
+                        <UL >
+                            <li class="fragment">Store your i18n message bundles in the database</li>
+                            <li class="fragment">Can Import legacy i18n property files from most systems</li>
+                            <li class="fragment">Provides Caching</li>
+                            <li class="fragment">allows changes to labels on the app without a new build</li>
+                            <li class="fragment">Store your i18n message bundles in the database</li>
+                            <li class="fragment">Lets non-technical users fill in missing labels for you(and a value add to sell when switching to Grails)
+
+                            </li>
+                            <li class="fragment">Combine with the filterpane plugin to add searching ability</li>
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Filterpane Plugin</h2>
+
+                        <UL >
+                            <li class="fragment">Great for adding search ability for larger number of legacy reverse engineered domain objects (and rows within those)</li>
+                            <li class="fragment">Simple to install and implement: add a new action to your controller and add some parameters to your list view page
+                            </li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Clustering</h2>
+
+                        <UL >
+                            <li class="fragment">Ehcache or new Spring Cache</li>
+                            <li class="fragment">Use your servlet containers http session clustering or use Terracotta
+
+                            </li>
+                            <li class="fragment">Use Terracotta open source edition for visibiity and cache management of level2 and general cache management</li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
                     <section>
                         <h2>Useful resources</h2>
 
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Elastic Beanstalk Intro @ Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
-                            <li class="fragment">Another Beanstalk: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk/</li>
-                            <li class="fragment">Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
-                            <li class="fragment">Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
-                            <li class="fragment">Building an S3 Browser in Grails http://aws.amazon.com/articles/Amazon-S3/4000</li>
+                            <li class="fragment">http://grails.org/plugin/filterpane
+                                http://grails.org/plugin/localizations
+                                http://grag.sourceforge.net/http://grails-plugins.github.com/grails-database-migration/
+                                http://grails.org/plugin/struts1
+                                https://github.com/rvanderwerf/grails-struts1
+                                http://terracotta.org/downloads/open-source/catalog
+                                http://grails.org/plugin/release
+                                http://grails.org/plugin/db-reverse-engineer
+
+                            </li>
 
                         </UL>
                     </section>
