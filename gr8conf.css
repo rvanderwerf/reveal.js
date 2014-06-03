@@ -1,0 +1,5 @@
+html.intro body {
+    background:url("presentation-16-9-pages.png");
+    background-position:center;
+    background-size: 100%;
+}
