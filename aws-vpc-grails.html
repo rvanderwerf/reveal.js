@@ -41,7 +41,7 @@
 
 				<section>
 					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
-					<h3>Learn the ropes of networking to maximize your application's potential</h3>
+					<h3>Learn the ropes of networking to maximize your potential</h3>
                     <img style="border:none" src="gr8conf-banner.png" alt="GR8Conf groovy gradle grails" height="240" width="800"/>
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
@@ -50,7 +50,7 @@
 
                 <section>
                     <h2>About Me</h2>
-                    <h3>Learn the ropes to maximize your application's potential</h3>
+                    <h3>Learn the ropes of networking to maximize your potential</h3>
                     <ul>
                         <li>Chief Architect @ ReachForce</li>
                         <li>Co-Chair Austin Groovy and Grails User Group</li>
@@ -175,8 +175,8 @@
                         <h3>Security Groups</h3>
                         <UL style="list-style-type: none;">
                             <li class="fragment roll-in">VPC Security Groups are different than EC2 Groups - use different and descriptive names if both used</li>
-                            <li class="fragment">You can use a security group ID (starting with sgXXXXX) in blace </li>
-                            <li class="fragment">Pro cessed in order of rule #</li>
+                            <li class="fragment">You can use a security group ID (starting with sgXXXXX) in most places where IPs can be entered </li>
+                            <li class="fragment">Processed in order of rule #</li>
                             <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
                             <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
                         </UL>
@@ -186,7 +186,7 @@
                         <h3>DHCP Options</h3>
                         <UL style="list-style-type: none;">
                             <li class="fragment">Determine What DNS DHCP clients use</li>
-                            <li class="fragment">Can things like default domain, whether to use internal or external DNS for your VPC</li>
+                            <li class="fragment">Can do things like set default domain, whether to use internal or external DNS for your VPC</li>
                             <li class="fragment">From Web UI, assign only 1 option set at a time</li>
                             <li class="fragment">Using amazon provided DNS, using naming scheme of 10.0.1.x, default domain ec2.internal</li>
                             <li class="fragment">Can assign your own DNS server names, or even Netbios name servers or NTP servers</li>
@@ -197,18 +197,18 @@
                         <h2>VPC - IAM Roles</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Don't use root account anymore. Traditional security page will be retired</li>
+                            <li class="fragment">Don't use root account anymore. Traditional security page is retired</li>
                             <li class="fragment">Set up your IAM roles for each user and use designated login url they give you</li>
-                            <li class="fragment">Use new resource level security with IAM to tier access to instances/resources</li>
+                            <li class="fragment">Use resource level security with IAM to tier access to instances/resources</li>
                         </UL>
                     </section>
                     <section>
                         <h2>VPC - Misc EC2 Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Reboot != Reboot</li>
-                            <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage</li>
-                            <li class="fragment">If you issue an OS reboot or a 'stop' command you machine will move and lose ephemeral state</li>
+                            <li class="fragment">Reboot != Reboot be careful</li>
+                            <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage(OS reboot faster)</li>
+                            <li class="fragment">If you issue an 'stop' command you machine will move and lose ephemeral state</li>
 
                         </UL>
                     </section>
@@ -329,6 +329,7 @@
                             <li class="fragment">DynamoDB GORM Plugin - not covered</li>
                             <li class="fragment">Amazon Flexible Payments - not covered</li>
                             <li class="fragment">SimpleDB GORM Plugin - not convered</li>
+                            <li class="fragment">CDN Asset Pipeline plugin - not covered</li>
                         </UL>
                         </section>
                         <section>
@@ -528,7 +529,7 @@
                             <li class="fragment">EC2 - ELB,CloudWatch, Elastic Beanstalk</li>
                             <li class="fragment">RDS - Elastic Mapreduce, SDB, Dynamo, Redshift, SimpleDB</li>
                             <li class="fragment">S3/Glacier</li>
-                            <li class="fragment">SES (us-east-1 only)</li>
+                            <li class="fragment">SES (us-east-1,us-west-2,eu-west-1 only)</li>
                             <li class="fragment">SQS, SWF</li>
                             <li class="fragment">CloudFormation,CloudFront</li>
                             <li class="fragment">Elastic Beanstalk, Transcoder, Opsworks(Old Chef) </li>
@@ -577,7 +578,9 @@
                             <li class="fragment">manage buckets, upload/download and delete files</li>
                             <li class="fragment">Transfer Manager - handles multipart uploads (big files, batch, fast!)</li>
                             <li class="fragment">full docs here: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/package-summary.html</li>
+<!--
                             <li class="fragment">s3browser demo</li>
+-->
                         </UL>
                     </section>
                     <section>
@@ -659,6 +662,7 @@
                             <li class="fragment">executing remote commands</li>
                             <li class="fragment">copying files and directories</li>
                             <li class="fragment">creating tunnels in a simple and concise way</li>
+                            <li class="fragment">gradle plugin also for  </li>
                             <li class="fragment">project very active (last commit 1 month ago)</li>
                             </ul>
                             </li>
@@ -668,8 +672,9 @@
                                 <li class="fragment">uses gradle to run commands</li>
                                 <li class="fragment">maybe could be used as basis for a groovy version of chef or puppet?</li>
                                 <li class="fragment">project very active (last commit 1 month ago)</li>
+                                <li class="fragment">gradle project template available as well as 'gradle-ssh-plugin'</li>
                         </ul></li>
-
+                        <p>Repos for these: https://github.com/aestasit/sshoogr and https://github.com/aestasit/gramazon-gradle</p>
 
 
                         </UL>
@@ -698,7 +703,7 @@
                             <li class="fragment">Step 1: Create Launch Config(Just like launching instance but a template)</li>
                             <li class="fragment">Step 2: Create Autoscale Group</li>
                             <li class="fragment">Step 3: Create Policies</li>
-                            <li class="fragment">Demo with ElasticWolf (can use web console now)</li>
+                            <li class="fragment">Demo with ElasticWolf (can use web console now too)</li>
 
 
                         </UL>
@@ -706,16 +711,17 @@
 
                     <section>
                         <h2>Elastic Beanstalk</h2>
+                        <p>Finally a good solution to push your application to Elastic Beanstalk on Grails!</p>
 
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Ken Lui now has first class citizen support in Grails for Elastic Beanstalk!</li>
-                            <li class="fragment">Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
-                            <li class="fragment">Elastic Beantalk in 3 simple steps: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk</li>
-
-
+                            <li class="fragment">Ken Liu now has first class citizen support in Grails for Elastic Beanstalk!</li>
+                            <li class="fragment">Easy to set up and configure, just add keys and params to Config.groovy</li>
+                            <li class="fragment">Use command 'aws-eb-deploy' and 'aws-eb-stop' - that's it!</li>
+                            <li class="fragment">Detailed online manual available at http://kenliu.net/grails-elastic-beanstalk/manual.html</li>
 
                         </UL>
+
                     </section>
                 </section>
                 <section>
