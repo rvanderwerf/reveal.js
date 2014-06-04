@@ -116,7 +116,7 @@
 					<section>
 						<h2>My Story with Grails</h2>
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Employer had very antiquated Struts/OJB application</li>
+                            <li class="fragment">Old employer had very antiquated Struts/OJB application</li>
                             <li class="fragment">Because of technical debt work orders from customers were taking too long to do to be profitable
                                 Wanted a fresh start, but could not afford </li>
                             <li class="fragment">Wanted a fresh start, but could not afford to re-write all old code</li>
@@ -159,11 +159,10 @@
                         <h2>Creating A Plan</h2>
                         <p>You must have a plan before you begin - responsible thing to do</p>
                         <UL >
-                            <li class="fragment">Greenfield projects are always easier but can be risky if you are new to the framework – Start with some kind of internal tool
-                            </li>
-                            <li class="fragment">Old Struts 1.x projects can be blended easily without a lot of risk</li>
-                            <li class="fragment">Easy win because people will have low expectations on such an old application</li>
-                            <li class="fragment">Write unit tests for existing code in Groovy to 'wet' developer appetites (and practice)</li>
+                            <li class="fragment">How you will pick an app? old or new?</li>
+                            <li class="fragment">cost - how much will it cost if you need outside help?</li>
+                            <li class="fragment">who - how many resources do you need? Any IT changes necessary?</li>
+                            <li class="fragment">Are you superiors and peers sold on it yet? Did you do a POC?</li>
                             <li class="fragment">It's about business value, this is the language your management will speak. That may be the only information that actually comprehend - compute some basic numbers to help</li>
 
 
@@ -180,7 +179,7 @@
                             <li class="fragment">Easy for Java developers to understand (See 'Making Java Groovy by Ken Kousen')</li>
                             <li class="fragment">Still deploys as a WAR file to the container, no significant infrastructure changes</li>
                             <li class="fragment">Can build a hybrid product to bridge the gap between new a old, giving a long term plan to modernize as you go</li>
-
+                            <li class="fragment">Great community support</li>
 
                         </UL>
 
@@ -221,7 +220,7 @@
                             <li class="fragment">Often overlooked option that works quite well to get Grails 'in the door' to help aging applications</li>
                             <li class="fragment">You can even write Struts actions in Groovy</li>
                             <li class="fragment">Easy win to run old legacy code and new Grails functionality in parallel</li>
-                            <li class="fragment">Version on Grails Portal currently only works with Grails 1.3.x. For Grails 2.x, go to https://github.com/rvanderwerf/grails-struts1
+                            <li class="fragment">If you still use  Grails 1.3.x use plugin v1.3.10. For Grails 2.x, use 1.3.11+
                             </li>
 
                         </UL>
@@ -241,7 +240,7 @@ multipartResolver(org.codehaus.grails.struts.StrutsAwareMultipartResolver) {
                                      </pre></code>
                             </li>
 
-                            <li class="fragment">(If using Grails 2.x version from Github, the plugin does this for you)</li>
+                            <li class="fragment">(If using Grails 2.x plugin version 1.3.11, the plugin does this for you)</li>
                             <li class="fragment">If Using Grails 2, the ControllerActionProxy (TODO to fix this) </li>
                         </UL>
 
@@ -298,7 +297,7 @@ multipartResolver(org.codehaus.grails.struts.StrutsAwareMultipartResolver) {
 
                             </li>
 
-                            <li class="fragment">I have a GWT legacy app, this would be a good candidate if you have one too to get Grails in the door</li>
+                            <li class="fragment">I have a GWT legacy app, this would be a good candidate if you have one to get Grails in the door</li>
                             <li class="fragment">1.0 status, less than 6 months since last update</li>
                             <li class="fragment">If you can find a reason to ditch that horrific GWT maven script for compilation, that alone is a win</li>
                             <li class="fragment">Has several maintainers including Peter Ledbrook :) and a good tutorial and documentation</li>
@@ -324,21 +323,51 @@ multipartResolver(org.codehaus.grails.struts.StrutsAwareMultipartResolver) {
                                 </ul>
                             </li>
 
-                            <li class="fragment">If no there are cloud based options:
-                            <ul>
-                                <li class="fragment">Cloudbees</li>
-                                <li class="fragment">drone.io</li>
-                                <li class="fragment">CircleCi</li>
-                                <li class="fragment">CodeShip</li>
-                                <li class="fragment">Travis</li>
-                                <li class="fragment">Elastic Bamboo</li>
-                                <li class="fragment">Run your own instance of Jenkins/Hudson on a EC2 or other cloud provider OS image (and maintain yourself)</li>
-                            </ul></li>
+
 
                         </UL>
 
 
                     </section>
+                    <section>
+                        <h2>Continuous Integration Server</h2>
+
+                        <UL >
+
+
+                            <li class="fragment">If no there are cloud based options:
+                                <ul>
+                                    <li class="fragment">Cloudbees</li>
+                                    <li class="fragment">drone.io</li>
+                                    <li class="fragment">CircleCi</li>
+                                    <li class="fragment">CodeShip</li>
+                                    <li class="fragment">Travis</li>
+                                    <li class="fragment">Elastic Bamboo</li>
+                                    <li class="fragment">Run your own instance of Jenkins/Hudson on a EC2 or other cloud provider OS image (and maintain yourself)</li>
+                                </ul></li>
+
+                        </UL>
+
+
+                    </section>
+                    <section>
+                        <h2>Continuous Integration Server</h2>
+
+                       <p>Jenkins is by far the most popular now according to Rebellabs</p>
+                       <img src="jenkinsjava-toolsleaderboard.jpeg" style="border:none"/>
+
+
+                    </section>
+
+                    <section>
+                        <h2>Artifact / Maven Server</h2>
+
+                        <p>JFrog Artifactory the most popular and easy. Archiva etc also work fine</p>
+
+
+
+                    </section>
+
                     <section>
                         <h2>Database Reverse Engineering</h2>
 
@@ -523,7 +552,8 @@ mvn install
                             <li class="fragment">Use your servlet containers http session clustering or use Terracotta
 
                             </li>
-                            <li class="fragment">Use Terracotta open source edition for visibiity and cache management of level2 and general cache management</li>
+                            <li class="fragment">Use Terracotta open source edition for visibility and cache management of level2 and general cache management</li>
+                            <li class="fragment">Hazelcast is also a great option for distributed cache</li>
 
                         </UL>
 
