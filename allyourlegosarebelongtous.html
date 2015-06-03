@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Getting Groovy With Lego Minstorms EV3</title>
+    <title>All Your Legos Are Belong To Us</title>
 
-    <meta name="description" content="Workshop to Learn how to program Groovy on leJOS and have a chance to interact with it">
+    <meta name="description" content="Lecture to Learn how to program Groovy on leJOS and have a chance to interact with it">
     <meta name="author" content="Ryan Vanderwerf">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -43,13 +43,14 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-    <h1>Getting Groovy with Lego Mindstorms (EV3)</h1>
-    <h3>Learn how to get your Groovy on with Legos!</h3>
-    <img style="border:none" src="gr8conf-eu-2015-presentation-16-9-first.png" alt="GR8Conf groovy gradle grails" height="300" width="800"/>
+    <h1><img src="opresidentbusiness-allyourlegos.png" style="background:none; border:none; box-shadow:none;"</h1>
+    <h3>Learn how to get your Groovy on with Lego Mindstorms!</h3>
+    <img style="border:none" src="gr8conf-eu-2015-presentation-16-9-first.png" alt="GR8Conf groovy gradle grails" height="200" width="500"/>
 
     <p>
         <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
     </p>
+
 </section>
 <section>
 
@@ -135,7 +136,7 @@
     <section>
         <h2>What is leJOS?</h2>
         <p>
-            leJOS is a Java-based implemention that started on the lego mindstorm RCX platform that runs on arm based processors.
+            leJOS is a Java-based implementation that started on the Lego Mindstorms RCX platform that runs on arm based processors.
             leJOS was forked oringally from the 'TinyVM' project in 2000.
         </p>
         <p>Available in 3 flavors: RCX, NXJ, and EV3 that are all still maintained</p>
@@ -170,10 +171,10 @@
     <section>
         <h2>Layouts and components of leJOS</h2>
         <ul>
-            <li class="fragment">OS Image</li>
-            <li class="fragment">DBusJava</li>
-            <li class="fragment">EV3 Classes</li>
-            <li class="fragment">EV3 Menu</li>
+            <li class="fragment">OS Image - boot/busybox</li>
+            <li class="fragment">DBusJava - JNI classes for hardware</li>
+            <li class="fragment">EV3 Classes - Abstraction Java Classes</li>
+            <li class="fragment">EV3 Menu - long running process launches apps, remote connections</li>
             <li class="fragment">Other components</li>
         </ul>
     </section>
@@ -193,7 +194,7 @@
 
     <section>
         <h2>OS Image</h2>
-        <p>Runs minimal OS and kernel - only subset of basic shell options and commands available</p>
+        <p>Runs minimal OS and kernel - only subset of basic shell options and commands available(busybox)</p>
 
         <ul>
             <li class="fragment">shell is 'ash' nowhere near feature comparable to bash</li>
@@ -266,7 +267,7 @@
         <li class="fragment">Accessing hardware remotely pretty much as a 1:1 relation with 'Remote' in front of classs</li>
         <li class="fragment">Wifi support most stable</li>
 
-        <li class="fragment">Bluetooth is working, but not considered 100% stable (instructions differ per platform)</li>
+        <li class="fragment">Bluetooth is working, but not considered as stable as Wifi (instructions differ per platform)</li>
         <li class="fragment">When accessing ports, you must pass in the the proper 1 or 2 letter names (S[1-9] or letter A-F on motor ports</li>
         <li class="fragment">Let's look at some <a href="https://sourceforge.net/p/lejos/wiki/Remote%20access%20to%20an%20EV3/">RemoteEV3</a> code usage!</li>
 
@@ -296,7 +297,7 @@
         <li class="fragment">navigation - classes for physically navigating the robot around - DifferentialPilot, SteeringPilot, OmniPilot</li>
         <li class="fragment">object detection - Feature detector, Fusor detector, RangeFeature, and TouchFeature</li>
         <li class="fragment">pathfinding - most of these use a map to determine a path for the robot to take (Dijkstra, Random, Shortest, Node)</li>
-        <li class="fragment">subsumption - Arbitrator and Behavior</li>
+        <li class="fragment">subsumption - Arbitrator and Behavior(Events)</li>
     </ul>
 
 </section>
@@ -321,22 +322,7 @@
 </section>
 
 </section>
-<section>
-<section>
 
-    <h2>Let's Go!</h2>
-    <p>Let's break into groups and start setting up leJOS+Groovy SD Card Images, setup wifi, and deploy the sample Groovy App</p>
-</section>
-    <section>
-
-        <h2>Getting Connected</h2>
-        <p>For this segment you can use Wifi or Bluetooth</p>
-        <p>Bluebooth: Find MAC ID of bluebooth from your PC - on linux 'hcitool scan'</p>
-        <p> Then 'sudo pand --connect 00:00:00:00 -n' - then 'ifconfig bnep0 10.0.1.1'</p>
-        <p>Wifi - just will auto connect to 'ryan-hotspot' pw 'groovylego', but must sign laptop into same</p>
-    </section>
-    
-</section>    
 <section>
 <section>
     <h2>Programming Model</h2>
@@ -579,17 +565,7 @@ public class ListenForButtons {
         </ul>
 
     </section>
-    <section>
-        <h2>Advanced - Sensors and Events - Threads</h2>
-        <p>EV3BumperCar</p>
 
-        <p>
-            Let's now build and deploy a Groovy verison of EV3BumperCar!
-        </p>
-        <p> Should just need to add 1 touch sensor to port 1, ultrasonic port 2, 2 wheeled or tracked robot</p>
-
-
-    </section>
 
 </section>
 
@@ -690,7 +666,7 @@ public class ListenForButtons {
 
 <section>
     <h1>THE END</h1>
-    <h3>I hope you have enjoyed the workshop!</h3>
+    <h3>I hope you have enjoyed the session!</h3>
     <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
 </section>
 

@@ -20,9 +20,10 @@
         <!--<link rel="stylesheet" type="text/css" href="fdw-demo.css" media="all" />-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="style2.css">
-		<!-- For syntax highlighting -->
+		<!css/print/pdf.css-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+        <!--//css/print/pdf.css-->
+        <link rel="stylesheet" href="css/print/pdf.css">
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -45,230 +46,6 @@
 					<h3>How to talk your favorite technology into your company and keep it there</h3>
                     <!--<img style="border:none" src="gr8conf-banner.png" alt="GR8Conf groovy gradle grails" height="240" width="800"/>-->
 					<h3>gr8conf.us - July 28, 2014
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </h3>
                     <p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
@@ -279,8 +56,9 @@
                     <h2>About Me</h2>
 
                     <ul style="list-style-type: none;">
-                        <li>Chief Architect @ ReachForce</li>
+                        <li>Chief Architect / Director of Products @ ReachForce</li>
                         <li>Co-Chair Austin Groovy and Grails User Group</li>
+                        <li>Effective Gradle Implementation Video Screencast Series released soon!</li>
                         <li>Help maintain Grails Quartz plugin</li>
                         <li>Maintain GVPS Plugin (Grails Video Pseudo Streamer)</li>
                         <li>Maintain Struts-1 Plugin</li>
@@ -315,17 +93,21 @@
 
 				<!-- Example of nested vertical slides -->
 				<section>
+                <section>
+
+                    <img src="magician.jpg" border="none" alt="magician"/>
+                </section>
 					<section>
 
-                      <h2>How to Get Grails In The Door</h2>
+                      <h2>How to Get Grails (and Groovy!) In The Door</h2>
 
 
                         <p>Looking to introduce Grails into your Company or Enterprise? Make sure you can answer these questions:</p>
 
                         <ul style="list-style-type: none;">
-                            <li class="fragment"><strong>Do you have a plan? (Please work with one ors will hurt)i.e. why?</strong></li>
+                            <li class="fragment"><strong>Do you have a plan? (Please work with one or it will hurt)i.e. why?</strong></li>
                             <li class="fragment"><strong>How will you sell it to management? (What's the upside? Risk?)</strong></li>
-                            <li class="fragment"><strong>How will you know it is effective? (Have a way to benchmark efficacy)</strong></li>
+                            <li class="fragment"><strong>How will you know it is effective? (Have a way to benchmark 'success')</strong></li>
                             <li class="fragment"><strong>How will you keep things running smoothly? (Call on your trusty plugins!)</strong></li>
                             <li class="fragment"><strong>What is a good kind of low-risk project to migrate? (This varies, I'll show a struts example)</strong></li>
 
@@ -344,7 +126,7 @@
                         <UL style="list-style-type: none;">
                             <li class="fragment">Old employer had very antiquated Struts/OJB application</li>
                             <li class="fragment">Because of technical debt work orders from customers were taking too long to do to be profitable
-                                Wanted a fresh start, but could not afford </li>
+                                 </li>
                             <li class="fragment">Wanted a fresh start, but could not afford to re-write all old code</li>
                             <li class="fragment">Need a framework that allows for rapid development</li>
                             <li class="fragment">Need a solution that Java developers can quickly grasp and understand (and enjoy!)</li>
@@ -375,7 +157,7 @@
                             <li class="fragment">Old Struts 1.x projects can be blended easily without a lot of risk</li>
                             <li class="fragment">Easy win because people will have low expectations on such an old application</li>
                             <li class="fragment">Write unit tests for existing code in Groovy to 'wet' developer appetites (and practice)</li>
-
+                            <li class="fragment">Switch a build to Gradle, start small!</li>
 
                         </UL>
 
