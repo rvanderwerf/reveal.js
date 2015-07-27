@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Getting Groovy with Google Glass and Android Wear</title>
+
+    <meta name="description" content="Lecture to Learn how to program Groovy Google Glass and Android Wear">
+    <meta name="author" content="Ryan Vanderwerf">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1><img src="homer_glasshole.jpg" style="background:none; border:none; box-shadow:none;" height="201" width="500"/>
+    <img src="smart-watch.jpg" style="background:none; border:none; box-shadow:none;" height="150" width="200"/>
+    <img style="border:none; background:white" src="gr8confus-2015.png" alt="GR8Conf groovy gradle grails" height="150" width="250"/></h1>
+    <h3>Learn how to get your Groovy on Google Glass and Android Wear!</h3>
+
+
+    <p>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - ReachForce</a></small>
+    </p>
+
+</section>
+
+<section>
+    <h2>About Me</h2>
+
+    <ul>
+        <li>Chief Architect/Director @ ReachForce - we make B2 marketing data better www.reachforce.com</li>
+        <li>Father of 2 girls under 10</li>
+        <li>Co-Chair Austin Groovy and Grails User Group</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
+    </ul>
+</section>
+<section>
+    <h2>What we will cover</h2>
+    <ul>
+        <li>What is the Glass and how does it work?</li>
+        <li class="fragment">Isn't that dead?
+        </li>
+        <li class="fragment">
+            Layout of Glass project
+        </li>
+        <li class="fragment">
+            Basic Glass Constructs
+        </li>
+
+        <li class="fragment">
+            Let's build a Glass app with Groovy!
+        </li>
+        <li class="fragment">
+            Overview of Android Wear
+        </li>
+        <li class="fragment">
+            Basic Android Wear Constructs
+        </li>
+        <li class="fragment">
+            Android Wear useful (or must have) libraries to help you
+        </li>
+        <li class="fragment">
+            Let's build a Wear App with Groovy!
+        </li>
+        <li class="fragment">
+            Walkthrough and demo of some Groovy Android Wear Apps!
+        </li>
+    </ul>
+
+    <aside class="notes">
+
+    </aside>
+</section>
+
+<!-- Example of nested vertical slides -->
+
+<section>
+    <section>
+        <h2>What is Google Glass?</h2>
+        <p>
+            Glass is a wearable computer on your head disguised as glasses, running Android
+        </p>
+        <p>TI OMAP 4430 CPU Dual Core</p>
+        <p>1/2GB RAM(depends on v1/v2/3)</p>
+        <p>12GB Available Internal storage</p>
+        <p>Wifi &amp; Bluetooth connectivity</p>
+        <p>micro usb port</p>
+        <p>720p video/5MP camera</p>
+        <p>640×360 Himax HX7309 LCoS display</p>
+        <p>3 axis gyroscope, accelerometer, and compass</p>
+        <p>Bone conduction audio transducer</p>
+        <p>Runs Android 4.4.2W</P>
+    </section>
+
+
+</section>
+<section>
+    <section>
+        <h2>Isn't Glass Dead?</h2>
+        <p>
+            Not quite. A couple things happened which brought about end of the public explorer program:
+            <ul>
+              <li>TI Stopped making the processors - doh!</li>
+              <li>Social backlast against 'Glassholes'
+              <li>Too expensive</li>
+              <li>Remaining units held back for 'Glass At Work' Program &amp; Warranty replacement</li>
+            </ul>
+            ... but it still works great!
+            <ul>
+              <li>Support remains - API docs, flow designer, and API still work!</li>
+              <li>XE SDK hasn't had any real updates, assuming they are waiting for new device to see if they need changes</li>
+              <li>Examples updated for Android Studio</li>
+              <li>Corproate use 'Glass at Work' program still alive and well!</li>
+            </ul>
+        </p>
+
+    </section>
+
+
+    <section>
+        <h2>Is Glass Coming Back?</h2>
+        <p>Nothing is certain but yes and no. Google has promised to build a new one since the
+          processor was discontinued by TI, and indeed new models have recently gone through the FCC based on Intel.
+          This will definately keep evolving for business use, for the use case for everyday for consumers? Likely not. The world
+          wasn't socially ready for people to walk around all the time with those on.
+        </p>
+        <P> .. but there are still a TON of good real-world uses!</p>
+
+    </section>
+    <section>
+        <h2>So what can I do with this thing and not be a Glasshole?</h2>
+        <p><img src="glasshole.jpg" style="background:none; border:none; box-shadow:none;" height="150" width="200"/></p>
+        <p>Some good uses that I use it for or plan to:
+        </p><p>
+        <ul>
+          <li class="fragment">Being a total tourist and snapping lots of pics without phone out</li>
+          <li class="fragment">Fitness (Especially Biking, you can have a GPS up hands free!)</li>
+          <li class="fragment">Cooking, Doctors, Plumbers, Auto mechanics, etc. Anything dirty and you need your hands free</li>
+
+        </ul></p>
+
+    </section>
+    <section>
+        <h2>So what kind of apps can I make with this thing?</h2>
+        <p>There are several APIs</p>
+
+        <ul>
+          <li class="fragment">Mirror API (Server Side/REST Interface/Google API)</li>
+          <li class="fragment"> GDK 19(4.4.2)</li>
+          <li class="fragment">Flow Designer (Tool to help visualize app flow/cards)</li>
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>How the heck do I get groovy working on this thing? What do I do first?</h2>
+        <ul>
+            <li class="fragment">grooid-templates - spit out working example
+              - this helps a lot because if you projet isn't right you waste a TON of time
+                trying to figure out what's wrong (on any android-groovy project)</li>
+            <li class="fragment">all the Groovy goodness libs like Swissknife built in ready to go!</li>
+
+        </ul>
+        <p class="fragment">There is no emulator - what do I do?</p>
+        <ul>
+          <li class="fragment">Find even new/unused pairs on ebay for 750 or used for even less. You can use ASM (Android Screen Monitor) with ADB to share what someone sees</li>
+          <li class="fragment">more people would try to make stuff if they made an emulator. My theory is they will make one after the new Intel versions come out</li>
+        </ul>
+
+    </section>
+
+</section>
+    <section>
+        <h2>Layouts and components of leJOS</h2>
+        <ul>
+            <li class="fragment">OS Image - boot/busybox</li>
+            <li class="fragment">DBusJava - JNI classes for hardware</li>
+            <li class="fragment">EV3 Classes - Abstraction Java Classes</li>
+            <li class="fragment">EV3 Menu - long running process launches apps, remote connections</li>
+            <li class="fragment">Other components</li>
+        </ul>
+    </section>
+    <section>
+
+    <section>
+        <h2>OS Image</h2>
+        <p>Runs minimal OS and kernel - only subset of basic shell options and commands available(busybox)</p>
+
+        <ul>
+            <li class="fragment">shell is 'ash' nowhere near feature comparable to bash</li>
+            <li class="fragment">ps command only has 1 parameter 'w' for wide</li>
+            <li class="fragment">leJOS interacts with it by starting up a java app called 'EV3Menu' </li>
+            <li class="fragment">There isn't really enough RAM to run more than 1 VM besides what leJOS uses (hello oom killer!)</li>
+        </ul>
+    </section>
+    </section>
+    <section>
+    <h2>DBusJava</h2>
+    <p>JNI Layer that interacts with physical hardware</p>
+
+    <ul>
+        <li class="fragment">This is the glue to makes JVM classes work</li>
+        <li class="fragment">Generally you don't need to do anything with it unless you are adding unsupported hardware</li>
+        <li class="fragment">see the README file under DBusJava/src for how to add modules (outside scope of us here)</li>
+        <li class="fragment">Feel free to use the artifact on my Bintray account, compile your own with the scripts, or use your own artifact server</li>
+    </ul>
+</section>
+
+<section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Supporting Java classes for leJOS</p>
+
+    <ul>
+        <li class="fragment">This is all the Java implementation classes for the system</li>
+        <li class="fragment">This is a monolithic code base/lib at this point all projects depend on this to work</li>
+        <li class="fragment">I've created some custom classes inside here to allow the Webrover to work (later) </li>
+        <li class="fragment">Divided into 4 sections - Hardware, Internal, Robotics and Utility </li>
+        <li class="fragment">Hardware - Java representation of the lego hardware items</li>
+    </ul>
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Hardware</p>
+
+    <ul>
+        <li class="fragment">Support for Tetrix metal robots</li>
+        <li class="fragment">Supports motors from EV3, NXT, RCX,  Mindsensors Glidewheel-M, regulated and unregulated </li>
+        <li class="fragment">Supports GPS with this device <a href="http://www.dexterindustries.com/dGPS.html">http://www.dexterindustries.com/dGPS.html</a> </li>
+        <li class="fragment">Ports - these are there the low level devices sensors are connected to (Mostly I2C/UART)</li>
+        <li class="fragment">Sensors - supports over 40 different kinds of sensors from Lego, Dextor, HiTechnic and Mindsensors</li>
+        <li class="fragment">LocalEV3 is the singleton class to get access to things (show example in code)</li>
+        <li class="fragment">Basic hardware objects on EV3 brick itself are in lejos.hardware base pkg (Audio, LCD, buttons and keys)</li>
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Internal</p>
+
+    <ul>
+        <li class="fragment">Handles bluetooth pairing with DBusJava</li>
+        <li class="fragment">Internal EV3 implementation classes not part of public API</li>
+        <li class="fragment">Low level linux hardware access classes (NIO)</li>
+        <li class="fragment">If you use the classes they are subject to change without and kind of deprecation or notice</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Remote</p>
+
+    <ul>
+        <li class="fragment">Mainly uses RMI</li>
+        <li class="fragment">RemoteEV3 is main classes to access remotely (give it IP address)</li>
+        <li class="fragment">Accessing hardware remotely pretty much as a 1:1 relation with 'Remote' in front of classs</li>
+        <li class="fragment">Wifi support most stable</li>
+
+        <li class="fragment">Bluetooth is working, but not considered as stable as Wifi (instructions differ per platform)</li>
+        <li class="fragment">When accessing ports, you must pass in the the proper 1 or 2 letter names (S[1-9] or letter A-F on motor ports</li>
+        <li class="fragment">Let's look at some <a href="https://sourceforge.net/p/lejos/wiki/Remote%20access%20to%20an%20EV3/">RemoteEV3</a> code usage!</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Robotics</p>
+
+    <ul>
+        <li class="fragment">The fun stuff! Doing something with all of these classes, sensors and motors</li>
+        <li class="fragment">filters - filters for sample providers such as SumFilter which takes the sum of samples over time, or MedianFilter</li>
+        <li class="fragment">geometry - geometric shape support using float co-ordinates</li>
+        <li class="fragment">localization - BeaconPoseProvider, CompassPoseProvider, MCLPoseProvider, OdometryPostProvider</li>
+        <li class="fragment">mapping - adds support for maps- Main class is EV3NavigationModel which takes Pilot, Navigator, PoseProvider, RangeScanner, FeatureFinder</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Robotics - continued</p>
+
+    <ul>
+
+        <li class="fragment">navigation - classes for physically navigating the robot around - DifferentialPilot, SteeringPilot, OmniPilot</li>
+        <li class="fragment">object detection - Feature detector, Fusor detector, RangeFeature, and TouchFeature</li>
+        <li class="fragment">pathfinding - most of these use a map to determine a path for the robot to take (Dijkstra, Random, Shortest, Node)</li>
+        <li class="fragment">subsumption - Arbitrator and Behavior(Events)</li>
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Classes</h2>
+    <p>Utilities</p>
+
+    <ul>
+        <li class="fragment">general utility classes - things like Timers, property mgt, delays, debugs </li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>EV3Menu</h2>
+    <P>This project keeps the JVM running, provides RMI services, WAP setup, UI on the front of the EV3 Brick</P>
+    <ul>
+        <li class="fragment">Samples -> runs in separate jvm maps to /home/root/lejos/samples (Runs fine with @CompileStatic)</li>
+        <li class="fragment">Programs -> runs in separate jvm maps to /home/lejos/programs (Runs fine with @CompileStatic)</li>
+        <li class="fragment">Tools -> runs in same jvm maps to /home/root/lejos/tools (Runs Groovy fastest w/MOP)</li>
+    </ul>
+</section>
+
+</section>
+
+<section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming</p>
+
+    <ul>
+        <li class="fragment">Why? Creates less spaghetti code of if-then-else statements</li>
+        <li class="fragment">Uses threads to keep multiple things going on to allow different 'behaviors' to react </li>
+        <li class="fragment">Interface uses only 3 methods - action, suppress, and takeControl</li>
+        <li class="fragment">Uses to main Interfaces - Behavior and Artibrator</li>
+
+
+    </ul>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming</p>
+
+    <img src="lejos-behavior1.png"/>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - continued</p>
+
+    <ul>
+
+
+        <li class="fragment">Arbitrator takes over from your 3 behavior classes after they are complete</li>
+        <li class="fragment">Arbitrator regulates when behaviors become active</li>
+        <li class="fragment">Enter and escape will stop unless returnwheninactive is set upon creation</li>
+        <li class="fragment">Takes an array of behaviors</li>
+
+
+    </ul>
+
+</section>
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - continued</p>
+
+    <ul>
+
+
+        <li class="fragment">Simple to use, only method is start() - higher level behaviors suppress lower ones</li>
+        <li class="fragment">The array of behaviors passed in, index order determines priority of arbitrator to control behaviors</li>
+        <li class="fragment">Recommended design pattern - define boolean flag 'suppressed' for each behavior, set variable to true by supress method, test in each action method. first thing in action method is to set this to false</li>
+        <li class="fragment">Action must be coded for prompt exit from method</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Programming Model</h2>
+    <p>Behavior Programming - suppression</p>
+
+    <a href="http://www.lejos.org/nxt/nxj/tutorial/Behaviors/BehaviorProgramming.htm" target="_new"><img src="lejos-behavior-suppress1.png"/></a>
+
+</section>
+
+    <section>
+        <h2>Programming Model</h2>
+        <p>Let's show our example EV3BumperCarGroovy!</p>
+
+    </section>
+
+
+</section>
+<section>
+<section>
+    <h2>Advanced - Sensors and Events</h2>
+    <p>Sensors</p>
+
+    <ul>
+
+
+        <li class="fragment">Educational 'core' kit: Ultrasonic, Color, Gyroscopic, and 2x Touch</li>
+        <li class="fragment">Retail kit: Infrared, Color, 1x Touch</li>
+        <li class="fragment">Full difference part-by-part between the kits <a href="http://brickdojo.wordpress.com/2013/08/14/mindstorms-ev3-education-core-set-expansion-set-parts-comparison/">here</a></li>
+        <li class="fragment">All measurements are in <a href="http://en.wikipedia.org/wiki/International_System_of_Units" target="_new">SI-units</a></li>
+        <li class="fragment">LeJOS uses a cartesian coordinate system
+        <div style="background-color: #ffffff; width: 200px"><img src="200px-Rectangular_coordinates.svg.png" border="0"/></div></li>
+        </li>
+    </ul>
+
+</section>
+    <section>
+        <h2>Advanced - Sensors and Events - Filters</h2>
+        <p>Filters</p>
+
+        <p>
+            Filters are used to alter a sample or alter the flow of samples
+        </p>
+        <ul>
+            <li class="fragment">Filters take a sample from a SampleProvider, modify it and then pass it on as a sample</li>
+            <li class="fragment">They are sample providers themselves</li>
+            <li class="fragment">Angles follow the right hand rule: This means that a counter clockwise rotation of a robot is measured as a positive rotation by the sensors on it</li>
+            <li class="fragment">On sensors that support multiple axes, like some gyroscopes and accelerometers, the axis order in a sample is always X,Y,Z</li>
+        </ul>
+
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events - Filter Sample</h2>
+
+        <p>
+        <pre><code>
+            // get a port instance
+            Port port = LocalEV3.get().getPort("S2");
+
+            // Get an instance of the Ultrasonic EV3 sensor
+            SensorModes sensor = new EV3UltrasonicSensor(port);
+
+            // get an instance of this sensor in measurement mode
+            SampleProvider distance= sensor.getModeName("Distance");
+
+            // stack a filter on the sensor that gives the running average of the last 5 samples
+            SampleProvider average = new MeanFilter(distance, 5);
+
+            // initialise an array of floats for fetching samples
+            float[] sample = new float[average.sampleSize()];
+
+            // fetch a sample
+            average.fetchSample(sample, 0);
+        </code></pre>
+        </p>
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events - Threads</h2>
+        <p>Filters</p>
+
+        <p>
+            Threads are spawned to facilitate:
+        </p>
+        <ul>
+            <li class="fragment">listeners</li>
+            <li class="fragment">regulated motors</li>
+            <li class="fragment">bluetooth</li>
+            <li class="fragment">timers</li>
+            <li class="fragment">navigation classes (Like NavPathController)</li>
+            <li class="fragment">On threads that don't need to terminate when program is done use setDaemon(true)</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events - Threads</h2>
+        <p>Threads - example from startup menu</p>
+
+        <p>
+           <code><pre>
+class Indicators extends Thread {
+  private boolean io = false;
+
+  public void ioActive() {
+    io = true;
+  }
+
+  public void run() {
+    String[] ioProgress = { ".   ", " .  ", "  . " };
+    int ioIndex = 0;
+    boolean rewrite = false;
+    while (true) {
+      try {
+        if (io) {
+          StartUpText.g.drawString("     ", 76, 0);
+          ioIndex = (ioIndex + 1) % ioProgress.length;
+          StartUpText.g.drawString(ioProgress[ioIndex], 78, 0);
+          io = false;
+          rewrite = true;
+        } else if (rewrite) {
+          LCD.drawString("   ", 13, 0);
+          // invert when power is off
+          StartUpText.g.drawString(" BT", 82, 0, !StartUpText.btPowerOn);
+          StartUpText.g.refresh();
+          rewrite = false;
+        }
+        Thread.sleep(1000);
+      } catch (InterruptedException ie) {
+      }
+    }
+  }
+}
+           </pre></code>
+        </p>
+       <p> <code><pre>
+           //startup the code
+Indicators ind = new Indicators();
+ind.setDaemon(true);
+ind.start();
+       </pre></code>
+
+       </p>
+
+    </section>
+    <section>
+        <h2>Advanced - Sensors and Events</h2>
+        <p>Listeners &amp; Events</p>
+
+        <p>
+            The listener thread supports Button Listeners &amp; Sensor Port Listeners
+        </p>
+        <ul>
+            <li class="fragment">Button listeners are used to detect when a button is pressed, whatever your program is doing at the time</li>
+            <li class="fragment">To listen for a press of a specific button, you register as listener for that button</li>
+            <li class="fragment">
+        <p><code><pre>
+public class ListenForButtons {
+  public static void main(String[] args) throws Exception {
+    Button.ENTER.addButtonListener(new ButtonListener() {
+      public void buttonPressed(Button b) {
+        LCD.drawString("ENTER pressed", 0, 0);
+      }
+
+      public void buttonReleased(Button b) {
+        LCD.clear();
+      }
+    });
+
+    Button.ESCAPE.waitForPressAndRelease();
+  }
+}
+        </pre></code></p></li>
+        </ul>
+
+    </section>
+
+
+</section>
+
+<section>
+    <h2>WebRover1</h2>
+    <p>Based off WebRover1 Project for NXT for International Space Apps Challenge 2013</p>
+
+    <p>
+        Original version for NXT - had to rewrite a lot of it and switch to RMI for it to work with EV3
+    </p>
+    <p> Allows you to simulate a remote rover type of device you could drive from far away like Mars or across the globe</p>
+
+
+</section>
+
+<section>
+    <h2>WebRover1 - EV3</h2>
+    <P> What is all if comprised of?</P>
+    <ul>
+        <li class="fragment">Special RMIDifferentialPilot Class in the EV3Classes project</li>
+        <li class="fragment">Grails Application</li>
+        <li class="fragment">IP Camera App on Android or iOS via Wifi(Off the shelf)</li>
+        <li class="fragment">Javascript page with keybinding to actually input driving robot</li>
+    </ul>
+</section>
+<section>
+<section>
+    <h2>WebRover1 - EV3</h2>
+    <P>RMIDifferentialPilot</P>
+    <ul>
+        <li class="fragment">RMI Enabled version of DifferentialPilot</li>
+        <li class="fragment">Pilot contains methods to control robot movements: travel
+             forward or backward in a straight line or a circular path or rotate to a new
+             direction </li>
+        <li class="fragment">Will only work with two independently controlled motors to steer
+            differentially, so it can rotate within its own footprint</li>
+        <li class="fragment">Let's go over the code!</li>
+    </ul>
+</section>
+    <section>
+        <h2>WebRover1 - EV3</h2>
+        <P>Grails Application</P>
+        <ul>
+            <li class="fragment">2 Services, 2 Controllers, 1 GSP page </li>
+            <li class="fragment">4 classes handle the robotics, brick abstraction, and remote comms</li>
+            <li class="fragment">Camera - using 'IP Webcam' free edition on Android</li>
+            <li class="fragment">Configure IP address of Camera and EV3 in Config.groovy before starting app</li>
+            <li class="fragment">Use the grails start/stop command interface to shut down app nicely, or you will have to keep rebooting the ev3</li>
+
+
+
+        </ul>
+    </section>
+    <section>
+        <h2>WebRover1 - EV3</h2>
+        <P>Grails Application - Code Overview</P>
+        <ul>
+            <li class="fragment">Camera Service - takes pictures and updates page to help you drive</li>
+            <li class="fragment">Robot Service - take input from GSP page to send commands to direct robott</li>
+            <li class="fragment">EV3Brick - abstraction class for robot, holds refs to motors </li>
+            <li class="fragment">EV3Robot - sets up comms and sensors references</li>
+            <li class="fragment">BasicRobot - bring Pilot, motors, and sensors together via RMI</li>
+            <li class="fragment">Let's look at the code and set yours up!</li>
+
+        </ul>
+    </section>
+
+</section>
+<section>
+<section>
+    <h2>More Information</h2>
+
+    <ul>
+        <li >leJOS Wiki: http://sourceforge.net/p/lejos/wiki/Home/</li>
+        <li >leJOS Forums: http://www.lejos.org/forum/</li>
+        <li>leJOS SD Card creation repo: https://sourceforge.net/p/lejos/ev3sdcard/ci/master/tree/</li>
+        <li>leJOS EV3 Code Repo: https://sourceforge.net/p/lejos/ev3/ci/master/tree/</li>
+        <li >Ryan's Fork w/Gradle support: https://sourceforge.net/u/ryanv78665/lejos/ci/master/tree/</li>
+        <li >Gitub repo for WebRover1 EV3: https://github.com/rvanderwerf/webrover1</li>
+
+
+    </ul>
+</section>
+    <section>
+        <h2>More Information - Buying parts</h2>
+
+        <ul>
+            <li >You can buy random parts by the pound off ebay like this: http://goo.gl/xfkvtP (cheapest!)</li>
+            <li >Lego Store (Many things often out of stock, poor supply chain?)</li>
+            <li>Brickowl.com - reseller part search used and new</li>
+            <li>Bricklink.com: http://www.bricklink.com/</li>
+            <li>Amazon - specific parts are available there sometimes cheaper but less selection</li>
+
+        </ul>
+    </section>
+</section>
+
+
+<section>
+    <h1>THE END</h1>
+    <h3>I hope you have enjoyed the session!</h3>
+    <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
+</section>
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('gr8confeu-2015-presentation-16-9-following.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1910px;
+                        height: 1080px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
