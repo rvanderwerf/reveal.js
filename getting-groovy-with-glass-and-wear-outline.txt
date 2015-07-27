@@ -1,0 +1,170 @@
+What We'll Cover In Part I
+  - Why are you doing this?
+    Because I paid too much for this thing and I need to get some use out of it!
+    Besides, isn't anything that run's Groovy have a 10x coolness factor - yes I think so!
+  - What is Glass?
+
+  - Isn't Glass Dead?
+  - What can I do with this thing??
+      - My favorite use - Sightseeing and taking pics hands free with a wink. I get so many awesome pics
+        and I don't even have to stop what I am doing to take pics!
+      - Biking - I can have nav working without taking my eyes off what is in front of me, esp useful on
+        city streets. If the battery for video latest longer, I wouldn't need a GoPRO type camera either!
+
+  - How long does the battery last?
+    Video - about 45 minutes of HD video before the battery conks
+    Stills - I can take hundreds in a day all day without much issue. Video though seems to kill this thing.
+
+  - What are the Glass Specs?
+    Glass
+
+    Google Glass - Isn't that Dead?
+     - Not quite. A couple things happened which brought about end of the public explorer progra:
+          TI Stopped making the processors
+          Social backlash against 'Glassholes'
+          Too expensive
+          Remaining units held back for 'Glass At Work' Program & Warranty replacement
+          Support remains - API docs, flow designer and API support still work
+          XE SDK hasn't had any real updates, assuming they are waiting for new device to see if they need changes
+          Examples updates for Android Studio
+    Is it coming back?
+      - Yes and no. For business yes for sure. There are still man business apps without social stigma
+          Glass at Work program still on
+          Since processors were no longer made, Google had to make a new unit with Intel procs
+          For now even when new units are built will be targeted for business/industry use
+          Consumer? maybe - I'm not sure socially the world is ready for someone to wear it every day all
+              over the place without weirding people out - and don't even try to go to the movies!
+
+    So what can I do with this thing?
+        - Well, quite a bit actually. It supports will wifi network access until the Wear tech
+        - Interact with it in a few ways: Mirror API, GDK 19(4.4.2), Glassware Flow Designer
+
+
+  - How the heck do I get groovy working on this thing? What do I do first?
+    - grooid-templates - spit out working example
+      - this helps a lot because if you projet isn't right you waste a TON of time
+        trying to figure out what's wrong (on any android-groovy project)
+      - a simple starting point with a working app helps a LOT
+      - all the Groovy goodness libs like Swissknife built in ready to go!
+  - There is no emulator - what do I do?
+    - Find even new/unused pairs on ebay for 750 or used for even less. You can use ASM (Android Screen Monitor) with ADB to share what someone sees.
+    - more people would try to make stuff if they made an emulator. My theory is they will make one after the new Intel versions come out
+  - Let's make some apps then!
+    - First we need to know a little about the APIs
+
+      - Mirror API - this is a set of server-side web services that shovel basic data to glass
+      - GDK - this is a real full fledged java API you can build in Android Studio and can get full android apps working
+        Android API V19  (4.4.2)
+
+  Mirror API
+    - step 1 authorize your app on your google account: https://github.com/googleglass/mirror-quickstart-java
+    - step 2 build your app
+    - Demo App: Mirror API example https://github.com/googleglass/mirror-quickstart-java
+       (TODO make Grails 3 version of demo!)
+       What can it do?
+              deliver notifications from all kinds or sources (timeline subscription)
+              manage contacts
+
+   GDK
+       Latest version supports API 19 (when looking for it in Android Studio SDK Manager )'Glass Development Preview'
+      - (goto SDK manager)
+
+      User Interface
+             - Notification Sync
+             - Live Cards
+             - Immersions
+             - Card Design
+             - Card Scroller
+             - Slider
+
+      Inputs & Sensors
+            - Voice Input https://developers.google.com/glass/develop/gdk/voice
+              - Use built-in voice triggers or make your own (see grooid-templates glass project)
+            - Touch Gestures (https://developers.google.com/glass/develop/gdk/touch)
+              - D-PAD key events (KEYCODE_DPAD_CENTER, KEYCODE_CAMERA, KEYCODE_BACK )
+              - Gesture Detector (Motion Events & View Specific)
+            - Location and Sensors https://developers.google.com/glass/develop/gdk/location-sensors
+              - Can get location from tethered Android Device (phone or tablet) or bluetooth GPS device
+              Sensors:
+                    ACTION_ON_HEAD_STATE_CHANGE - tells if glass is on someones head or not
+                    TYPE_ACCELEROMETER
+                    TYPE_GRAVITY
+                    TYPE_GYROSCOPE
+                    TYPE_LIGHT
+                    TYPE_LINEAR_ACCELERATION
+                    TYPE_MAGNETIC_FIELD
+                    TYPE_ORIENTATION (deprecated)
+                    TYPE_ROTATION_VECTOR
+            - Camera (https://developers.google.com/glass/develop/gdk/camera)
+              Uses Android Camera API (https://developer.android.com/reference/android/hardware/Camera.html)
+       - Demo - Go over code from grooid-templates, run and demo show on ASM!
+
+
+Part II
+     Android Wear!
+     What is Android Wear?
+          - Stripped down Android OS for wearable devices, currently only watches.
+          - Focused notifcations as cards. Can do non-network apps on device, currently requires
+            tethering to app on mobile via Data API to interact with the outside world
+          - Fun Games too!
+    What does a wear app look like?
+
+    What libraries make dev easier? (This guy florent37 has tons of goodies! https://github.com/florent37/)
+           - Teleport https://github.com/Mariuxtheone/Teleport makes data layer api easier
+           - DaVinci - image transport library (thank goodness!) https://github.com/florent37/DaVinci
+           - BusWear - https://github.com/tajchert/BusWear Event Bus For Android Wear!
+           - Emmet - Emmet is an protocol based data-transfer for Android Wear https://github.com/florent37/Wear-Emmet
+           - Baguette - Toast helper for writing text on wear -  https://github.com/florent37/Baguette
+    What are some of the major limitation of Wear?
+         - No direct internet access (must go through companion app)
+         - Doesn't really have themes
+         - Must use data layer API to communicate with App
+         - Some newer models have Wifi support but not consistent yet(will make net access easier!)
+         - really only round or square view profiles
+         - no speaker - you can't use it as a remote BT speaker to talk on the phone :(
+
+  What are some cool things you can do with it?
+         - fitness band - google wear has built in fitness support, many models have optical HR monitor and pedo abilities
+         - news feeds
+         - notifications
+         - games
+         - Simple UI activities like turn on and off lights, etc
+         - sleep monitor
+         - weather - intertive faces with real time info (like radar is my fav)
+         - there is a web browser / movie viewer
+
+  Coming soon in August
+         - Wifi support more models
+         - Watch to watch communications
+         - Interactive watch faces (Together) that can sms (like apple watch)
+  Well show me how!
+         - groid-templates fork - https://github.com/rvanderwerf/grooid-templates
+         - we should have this setup from the glass step. Just a different command:
+           lazybones create grooid-wear-new-project 0.5 grooidWearTest
+             If you get an error in mobile probject comment out the emerger plugin
+         - Walk through testGrooidWear example
+            - combination of Florent CHAMPIGNY's DaVinci + Emmet that's been Groovyfied
+Cool Stuff: Davinci & Emmet
+      Emmet -
+          Wrapper lib for the google data layer APIs to communicate between the phone and the watch
+          (this gets data downloaded from the app to the watch)
+
+      Davinci -
+          lib to ease downloading images to wear devices that don't have direct net access
+
+      SwissKnife - Sprinkle groovy magic
+          Gets rid of lots of boilerplate code
+        - This lib allows a proxy go-between of the parent Wear app and the
+         - auto injects views on objects
+         - add callback methods with just an annotation
+         - execute elements on UI thread or background with annotation
+         - make anything parseable with annotation
+         - inject resources with @res annotations
+         - read intent extras with @Extra annotation
+         - this saves a lot of time and crazy looking code!
+
+         - Walk through Chuck norris vs of testGrooidWear
+         - Walk through EV3Wear example - companion app and wear app - demo communication
+
+
+Finally - drive robot around with wear device!!
