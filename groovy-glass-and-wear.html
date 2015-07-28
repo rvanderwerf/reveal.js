@@ -304,393 +304,53 @@
 
 </section>
 <section>
-    <h2>EV3Classes</h2>
-    <p>Remote</p>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Emmet (https://github.com/florent37/Wear-Emmet)</p>
 
     <ul>
-        <li class="fragment">Mainly uses RMI</li>
-        <li class="fragment">RemoteEV3 is main classes to access remotely (give it IP address)</li>
-        <li class="fragment">Accessing hardware remotely pretty much as a 1:1 relation with 'Remote' in front of classs</li>
-        <li class="fragment">Wifi support most stable</li>
-
-        <li class="fragment">Bluetooth is working, but not considered as stable as Wifi (instructions differ per platform)</li>
-        <li class="fragment">When accessing ports, you must pass in the the proper 1 or 2 letter names (S[1-9] or letter A-F on motor ports</li>
-        <li class="fragment">Let's look at some <a href="https://sourceforge.net/p/lejos/wiki/Remote%20access%20to%20an%20EV3/">RemoteEV3</a> code usage!</li>
+        <li class="fragment">Wrapper lib for the google data layer APIs to communicate between the phone and the watch
+        (this gets data downloaded from the app to the watch)</li>
+        <li class="fragment">We will see an example shortly. When Wear is wifi enabled we won't need this as bad!</li>
 
     </ul>
 
 </section>
 <section>
-    <h2>EV3Classes</h2>
-    <p>Robotics</p>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Davinci (https://github.com/florent37/DaVinci)</p>
 
     <ul>
-        <li class="fragment">The fun stuff! Doing something with all of these classes, sensors and motors</li>
-        <li class="fragment">filters - filters for sample providers such as SumFilter which takes the sum of samples over time, or MedianFilter</li>
-        <li class="fragment">geometry - geometric shape support using float co-ordinates</li>
-        <li class="fragment">localization - BeaconPoseProvider, CompassPoseProvider, MCLPoseProvider, OdometryPostProvider</li>
-        <li class="fragment">mapping - adds support for maps- Main class is EV3NavigationModel which takes Pilot, Navigator, PoseProvider, RangeScanner, FeatureFinder</li>
-
+        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
     </ul>
 
 </section>
 <section>
-    <h2>EV3Classes</h2>
-    <p>Robotics - continued</p>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Sugar ORM (http://satyan.github.io/sugar/)</p>
 
     <ul>
-
-        <li class="fragment">navigation - classes for physically navigating the robot around - DifferentialPilot, SteeringPilot, OmniPilot</li>
-        <li class="fragment">object detection - Feature detector, Fusor detector, RangeFeature, and TouchFeature</li>
-        <li class="fragment">pathfinding - most of these use a map to determine a path for the robot to take (Dijkstra, Random, Shortest, Node)</li>
-        <li class="fragment">subsumption - Arbitrator and Behavior(Events)</li>
+        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
     </ul>
 
 </section>
 <section>
-    <h2>EV3Classes</h2>
-    <p>Utilities</p>
+    <h2>Chuck Norris Quote Wear Demo!</h2>
+    <p>Let's demo an app that brings this all together! Channeling my inner Ken Kousen, let's get some Chuck Norris going!</p>
 
-    <ul>
-        <li class="fragment">general utility classes - things like Timers, property mgt, delays, debugs </li>
-
-    </ul>
-
+    <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
 </section>
 <section>
-    <h2>EV3Menu</h2>
-    <P>This project keeps the JVM running, provides RMI services, WAP setup, UI on the front of the EV3 Brick</P>
-    <ul>
-        <li class="fragment">Samples -> runs in separate jvm maps to /home/root/lejos/samples (Runs fine with @CompileStatic)</li>
-        <li class="fragment">Programs -> runs in separate jvm maps to /home/lejos/programs (Runs fine with @CompileStatic)</li>
-        <li class="fragment">Tools -> runs in same jvm maps to /home/root/lejos/tools (Runs Groovy fastest w/MOP)</li>
-    </ul>
-</section>
-
-</section>
-
-<section>
-<section>
-    <h2>Programming Model</h2>
-    <p>Behavior Programming</p>
-
-    <ul>
-        <li class="fragment">Why? Creates less spaghetti code of if-then-else statements</li>
-        <li class="fragment">Uses threads to keep multiple things going on to allow different 'behaviors' to react </li>
-        <li class="fragment">Interface uses only 3 methods - action, suppress, and takeControl</li>
-        <li class="fragment">Uses to main Interfaces - Behavior and Artibrator</li>
-
-
-    </ul>
-
-</section>
-<section>
-    <h2>Programming Model</h2>
-    <p>Behavior Programming</p>
-
-    <img src="lejos-behavior1.png"/>
-
-</section>
-<section>
-    <h2>Programming Model</h2>
-    <p>Behavior Programming - continued</p>
+    <h2>Android + Wear + Grails 3 + Lego Minstorm EV3 Demo</h2>
+    <p>Let's tie this together and mash up all sorts of Groovy Stuff!</p>
 
     <ul>
 
-
-        <li class="fragment">Arbitrator takes over from your 3 behavior classes after they are complete</li>
-        <li class="fragment">Arbitrator regulates when behaviors become active</li>
-        <li class="fragment">Enter and escape will stop unless returnwheninactive is set upon creation</li>
-        <li class="fragment">Takes an array of behaviors</li>
-
-
+        <li class="fragment">Grails 3 Lego Rover Project</li>
+        <li class="fragment">Android Mobile Tether App to Configure</li>
+        <li class="fragment">EV3 Lego Robot Running Groovy</li>
+        <li class="fragment">Wear App to Drive the Robot!</li>
     </ul>
 
-</section>
-<section>
-    <h2>Programming Model</h2>
-    <p>Behavior Programming - continued</p>
-
-    <ul>
-
-
-        <li class="fragment">Simple to use, only method is start() - higher level behaviors suppress lower ones</li>
-        <li class="fragment">The array of behaviors passed in, index order determines priority of arbitrator to control behaviors</li>
-        <li class="fragment">Recommended design pattern - define boolean flag 'suppressed' for each behavior, set variable to true by supress method, test in each action method. first thing in action method is to set this to false</li>
-        <li class="fragment">Action must be coded for prompt exit from method</li>
-    </ul>
-
-</section>
-
-<section>
-    <h2>Programming Model</h2>
-    <p>Behavior Programming - suppression</p>
-
-    <a href="http://www.lejos.org/nxt/nxj/tutorial/Behaviors/BehaviorProgramming.htm" target="_new"><img src="lejos-behavior-suppress1.png"/></a>
-
-</section>
-
-    <section>
-        <h2>Programming Model</h2>
-        <p>Let's show our example EV3BumperCarGroovy!</p>
-
-    </section>
-
-
-</section>
-<section>
-<section>
-    <h2>Advanced - Sensors and Events</h2>
-    <p>Sensors</p>
-
-    <ul>
-
-
-        <li class="fragment">Educational 'core' kit: Ultrasonic, Color, Gyroscopic, and 2x Touch</li>
-        <li class="fragment">Retail kit: Infrared, Color, 1x Touch</li>
-        <li class="fragment">Full difference part-by-part between the kits <a href="http://brickdojo.wordpress.com/2013/08/14/mindstorms-ev3-education-core-set-expansion-set-parts-comparison/">here</a></li>
-        <li class="fragment">All measurements are in <a href="http://en.wikipedia.org/wiki/International_System_of_Units" target="_new">SI-units</a></li>
-        <li class="fragment">LeJOS uses a cartesian coordinate system
-        <div style="background-color: #ffffff; width: 200px"><img src="200px-Rectangular_coordinates.svg.png" border="0"/></div></li>
-        </li>
-    </ul>
-
-</section>
-    <section>
-        <h2>Advanced - Sensors and Events - Filters</h2>
-        <p>Filters</p>
-
-        <p>
-            Filters are used to alter a sample or alter the flow of samples
-        </p>
-        <ul>
-            <li class="fragment">Filters take a sample from a SampleProvider, modify it and then pass it on as a sample</li>
-            <li class="fragment">They are sample providers themselves</li>
-            <li class="fragment">Angles follow the right hand rule: This means that a counter clockwise rotation of a robot is measured as a positive rotation by the sensors on it</li>
-            <li class="fragment">On sensors that support multiple axes, like some gyroscopes and accelerometers, the axis order in a sample is always X,Y,Z</li>
-        </ul>
-
-    </section>
-    <section>
-        <h2>Advanced - Sensors and Events - Filter Sample</h2>
-
-        <p>
-        <pre><code>
-            // get a port instance
-            Port port = LocalEV3.get().getPort("S2");
-
-            // Get an instance of the Ultrasonic EV3 sensor
-            SensorModes sensor = new EV3UltrasonicSensor(port);
-
-            // get an instance of this sensor in measurement mode
-            SampleProvider distance= sensor.getModeName("Distance");
-
-            // stack a filter on the sensor that gives the running average of the last 5 samples
-            SampleProvider average = new MeanFilter(distance, 5);
-
-            // initialise an array of floats for fetching samples
-            float[] sample = new float[average.sampleSize()];
-
-            // fetch a sample
-            average.fetchSample(sample, 0);
-        </code></pre>
-        </p>
-    </section>
-    <section>
-        <h2>Advanced - Sensors and Events - Threads</h2>
-        <p>Filters</p>
-
-        <p>
-            Threads are spawned to facilitate:
-        </p>
-        <ul>
-            <li class="fragment">listeners</li>
-            <li class="fragment">regulated motors</li>
-            <li class="fragment">bluetooth</li>
-            <li class="fragment">timers</li>
-            <li class="fragment">navigation classes (Like NavPathController)</li>
-            <li class="fragment">On threads that don't need to terminate when program is done use setDaemon(true)</li>
-
-        </ul>
-
-    </section>
-    <section>
-        <h2>Advanced - Sensors and Events - Threads</h2>
-        <p>Threads - example from startup menu</p>
-
-        <p>
-           <code><pre>
-class Indicators extends Thread {
-  private boolean io = false;
-
-  public void ioActive() {
-    io = true;
-  }
-
-  public void run() {
-    String[] ioProgress = { ".   ", " .  ", "  . " };
-    int ioIndex = 0;
-    boolean rewrite = false;
-    while (true) {
-      try {
-        if (io) {
-          StartUpText.g.drawString("     ", 76, 0);
-          ioIndex = (ioIndex + 1) % ioProgress.length;
-          StartUpText.g.drawString(ioProgress[ioIndex], 78, 0);
-          io = false;
-          rewrite = true;
-        } else if (rewrite) {
-          LCD.drawString("   ", 13, 0);
-          // invert when power is off
-          StartUpText.g.drawString(" BT", 82, 0, !StartUpText.btPowerOn);
-          StartUpText.g.refresh();
-          rewrite = false;
-        }
-        Thread.sleep(1000);
-      } catch (InterruptedException ie) {
-      }
-    }
-  }
-}
-           </pre></code>
-        </p>
-       <p> <code><pre>
-           //startup the code
-Indicators ind = new Indicators();
-ind.setDaemon(true);
-ind.start();
-       </pre></code>
-
-       </p>
-
-    </section>
-    <section>
-        <h2>Advanced - Sensors and Events</h2>
-        <p>Listeners &amp; Events</p>
-
-        <p>
-            The listener thread supports Button Listeners &amp; Sensor Port Listeners
-        </p>
-        <ul>
-            <li class="fragment">Button listeners are used to detect when a button is pressed, whatever your program is doing at the time</li>
-            <li class="fragment">To listen for a press of a specific button, you register as listener for that button</li>
-            <li class="fragment">
-        <p><code><pre>
-public class ListenForButtons {
-  public static void main(String[] args) throws Exception {
-    Button.ENTER.addButtonListener(new ButtonListener() {
-      public void buttonPressed(Button b) {
-        LCD.drawString("ENTER pressed", 0, 0);
-      }
-
-      public void buttonReleased(Button b) {
-        LCD.clear();
-      }
-    });
-
-    Button.ESCAPE.waitForPressAndRelease();
-  }
-}
-        </pre></code></p></li>
-        </ul>
-
-    </section>
-
-
-</section>
-
-<section>
-    <h2>WebRover1</h2>
-    <p>Based off WebRover1 Project for NXT for International Space Apps Challenge 2013</p>
-
-    <p>
-        Original version for NXT - had to rewrite a lot of it and switch to RMI for it to work with EV3
-    </p>
-    <p> Allows you to simulate a remote rover type of device you could drive from far away like Mars or across the globe</p>
-
-
-</section>
-
-<section>
-    <h2>WebRover1 - EV3</h2>
-    <P> What is all if comprised of?</P>
-    <ul>
-        <li class="fragment">Special RMIDifferentialPilot Class in the EV3Classes project</li>
-        <li class="fragment">Grails Application</li>
-        <li class="fragment">IP Camera App on Android or iOS via Wifi(Off the shelf)</li>
-        <li class="fragment">Javascript page with keybinding to actually input driving robot</li>
-    </ul>
-</section>
-<section>
-<section>
-    <h2>WebRover1 - EV3</h2>
-    <P>RMIDifferentialPilot</P>
-    <ul>
-        <li class="fragment">RMI Enabled version of DifferentialPilot</li>
-        <li class="fragment">Pilot contains methods to control robot movements: travel
-             forward or backward in a straight line or a circular path or rotate to a new
-             direction </li>
-        <li class="fragment">Will only work with two independently controlled motors to steer
-            differentially, so it can rotate within its own footprint</li>
-        <li class="fragment">Let's go over the code!</li>
-    </ul>
-</section>
-    <section>
-        <h2>WebRover1 - EV3</h2>
-        <P>Grails Application</P>
-        <ul>
-            <li class="fragment">2 Services, 2 Controllers, 1 GSP page </li>
-            <li class="fragment">4 classes handle the robotics, brick abstraction, and remote comms</li>
-            <li class="fragment">Camera - using 'IP Webcam' free edition on Android</li>
-            <li class="fragment">Configure IP address of Camera and EV3 in Config.groovy before starting app</li>
-            <li class="fragment">Use the grails start/stop command interface to shut down app nicely, or you will have to keep rebooting the ev3</li>
-
-
-
-        </ul>
-    </section>
-    <section>
-        <h2>WebRover1 - EV3</h2>
-        <P>Grails Application - Code Overview</P>
-        <ul>
-            <li class="fragment">Camera Service - takes pictures and updates page to help you drive</li>
-            <li class="fragment">Robot Service - take input from GSP page to send commands to direct robott</li>
-            <li class="fragment">EV3Brick - abstraction class for robot, holds refs to motors </li>
-            <li class="fragment">EV3Robot - sets up comms and sensors references</li>
-            <li class="fragment">BasicRobot - bring Pilot, motors, and sensors together via RMI</li>
-            <li class="fragment">Let's look at the code and set yours up!</li>
-
-        </ul>
-    </section>
-
-</section>
-<section>
-<section>
-    <h2>More Information</h2>
-
-    <ul>
-        <li >leJOS Wiki: http://sourceforge.net/p/lejos/wiki/Home/</li>
-        <li >leJOS Forums: http://www.lejos.org/forum/</li>
-        <li>leJOS SD Card creation repo: https://sourceforge.net/p/lejos/ev3sdcard/ci/master/tree/</li>
-        <li>leJOS EV3 Code Repo: https://sourceforge.net/p/lejos/ev3/ci/master/tree/</li>
-        <li >Ryan's Fork w/Gradle support: https://sourceforge.net/u/ryanv78665/lejos/ci/master/tree/</li>
-        <li >Gitub repo for WebRover1 EV3: https://github.com/rvanderwerf/webrover1</li>
-
-
-    </ul>
-</section>
-    <section>
-        <h2>More Information - Buying parts</h2>
-
-        <ul>
-            <li >You can buy random parts by the pound off ebay like this: http://goo.gl/xfkvtP (cheapest!)</li>
-            <li >Lego Store (Many things often out of stock, poor supply chain?)</li>
-            <li>Brickowl.com - reseller part search used and new</li>
-            <li>Bricklink.com: http://www.bricklink.com/</li>
-            <li>Amazon - specific parts are available there sometimes cheaper but less selection</li>
-
-        </ul>
-    </section>
 </section>
 
 
