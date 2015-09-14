@@ -43,12 +43,12 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-    <h1><img src="opresidentbusiness-allyourlegos.png" style="background:none; border:none; box-shadow:none;"</h1>
+    <h1><img src="opresidentbusiness-allyourlegos.png" style="background:none; border:none; box-shadow:none;" height="201" width="500"/></h1>
     <h3>Learn how to get your Groovy on with Lego Mindstorms!</h3>
     <img style="border:none" src="gr8conf-eu-2015-presentation-16-9-first.png" alt="GR8Conf groovy gradle grails" height="200" width="500"/>
 
     <p>
-        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - ReachForce</a></small>
     </p>
 
 </section>
@@ -61,13 +61,12 @@
     <h2>About Me</h2>
 
     <ul>
-        <li>Chief Architect/Director @ ReachForce</li>
+        <li>Chief Architect/Director @ ReachForce - we make B2 marketing data better www.reachforce.com</li>
         <li>Father of 2 girls under 10</li>
         <li>Co-Chair Austin Groovy and Grails User Group</li>
         <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
         <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
-        <li>Help with Plugins When I Can</li>
-        <li>Into lots of Devopsy stuff and AWS</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
     </ul>
 </section>
 <section>
@@ -90,16 +89,10 @@
             Overview of leJOS APIs
         </li>
         <li class="fragment">
-            Run some demo apps on leJOS
-        </li>
-        <li class="fragment">
             Build and deploy a demo leJOS Groovy App
         </li>
         <li class="fragment">
             More advanced topics - Sensors and Events
-        </li>
-        <li class="fragment">
-            Let's add some sensors to our apps we've built!
         </li>
         <li class="fragment">
             WebRover 1 -  Build, Run, and Play!
@@ -158,7 +151,7 @@
     <section>
         <h2>Why no Groovy before now?</h2>
         <ul>
-            <li class="fragment">Groovy was too slow before @StaticCompile (Soft FP)</li>
+            <li class="fragment">Groovy was too slow before @CompileStatic (Soft FP)</li>
             <li class="fragment">More limited audience</li>
             <li class="fragment">Many Java people still not educated on Groovy(but this has grown!)</li>
             <li class="fragment">leJOS didn't provide an easy way to run Groovy(core commiters indifferent to Groovy)</li>
@@ -179,18 +172,6 @@
         </ul>
     </section>
     <section>
-    <section>
-        <h2>OS Image</h2>
-        <p>This is the base linux install image leJOS runs on</p>
-
-        <ul>
-            <li class="fragment">Runs minimal OS and kernel - only subset of basic shell options and commands available</li>
-            <li class="fragment">On code drop on your usb key, located in /ev3snapshot </li>
-            <li class="fragment">On Windows there is a exe installer</li>
-            <li class="fragment">On Linux or Mac, write sd500.img to your microSD card, then unzip sdcard/lejosimage.zip to roots</li>
-            <li class="fragment">Other components</li>
-        </ul>
-    </section>
 
     <section>
         <h2>OS Image</h2>
@@ -386,7 +367,7 @@
 
     <section>
         <h2>Programming Model</h2>
-        <p>Let's work on our example!</p>
+        <p>Let's show our example EV3BumperCarGroovy!</p>
 
     </section>
 
@@ -410,22 +391,6 @@
     </ul>
 
 </section>
-    <section>
-        <h2>Advanced - Sensors and Events</h2>
-        <p>Cartesian Coordinate System</p>
-
-
-        <ul>
-            <li class="fragment">The positive X-axis points in the same direction as the plug you plug into a sensor, also the direction the Ultrasonic sensors from Lego point to </li>
-            <li class="fragment">The positive Y-axis points to the left of the X-axis and the positive Z-axis points upwards</li>
-            <li class="fragment">Angles follow the right hand rule: This means that a counter clockwise rotation of a robot is measured as a positive rotation by the sensors on it</li>
-            <li class="fragment">On sensors that support multiple axes, like some gyroscopes and accelerometers, the axis order in a sample is always X,Y,Z</li>
-        </ul>
-        <p>
-        <div style="background-color: #ffffff; width: 200px; height: 200px"><img src="200px-Rectangular_coordinates.svg.png" border="none"/></div>
-        </p>
-
-    </section>
     <section>
         <h2>Advanced - Sensors and Events - Filters</h2>
         <p>Filters</p>
@@ -653,7 +618,7 @@ public class ListenForButtons {
         <h2>More Information - Buying parts</h2>
 
         <ul>
-            <li >You can buy random parts by the pound off ebay like this: http://r.ebay.com/4tvn8e</li>
+            <li >You can buy random parts by the pound off ebay like this: http://goo.gl/xfkvtP (cheapest!)</li>
             <li >Lego Store (Many things often out of stock, poor supply chain?)</li>
             <li>Brickowl.com - reseller part search used and new</li>
             <li>Bricklink.com: http://www.bricklink.com/</li>

@@ -41,8 +41,8 @@
 
 				<section>
 					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
-					<h3>Learn the ropes of networking to maximize your potential</h3>
-                    <img style="border:none" src="gr8conf-banner.png" alt="GR8Conf groovy gradle grails" height="240" width="800"/>
+					<h3>Learn the ropes of VPC networking to maximize your potential</h3>
+                    <!--<img style="border:none" src="gr8conf-banner.png" alt="GR8Conf groovy gradle grails" height="240" width="800"/>-->
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
 					</p>
@@ -54,10 +54,10 @@
                     <ul>
                         <li>Chief Architect @ ReachForce</li>
                         <li>Co-Chair Austin Groovy and Grails User Group</li>
-                        <li>Help maintain Grails Quartz plugin</li>
-                        <li>Maintain GVPS Plugin (Grails Video Pseudo Streamer)</li>
-                        <li>Maintain Struts-1 Plugin</li>
-                        <li>Submit pull requests for others when I can!</li>
+                        <li>Co-author of 'Effective Gradle Implementation' Video Series on Packt</li>
+                        <li>Heavily into DevOps as of late</li>
+                        <li>Also check out my other talks 'Getting Groovy with Lego Mindstorms EV3'</li>
+                        <li>..and getting Groovy and Google Glass and Android Wear!</li>
                     </ul>
                 </section>
 
@@ -67,11 +67,11 @@
 
 
                     <ul>
-                        <li class="fragment"><strong>VPC</strong></li>
-                        <li class="fragment"><strong>S3</strong></li>
+                        <li class="fragment"><strong>What is a VPC?</strong></li>
+                        <li class="fragment"><strong>S3 Storage Service</strong></li>
                         <li class="fragment"><strong>ElasticWolf</strong></li>
-                        <li class="fragment">sshoogr and gramazon</li>
-                        <li class="fragment"><strong>Grails Plugins</strong></li>
+                        <li class="fragment">sshoogr and gramazon - Basis for Groovy-based Ansible?</li>
+                        <li class="fragment"><strong>Grails Plugins (Grails 2.x and 3 what works)</strong></li>
                         <li class="fragment"><strong>Elastic Load Balancers</strong></li>
                         <li class="fragment"><strong>Autoscaling</strong></li>
                         <li class="fragment"><strong>Others misc tips</strong></li>
@@ -93,12 +93,17 @@
 
 
                         <ul style="list-style-type: none;">
+											   		<li class="fragment"><strong>Proper Architecture (Go Multi-AZ!)</strong></li>
                             <li class="fragment"><strong>Routing</strong></li>
                             <li class="fragment"><strong>NAT</strong></li>
                             <li class="fragment"><strong>ACL Firewall</strong></li>
                             <li class="fragment"><strong>Suggested Subnets</strong></li>
                             <li class="fragment"><strong>Security Groups</strong></li>
                             <li class="fragment"><strong>DHCP Tips</strong></li>
+														<li class="fragment"><strong>VPC Flow Logs</strong></li>
+													  <li class="fragment"><strong>S3 Endpoints</strong></li>
+														<li class="fragment"><strong>VPC Peering</strong></li>
+														<li class="fragment"><strong>ClassicLink - Lin</strong></li>
                             <li class="fragment"><strong>Others misc tips</strong></li>
 
                         </ul>
@@ -138,11 +143,30 @@
                             <li class="fragment">can access your secure subnet as well</li>
                         </UL>
                     </section>
+										<section>
+                        <h2>VPC - Routing/Subnets - Redundancy</h2>
+                        <img src="CrossAZVPC.png"  />
+
+                    </section>
+
+										<section>
+                        <h2>VPC - Routing/Subnets - Redundancy</h2>
+                        <h3>Now you can add subnets each on a different AZ - You can be 3 9's!</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Create 4 subnets - 2 DMZ's across 2 AZ &amp; 2 secure subnets across AZs too!</li>
+                            <li class="fragment">Web Servers, Web facing apps can live behind ELB yet be able to run OS updates </li>
+                            <li class="fragment">S3 Buckets accessible</li>
+                            <li class="fragment">Can access your secure subnet as well</li>
+														<li class="fragment">Use Route53 Health Checks to failover to backup Region or S3 Static site</li>
+														<li class="fragment">Also can use VPC Peering (Doesn't work across regions though!)</li>
+                        </UL>
+                    </section>
                     <section>
                         <h2>VPC - Routing/Subnets</h2>
                         <img src="vpc-overview-big-3rdsubnet.png"  />
 
                     </section>
+
                     <section>
                         <h2>VPC - Routing/Subnets</h2>
                         <img src="aws-screenshot-console-subnet.png"  />
@@ -193,11 +217,58 @@
                             <li class="fragment">Options are semicolor delimited name value pairs, i.e. 'domain-name=something.com; domain-name-severs=AmazonProvidedDNSs</li>
                         </UL>
                     </section>
+										<section>
+                        <h2>VPC - Flow Logs</h2>
+                        <h3>Flow Logs - monitor your traffic!</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Log your VPC Traffic into Cloudwatch Logs</li>
+                            <li class="fragment">Pay $.50/GiB to injest logs, $0.03/GiB to archive them</li>
+                            <li class="fragment">Cannot log Amazon DNS traffic, Windows License Activation, DHCP traffic</li>
+                            <li class="fragment">New as of June 2015 - AWS Partners working on tools</li>
+                            <li class="fragment">Can be used for a more complete IDS solution vs simple proxy or host based</li>
+                            <li class="fragment">You may need this for security compliance</li>
+                        </UL>
+                    </section>
+										<section>
+                        <h2>VPC - Peering</h2>
+                        <h3>Peering - Link VPCs Together</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Link VPCs together across AZs</li>
+                            <li class="fragment">Cannot peer in between regions</li>
+                            <li class="fragment">Can link VPCs across accounts</li>
+                            <li class="fragment">Must not have overlapping CIDR blocks</li>
+                            <li class="fragment">Can be used with Placement groups with some limitations</li>
+                            <li class="fragment">Private DNS and Security Groups do not work between peers</li>
+                        </UL>
+                    </section>
+										<section>
+												<h2>VPC - Peering</h2>
+
+												  <img src="one-to-two-vpcs-flying-v.png"  />
+													<p> (From AWS Docs)
+										</section>
+										<section>
+												<h2>VPC - Peering Lifecycle</h2>
+
+												  <img src="peering-lifecycle-diagram.png"  />
+													<p> (From AWS Docs)
+										</section>
+										<section>
+												<h2>VPC - S3 Endpoints</h2>
+												<h3>S3 Endpoints - Speed Up S3 Access!</h3>
+												<UL style="list-style-type: none;">
+														<li class="fragment">Easy to add - if you are not doing this you should!</li>
+														<li class="fragment">Works with some AWS servicse like Elastic Beanstalk, Opsworks, etc with limits</li>
+														<li class="fragment">Uses IAM policies to control access</li>
+														<li class="fragment">Now S3 traffic doesn't leave AWS network - huge boost!</li>
+												</UL>
+										</section>
                     <section>
                         <h2>VPC - IAM Roles</h2>
 
                         <UL style="list-style-type: none;">
                             <li class="fragment">Don't use root account anymore. Traditional security page is retired</li>
+														<li class="fragment">Use MFA Authentication device for all IAM users on console - hardware or phone app</li>
                             <li class="fragment">Set up your IAM roles for each user and use designated login url they give you</li>
                             <li class="fragment">Use resource level security with IAM to tier access to instances/resources</li>
                         </UL>
@@ -206,7 +277,7 @@
                         <h2>VPC - Misc EC2 Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Reboot != Reboot be careful</li>
+                            <li class="fragment">Reboot != Stop be careful</li>
                             <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage(OS reboot faster)</li>
                             <li class="fragment">If you issue an 'stop' command you machine will move and lose ephemeral state</li>
 
@@ -223,11 +294,12 @@
                         </UL>
                     </section>
                     <section>
-                        <h2>VPC - Misc EC2 Tips</h2>
+                        <h2>VPC - Misc EC2 Tips - Elastic Load Balancer</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Load Balancer</li>
-                            <li class="fragment">60s timeout on idle max - can file ticket for extension to 15+ minutes</li>
+                            <li class="fragment">Create internal ELB's inside your vpc for microservices</li>
+                            <li class="fragment">Limit 3600s timeout on idle max now</li>
+														<li class="fragment">Cannot use sticky source IP with HTTPS!</li>
                             <li class="fragment">Use Haproxy for anything very advanced, can accommodate many options</li>
 
                         </UL>
@@ -289,7 +361,7 @@
                             <li class="fragment">s3cmd is best free command line tools</li>
                             <li class="fragment">Bucket Explorer & CloudBerry Backup are good solid windows clients that parallelize multi-part uploads to ease the pain</li>
                             <li class="fragment">s3 Browser is ok free tool</li>
-                            <li class="fragment">For install on Ubuntu: http://zentraal.com/docs/installing-s3fs-on-ubuntu/</li>
+                            <li class="fragment">For s3fs install on Ubuntu: http://zentraal.com/docs/installing-s3fs-on-ubuntu/</li>
                         </UL>
                     </section>
                     <section>
@@ -514,7 +586,7 @@
                             </li>
                             <li>Uses AWS Web Service API wrapped in a Java Library</li>
                             <li>Error handing can be more difficult than using web service api directly</li>
-
+                            <li>Works with Grails 3, yay!</li>
 
 
                         </UL>
@@ -653,7 +725,7 @@
                         </UL>
                     </section>
                     <section>
-                        <h2>sshoogr and gramazon</h2>
+                        <h2>sshoogr</h2>
 
                         <UL style="list-style-type: none;">
                             <li class="fragment">sshoogr - Groovy-based DSL library for working with remote servers through SSH - DSL Allows:
@@ -664,21 +736,33 @@
                             <li class="fragment">creating tunnels in a simple and concise way</li>
                             <li class="fragment">gradle plugin also for  </li>
                             <li class="fragment">project very active (last commit 1 month ago)</li>
-                            </ul>
+                            <li class="fragment">sshoogr+gradle+DSL == Groovy Based Ansible???
+														</ul>
                             </li>
-                            <li class="fragment">gramazon - Groovy based API for Amazon EC2
-                            <ul>
-                                <li class="fragment">interface library that can be used to interact with the Amazon EC2 system and control server resources on demand from your Groovy scripts or from Gradle, using a plug-in.></li>
-                                <li class="fragment">uses gradle to run commands</li>
-                                <li class="fragment">maybe could be used as basis for a groovy version of chef or puppet?</li>
-                                <li class="fragment">project very active (last commit 1 month ago)</li>
-                                <li class="fragment">gradle project template available as well as 'gradle-ssh-plugin'</li>
-                        </ul></li>
+
                         <p>Repos for these: https://github.com/aestasit/sshoogr and https://github.com/aestasit/gramazon-gradle</p>
 
 
                         </UL>
                     </section>
+										<section>
+												<h2>gramazon</h2>
+
+												<UL style="list-style-type: none;">
+
+														<li class="fragment">gramazon - Groovy based API for Amazon EC2
+														<ul>
+																<li class="fragment">interface library that can be used to interact with the Amazon EC2 system and control server resources on demand from your Groovy scripts or from Gradle, using a plug-in.></li>
+																<li class="fragment">uses gradle to run commands</li>
+																<li class="fragment">maybe could be used as basis for a groovy version of chef or puppet?</li>
+																<li class="fragment">project very active (last commit 1 month ago)</li>
+																<li class="fragment">gradle project template available as well as 'gradle-ssh-plugin'</li>
+												</ul></li>
+												<p>Repos for these: https://github.com/aestasit/sshoogr and https://github.com/aestasit/gramazon-gradle</p>
+
+
+												</UL>
+										</section>
                 </section>
                 <section>
                     <section>
@@ -695,6 +779,7 @@
 
                         </UL>
                     </section>
+
                     <section>
                         <h2>Autoscaling Setup</h2>
 
@@ -708,7 +793,31 @@
 
                         </UL>
                     </section>
+										<section>
+												<h2>Use CodeDeploy with ASG</h2>
 
+												<UL style="list-style-type: none;">
+
+														<li class="fragment">Enable app to have Codedeploy payload</li>
+														<li class="fragment">With ASG adds a node, app is auto-deployed!</li>
+                            <li class="fragment">Use AMInator or Packer to bake AMIs to feed the ASG</li>
+
+
+												</UL>
+										</section>
+										<section>
+												<h2>Cloudwatch and Autoscaling - Regular metrics suck!</h2>
+
+												<UL style="list-style-type: none;">
+
+														<li class="fragment">Custom metrics are the way to go....http://goo.gl/gGh0jO</li>
+														<li class="fragment">Why? CPU usage and network IO not good enough to scale!</li>
+														<li class="fragment">Use health check plugins - add your own metrics</li>
+														<li class="fragment">If you can mix ELB with ASG's and have ASG monitor ELB 'health'</li>
+
+
+												</UL>
+										</section>
                     <section>
                         <h2>Elastic Beanstalk</h2>
                         <p>Finally a good solution to push your application to Elastic Beanstalk on Grails!</p>
@@ -730,13 +839,16 @@
 
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Elastic Beanstalk plugin by Ken Liu: http://grails.org/plugin/aws-elastic-beanstalk</li>
-                            <li class="fragment">Elastic Beanstalk Intro @ Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
-                            <li class="fragment">Another Beanstalk: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk/</li>
-                            <li class="fragment">Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
-                            <li class="fragment">Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
-                            <li class="fragment">Building an S3 Browser in Grails http://aws.amazon.com/articles/Amazon-S3/4000</li>
-
+                            <li>Elastic Beanstalk plugin by Ken Liu: http://grails.org/plugin/aws-elastic-beanstalk</li>
+                            <li>Elastic Beanstalk Intro @ Bobby Warner's Blog: http://goo.gl/PQaAxx</li>
+                            <li>Another Beanstalk: http://goo.gl/0SeYyS</li>
+                            <li>Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
+                            <li>Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
+                            <li>Building an S3 Browser in Grails http://goo.gl/u6lRYB</li>
+														<li>Grails AWS SDK Plugin https://goo.gl/I9qrcl</li>
+														<li>VPC Deep Dive Slides http://goo.gl/o4g8yj</li>
+														<li>Deploying Grails 3 and CDN on Elastic Beanstalk https://goo.gl/x163Fv</li>
+                            <li>AWS Global Interactive Map https://goo.gl/qpHR09</li>
                         </UL>
                     </section>
 
@@ -744,12 +856,12 @@
 
 			</div>
 
-            <div id="myLogo" style="background: url('presentation-16-9-pages.png');
+            <!--<div id="myLogo" style="background: url('presentation-16-9-pages.png');
                         position: absolute;
                         bottom: 0px;
                         right: 0px;
                         width: 1910px;
-                        height: 1080px;"></div>
+                        height: 1080px;"></div>-->
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

@@ -165,6 +165,7 @@ Cool Stuff: Davinci & Emmet
 
          - Walk through Chuck norris vs of testGrooidWear
          - Walk through EV3Wear example - companion app and wear app - demo communication
-
+      Sugar ORM
+         - quick ORM solution for Android
 
 Finally - drive robot around with wear device!!
