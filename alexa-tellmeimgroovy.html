@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Alexa, Tell Me I'm Groovy!</title>
+
+    <meta name="description" content="Lecture on how to use Groovy and Grails to make Amazon Alexa Skills">
+    <meta name="author" content="Ryan Vanderwerf">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1><img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+    <img style="border:none; background:white" src="gr8conf-generic.png" alt="GR8Conf groovy gradle grails" height="150" width="250"/></h1>
+    <h3>Alexa, tell me I'm Groovy!</h3>
+    <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
+
+
+    <p>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - OCI</a></small>
+    </p>
+
+</section>
+
+<section>
+    <h2>About Me</h2>
+
+    <ul>
+        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
+        <li>Father of 2 girls under 12</li>
+        <li>Co-Chair Austin Groovy and Grails User Group</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
+    </ul>
+</section>
+    <section>
+        <h2>Special Shout Out to Lee Fox</h2>
+        <img src="leefox.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li>Spent many nights helping me build out all the materials and code here</li>
+            <li>Co founder with me of Vanderfox Labratories</li>
+            <li>Twitter @FoxInATX</li>
+            <li>...thanks Lee!</li>
+        </ul>
+    </section>
+
+    <section>
+    <h2>What we will cover</h2>
+    <ul>
+        <li>What is Alexa and what devices it covers</li>
+
+        <li class="fragment">
+            How does Alexa work?
+        </li>
+        <li class="fragment">
+            Alexa software concepts and components
+        </li>
+
+        <li class="fragment">
+            Brief Lamba Overview
+        </li>
+        <li class="fragment">
+            Lamba Groovy App Setup
+        </li>
+        <li class="fragment">
+            Twitter app for Groovy and Lambda
+        </li>
+        <li class="fragment">
+            Superhero quiz for Groovy and Lamba
+        </li>
+        <li class="fragment">
+            Let's do more.. like account linking!
+        </li>
+        <li class="fragment">
+            Twitter app for Grails using OAuth, Spring Security
+        </li>
+        <li class="fragment">
+            Alexa Skills Plugin - coming soon!
+        </li>
+
+    </ul>
+
+    <aside class="notes">
+
+    </aside>
+</section>
+
+<!-- Example of nested vertical slides -->
+
+<section>
+    <section>
+        <h2>What is Alexa?</h2>
+        <img src="scotty-animated.gif" style="background:none; border:none; box-shadow:none;"/>
+    </section>
+
+    <section>
+        <p>
+            Alexa is a cloud based voice recognition service
+        </p>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-16-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>There are 3 SDKS - Skills, AVS, and Home API</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>ECHO</p>
+
+    </section>
+    <section>
+        <p>
+            Echo
+        </p>
+        <img src="amazon-echo-3-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>ECHO</p>
+
+    </section>
+    <section>
+        <h3>
+            Echo
+        </h3>
+        <img src="640_echo-parts.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+    </section>
+    <section>
+        <img src="echo-breakdown.png" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+        <li class="fragment">The first one</li>
+        <li class="fragment">Multi dimensional mic array</li>
+            <li class="fragment">Nice speaker with downfiring subwoofer</li>
+            <li class="fragment">Some simple home automation ability</li>
+            <li class="fragment">Wifi and Bluetooth capabilities</li>
+            <li class="fragment">Aways on listening for wake word (Alexa or Amazon)</li>
+
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Dot
+        </h3>
+        <img src="499938-amazon-echo-dot.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+        <li>
+        <ul class="fragment">Baby brother - has the fancy mics but minimal speaker for voice</ul>
+        <ul class="fragment">Has Wifi and bluetooth capabilities</ul>
+        <ul class="fragment">The big deal: a 3.5mm audio output jack!</ul>
+        <ul class="fragment">Aways on listening for wake word (Alexa or Amazon)</ul>
+        </li>
+        </ul>
+
+    </section>
+    <section>
+        <h3>
+            Dot
+        </h3>
+        <img src="Amazon-Echo-Dot-iFixit-teardown_1.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+    </section>
+    <section>
+        <h3>
+            Tap
+        </h3>
+        <img src="amazontap_xray-2-970x647-c.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+    </section>
+    <section>
+        <h3>
+            Tap
+        </h3>
+
+        <ul>
+            <li class="fragment">On the go - portable bluetooth speaker with battery and simple mic</li>
+            <li class="fragment">Has Wifi and bluetooth capabilities</li>
+            <li class="fragment">The big deal: a 3.5mm audio output jack!</li>
+            <li class="fragment">Not always listening - have to 'tap' button to wake</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - Google Chirp
+        </h3>
+        <img src="google-chrip.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+        <ul>
+            <li class="fragment">Not yet released Google version of Echo</li>
+
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - MyCroft
+        </h3>
+        <img src="mycroft.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">Open source/hardware version</li>
+            <li class="fragment">Built on Raspberry Pi - all open</li>
+            <li class="fragment">Can buy on Kickstarer and Indiegogo</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Back to Alexa Skills - how does it work?
+        </h3>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-18-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">App developer never talks directly to device</li>
+            <li class="fragment">Device must initiate interaction</li>
+            <li class="fragment">Alexa server response with JSON body</li>
+            <li class="fragment">Currently text to speech only</li>
+            <li class="fragment">Run as Lamba function or separate webapp</li>
+        </ul>
+    </section>
+
+</section>
+<section>
+    <section>
+        <h2>SDKs</h2>
+        <img src="data-tng-taking.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+              <li class="fragment">Skills SDK - custom skill or Home</li>
+              <li class="fragment">Voice SDK - build a device like and Echo</li>
+              <li class="fragment">We'll focus on the Skills API today</li>
+
+            </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK</h2>
+        <img src="star-trek-jean-luc-picard.png" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Works with Lambda or self hosted webapp</li>
+            <li class="fragment">Home sub-API only works with Lambda</li>
+            <li class="fragment">Let's conver the main components</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Intent Schema</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This tells Alexa what actions your app can do</li>
+            <li class="fragment">Describes intents and slots used</li>
+            <li class="fragment">When you upload this, Alexa calculates speech variations to launch them</li>
+            <li class="fragment">See sample IntentSchema.json</a>
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Slots</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is how Alexa parameterizes commands</li>
+            <li class="fragment">Very simple list of options</li>
+            <li class="fragment">Slots don't work well for multi-word responses it seems</a>
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Sample Utterances</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Train Alexa on what the commands are like a menu</li>
+            <li class="fragment">This is the phrases that activate the intents</li>
+            <li class="fragment">Use {} and | to use parameters</li>
+            <li class="fragment">When you upload this, Alexa calculates speech variations to launch Intents</li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Speechlet - Open App</h2>
+        <img src="star-trek-translator.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Uses special keywords: Open, Ask/About, Get/From, Give/From, Want/To/ </li>
+            <li class="fragment">Full list of invocation commands at <a href="http://amzn.to/1NpPlZo">http://amzn.to/1NpPlZo</a>
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Intents</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Uses concept of Intents to trigger bits of your code</li>
+            <li class="fragment">Intents are: onSessionStarted, onLaunch, onIntent, onSessionEnded</a>
+            </li>
+            <li class="fragment">The only intent you -have- to override is 'onIntent'</li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onSessionStarted</h2>
+
+        <ul>
+            <li class="fragment">This is called first</li>
+            <li class="fragment">This passes in Session and SessionStartedRequest objects</a></li>
+            <li class="fragment">Use this to do any session setup stuff you want similar to Session listener in Servlets</li>
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onLaunch</h2>
+
+        <ul>
+            <li class="fragment">This is called second</li>
+            <li class="fragment">This passes in Session and LaunchRequest objects</a></li>
+            <li class="fragment">Use this to do any app setup stuff you want similar to Session listener in Servlets</li>
+            <li class="fragment">In this case, we load the twitter credentials for the user</li>
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onIntent</h2>
+
+        <ul>
+            <li class="fragment">This is the meat</li>
+            <li class="fragment">Once Alexa figures out what intent the user asked for, launches this</li>
+            <li class="fragment">See the sample IntenSchema.json</li>
+            <li class="fragment">In this case, we load the twitter credentials for the user</li>
+            <li class="fragment">This is NOT optional - you must override</li>
+            <li class="fragment">It is considered best practice to support a 'HelpIntent' with a menu</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onSessionEnded</h2>
+
+        <ul>
+            <li class="fragment">This is the last intent called when done</li>
+            <li class="fragment">Put session cleanup code there</li>
+
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+
+
+    <section>
+        <h2>Is Glass Coming Back?</h2>
+        <p>For business it never left. Consumer? maybe not for a while. Google has promised to build a new one since the
+          processor was discontinued by TI, and indeed new models have recently gone through the FCC based on Intel.
+          This will definately keep evolving for business use, for the use case for everyday for consumers? Likely not. The world
+          wasn't socially ready for people to walk around all the time with those on.
+        </p>
+        <P> .. but there are still a TON of good real-world uses!</p>
+
+    </section>
+    <section>
+        <h2>So what can I do with this thing and not be a Glasshole?</h2>
+        <p><img src="glasshole.jpg" style="background:none; border:none; box-shadow:none;" height="150" width="200"/></p>
+        <p>Some good uses that I use it for or plan to:
+        </p><p>
+        <ul>
+          <li class="fragment">Being a totally lazy
+            tourist and snapping lots of pics without phone out</li>
+          <li class="fragment">Fitness (Especially Biking, you can have a GPS up hands free!)</li>
+          <li class="fragment">Cooking, Doctors, Plumbers, Auto mechanics, etc. Anything dirty and you need your hands free</li>
+
+        </ul></p>
+
+    </section>
+    <section>
+        <h2>So what kind of apps can I make with this thing?</h2>
+        <p>There are several APIs</p>
+
+        <ul>
+          <li class="fragment">Mirror API (Server Side/REST Interface/Google API)</li>
+          <li class="fragment"> GDK 19(4.4.2)</li>
+          <li class="fragment">Flow Designer (Tool to help visualize app flow/cards)</li>
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>How the heck do I get groovy working on this thing? What do I do first?</h2>
+        <ul>
+            <li class="fragment">grooid-templates - spit out working example
+              - this helps a lot because if you projet isn't right you waste a TON of time
+                trying to figure out what's wrong (on any android-groovy project)</li>
+            <li class="fragment">all the Groovy goodness libs like Swissknife built in ready to go!</li>
+
+        </ul>
+        <p class="fragment">There is no emulator - what do I do?</p>
+        <ul>
+          <li class="fragment">Find even new/unused pairs on ebay for 750 or used for even less. You can use ASM (Android Screen Monitor) with ADB to share what someone sees</li>
+          <li class="fragment">more people would try to make stuff if they made an emulator. My theory is they will make one after the new Intel versions come out</li>
+        </ul>
+
+    </section>
+
+</section>
+    <section>
+        <h2>grooid-templates - lazybones makes Android easy!</h2>
+        <ul>
+            <li class="fragment">Uses lazybones to create Android Apps and Libs</li>
+            <li class="fragment">Mario Garcia maker of grooid-templates for mobile and libs</li>
+            <li class="fragment">I've made a fork that has glass and wear templates: <a href="https://github.com/rvanderwerf/grooid-templates">https://github.com/rvanderwerf/grooid-templates</a></li>
+            <li class="fragment">Let's see an example of setting it up and generating a Glass app!</li>
+        </ul>
+    </section>
+    <section>
+        <h2>grooid-templates - lazybones makes Android easy!</h2>
+        <ul>
+            <p>use lazybones to make a glass app: lazybones create grooid-glass-new-project gr8ClassDemo
+            </P>
+        </ul>
+    </section>
+    <section>
+
+    <section>
+        <h2>Mirror API</h2>
+        <p>Server side solution, authenticates as any other Google API on your API console</p>
+
+        <ul>
+            <li class="fragment">step 1 authorize your app on your google account: https://console.developers.google.com/</li>
+            <li class="fragment">step 2 build your app! Grails 3 app would fit excellent here</li>
+            <li class="fragment">Demo Mirror API app in Java (candidate to port to Grails 3!)https://github.com/googleglass/mirror-quickstart-java</li>
+            <li class="fragment">What can it do? deliver notifications and manage contacts, mostly</li>
+        </ul>
+    </section>
+
+    <section>
+    <h2>GDK (Glass Development Kit) 4.4.2W</h2>
+    <p>Supports API level 19 (look at SDK 19 in SDK Manager)</p>
+
+    <ul>
+        <li class="fragment">Most things that have simple nav can sort of work or load</li>
+        <li class="fragment">Use the grooid-templates </li>
+        <li class="fragment">In dev mode, you can use your own voice keywords!</li>
+
+    </ul>
+    </section>
+    <section>
+    <h2>GDK (Glass Development Kit) 4.4.2W</h2>
+    <p>Hardware you have access to:</p>
+
+    <ul>
+        <li class="fragment">Voice Input https://developers.google.com/glass/develop/gdk/voice</li>
+        <li class="fragment">Touch Gestures (https://developers.google.com/glass/develop/gdk/touch) (DPAD+Gestures)</li>
+        <li class="fragment">Location and Sensors https://developers.google.com/glass/develop/gdk/location-sensors</li>
+        <li class="fragment">Sensors: On Head State, Accelerometer, Gravity, Gyroscope, Light, Compass, Rotation</li>
+        <li class="fragment">Camera https://developers.google.com/glass/develop/gdk/camera</li>
+
+    </ul>
+    </section>
+    <section>
+    <h2>Let's generate and demo a quick app!</h2>
+    </section>
+</section>
+
+<section>
+<section>
+    <h2>Android Wear!</h2>
+    <img src="littletv.jpg" style="background:none; border:none; box-shadow:none;" height="250" width="300"/>
+    <p>Now Let's Learn About Making Android Wear Groovy</p>
+
+    <ul>
+        <li class="fragment">Glass most likely formed the starting point for Wear</li>
+        <li class="fragment">Watch just the first kind of Wear device</li>
+        <li class="fragment">Focused mostly on notifications as cards </li>
+        <li class="fragment">For now, needs to be tethered to mobile app for network access(changing as we speak!)</li>
+        <li class="fragment">Fun games too!</li>
+    </ul>
+</section>
+<section>
+    <h2>What Does A Wear App Look Like?</h2>
+    <p>Looks like many things!</p>
+
+    <ul>
+        <li class="fragment">A Watch Face</li>
+        <li class="fragment">Full Screen Game</li>
+        <li class="fragment">Scrolling Cards (either direction)</li>
+        <li class="fragment">Simple Cards (notification)</li>
+        <li class="fragment">The idea is to keep it simple.. there's not a lot of screen to work with!</li>
+        <li class="fragment">Recommended UI patterns here: https://developer.android.com/design/wear/patterns.html</li>
+    </ul>
+
+</section>
+<section>
+    <h2>... but Android is Hard!</h2>
+    <p>In comes Groovy... we can make this easier with SwissKnife!</p>
+
+    <ul>
+        <li class="fragment">Annotations and Injection kill boilerplate code!</li>
+        <li class="fragment">auto injects views on objects</li>
+        <li class="fragment">add callback methods with just an annotation</li>
+        <li class="fragment">execute elements on UI thread or background with annotation</li>
+        <li class="fragment">make anything parseable with annotation</li>
+        <li class="fragment">inject resources with @res annotations</li>
+        <li class="fragment">read intent extras with @Extra annotation</li>
+        <li class="fragment">See this great general android-swissknife tutorial http://bit.ly/1Kv7fXc</li>
+        <li class="fragment">SwissKnife source at https://github.com/Arasthel/SwissKnife</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Emmet (https://github.com/florent37/Wear-Emmet)</p>
+
+    <ul>
+        <li class="fragment">Wrapper lib for the google data layer APIs to communicate between the phone and the watch
+        (this gets data downloaded from the app to the watch)</li>
+        <li class="fragment">We will see an example shortly. When Wear is wifi enabled we won't need this as bad!</li>
+
+    </ul>
+
+</section>
+<section>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Davinci (https://github.com/florent37/DaVinci)</p>
+
+    <ul>
+        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
+    </ul>
+
+</section>
+<section>
+    <h2>Some More libs to make Wear apps easier!</h2>
+    <p>Sugar ORM (http://satyan.github.io/sugar/)</p>
+
+    <ul>
+        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
+    </ul>
+
+</section>
+<section>
+    <h2>Chuck Norris Quote Wear Demo!</h2>
+    <p>Let's demo an app that brings this all together! Channeling my inner Ken Kousen, let's get some Chuck Norris going!</p>
+    <p>We will use grooid-templates to make a new wear app. It starts as a Chuck Norris app, you can take it from there!</p>
+    <p>lazybones create grooid-wear-new-project testCarlosWear</p>
+
+  
+    <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
+</section>
+<section>
+    <h2>Chuck Norris Quote Wear Demo!</h2>
+
+    <p> If you see this error don't fret! run the build again and it will work:
+      Execution failed for task ':mobile:compileDebugGroovy'.
+      Unable to load class android.support.v7.app.ActionBarActivity due to missing dependency android/support/v4/view/LayoutInflaterFactory
+    </p>
+    <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
+</section>
+<section>
+    <h2>Android + Wear + Grails 3 + Lego Minstorm EV3 Demo</h2>
+    <p>Let's tie this together and mash up all sorts of Groovy Stuff!</p>
+
+    <ul>
+
+        <li class="fragment">Grails 3 Lego Rover Project</li>
+        <li class="fragment">Android Mobile Tether App to Configure</li>
+        <li class="fragment">EV3 Lego Robot Running Groovy</li>
+        <li class="fragment">Wear App to Drive the Robot!</li>
+    </ul>
+
+</section>
+
+
+<section>
+    <h1>THE END</h1>
+    <h3>I hope you have enjoyed the session!</h3>
+    <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
+</section>
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('gr8confeu-2015-presentation-16-9-following.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1910px;
+                        height: 1080px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
