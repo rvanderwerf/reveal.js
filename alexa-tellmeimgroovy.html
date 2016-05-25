@@ -216,6 +216,19 @@
     </section>
     <section>
         <h3>
+            FireTV
+        </h3>
+
+        <ul>
+            <li class="fragment">Available as a 'stick' or box with voice remote</li>
+            <li class="fragment">Mostly meant for TV apps - cheapest option for Alexa</li>
+            <li class="fragment">Recent OS updates support Alexa on both V1 and V2</li>
+            <li class="fragment">Must push voice remote button to start apps</li>
+            <li class="fragment">The same skills work here too!</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
             Yes, There are others - Google Chirp
         </h3>
         <img src="google-chrip.jpg" style="background:none; border:none; box-shadow:none;"/>
@@ -235,6 +248,18 @@
             <li class="fragment">Open source/hardware version</li>
             <li class="fragment">Built on Raspberry Pi - all open</li>
             <li class="fragment">Can buy on Kickstarer and Indiegogo</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - Make your own!
+        </h3>
+        <img src="raspberrypi-dyi.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">Some examples:</li>
+            <li class="fragment">Github repo: http://bit.ly/1PrOq6A</li>
+            <li class="fragment">Official DIY: http://bit.ly/1OMpfwP</li>
+            <li class="fragment">Video guide: http://bit.ly/1WRZO5u</li>
         </ul>
     </section>
     <section>
@@ -321,6 +346,33 @@
 
     </section>
     <section>
+        <h2>The Alexa App</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is where you can do non-speechy interactions</li>
+            <li class="fragment">See a log of what you've done</li>
+            <li class="fragment">Install Skills</li>
+            <li class="fragment">Can use mobile app or go to echo.amazon.com</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Cards</h2>
+        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is similar to Android cards</li>
+            <li class="fragment">You can launch different cards for different intents</li>
+            <li class="fragment">There are 3 main cards: Simple, Standing, and LinkAccount</li>
+            <li class="fragment">Amazon limits what kind of content can be on each type of card</li>
+
+
+        </ul>
+
+    </section>
+    <section>
         <h2>Skills SDK - Speechlet - Open App</h2>
         <img src="star-trek-translator.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
@@ -399,228 +451,129 @@
 
     </section>
 
-
-    <section>
-        <h2>Is Glass Coming Back?</h2>
-        <p>For business it never left. Consumer? maybe not for a while. Google has promised to build a new one since the
-          processor was discontinued by TI, and indeed new models have recently gone through the FCC based on Intel.
-          This will definately keep evolving for business use, for the use case for everyday for consumers? Likely not. The world
-          wasn't socially ready for people to walk around all the time with those on.
-        </p>
-        <P> .. but there are still a TON of good real-world uses!</p>
-
     </section>
-    <section>
-        <h2>So what can I do with this thing and not be a Glasshole?</h2>
-        <p><img src="glasshole.jpg" style="background:none; border:none; box-shadow:none;" height="150" width="200"/></p>
-        <p>Some good uses that I use it for or plan to:
-        </p><p>
-        <ul>
-          <li class="fragment">Being a totally lazy
-            tourist and snapping lots of pics without phone out</li>
-          <li class="fragment">Fitness (Especially Biking, you can have a GPS up hands free!)</li>
-          <li class="fragment">Cooking, Doctors, Plumbers, Auto mechanics, etc. Anything dirty and you need your hands free</li>
 
-        </ul></p>
-
-    </section>
     <section>
-        <h2>So what kind of apps can I make with this thing?</h2>
-        <p>There are several APIs</p>
+        <section>
+        <h2>Let's Make a Groovy Lambda Skill!</h2>
 
         <ul>
-          <li class="fragment">Mirror API (Server Side/REST Interface/Google API)</li>
-          <li class="fragment"> GDK 19(4.4.2)</li>
-          <li class="fragment">Flow Designer (Tool to help visualize app flow/cards)</li>
+            <li class="fragment">This is the last intent called when done</li>
+            <li class="fragment">Put session cleanup code there</li>
+
+            <li class="fragment">This is optional - don't have to override</li>
+
         </ul>
 
     </section>
+        <section>
+            <h2>Yeah It's Not Perfect</h2>
+            <p><img src="data-tng-laughing.jpg"  style="background:none; border:none; box-shadow:none;"/>
+            </p>
+            <ul>
+                <li class="fragment">Not multi-language yet</li>
+                <li class="fragment">May have troubles with strong accents</li>
+                <li class="fragment">Currently meant for NA</li>
 
-    <section>
-        <h2>How the heck do I get groovy working on this thing? What do I do first?</h2>
-        <ul>
-            <li class="fragment">grooid-templates - spit out working example
-              - this helps a lot because if you projet isn't right you waste a TON of time
-                trying to figure out what's wrong (on any android-groovy project)</li>
-            <li class="fragment">all the Groovy goodness libs like Swissknife built in ready to go!</li>
+            </ul>
 
-        </ul>
-        <p class="fragment">There is no emulator - what do I do?</p>
-        <ul>
-          <li class="fragment">Find even new/unused pairs on ebay for 750 or used for even less. You can use ASM (Android Screen Monitor) with ADB to share what someone sees</li>
-          <li class="fragment">more people would try to make stuff if they made an emulator. My theory is they will make one after the new Intel versions come out</li>
-        </ul>
+        </section>
+        <section>
+            <h2>Superhero Quiz App</h2>
+            <p><img src="calllingsuperheros.jpg"  style="background:none; border:none; box-shadow:none;"/>
+            </p>
+            <ul>
+                <li class="fragment">Uses Groovy Lambdas and DynamoDB</li>
+                <li class="fragment">Asks you superhero trivia</li>
+                <li class="fragment">Let's try it out!</li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Groovy Lambda Superhero Quiz</h2>
+        </section>
+        <section>
+
+            <h2>Twitter LambdaApp</h2>
+
+            <ul>
+                <li class="fragment">Uses Groovy, Lambda, and Spring Social</li>
+                <li class="fragment">Lambda version uses hard-coded credentials</li>
+                <li class="fragment">Let's try it out!</li>
+                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/alexa-twitter-groovy">https://github.com/rvanderwerf/alexa-twitter-groovy</a></li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Groovy Lambda Twitter Search</h2>
+
+
+        </section>
+        <section>
+            <h2>Let's do more advanced stuff!</h2>
+
+            <ul>
+                <li class="fragment">How can I make the app use MY twitter credentials?</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">There are rules</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth</li>
+                <li class="fragment">Supports Implicit or Authorization code</li>
+                <li class="fragment">Use an Intent to send an AccountLinkCard</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Setting up your own server</h2>
+
+            <ul>
+                <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
+                <li class="fragment">You can use self-signed certs in dev only</li>
+                <li class="fragment">Self signed certs MUST have hostname match common name</li>
+                <li class="fragment">Trusted certs support most cert providers</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Grails Twitter Search</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth, Groovy, Grails, and Spring Social</li>
+                <li class="fragment">Supports OAUTH to authenicate a user</li>
+                <li class="fragment">Uses Spring Security UI to register accounts</li>
+                <li class="fragment">Provides Admin UI to manage users and credentials</li>
+                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/twitterAuth">https://github.com/rvanderwerf/twitterAuth</a></li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Grails Twitter Search</h2>
+
+
+        </section>
 
     </section>
-
-</section>
-    <section>
-        <h2>grooid-templates - lazybones makes Android easy!</h2>
-        <ul>
-            <li class="fragment">Uses lazybones to create Android Apps and Libs</li>
-            <li class="fragment">Mario Garcia maker of grooid-templates for mobile and libs</li>
-            <li class="fragment">I've made a fork that has glass and wear templates: <a href="https://github.com/rvanderwerf/grooid-templates">https://github.com/rvanderwerf/grooid-templates</a></li>
-            <li class="fragment">Let's see an example of setting it up and generating a Glass app!</li>
-        </ul>
-    </section>
-    <section>
-        <h2>grooid-templates - lazybones makes Android easy!</h2>
-        <ul>
-            <p>use lazybones to make a glass app: lazybones create grooid-glass-new-project gr8ClassDemo
-            </P>
-        </ul>
-    </section>
-    <section>
-
-    <section>
-        <h2>Mirror API</h2>
-        <p>Server side solution, authenticates as any other Google API on your API console</p>
-
-        <ul>
-            <li class="fragment">step 1 authorize your app on your google account: https://console.developers.google.com/</li>
-            <li class="fragment">step 2 build your app! Grails 3 app would fit excellent here</li>
-            <li class="fragment">Demo Mirror API app in Java (candidate to port to Grails 3!)https://github.com/googleglass/mirror-quickstart-java</li>
-            <li class="fragment">What can it do? deliver notifications and manage contacts, mostly</li>
-        </ul>
-    </section>
-
-    <section>
-    <h2>GDK (Glass Development Kit) 4.4.2W</h2>
-    <p>Supports API level 19 (look at SDK 19 in SDK Manager)</p>
-
-    <ul>
-        <li class="fragment">Most things that have simple nav can sort of work or load</li>
-        <li class="fragment">Use the grooid-templates </li>
-        <li class="fragment">In dev mode, you can use your own voice keywords!</li>
-
-    </ul>
-    </section>
-    <section>
-    <h2>GDK (Glass Development Kit) 4.4.2W</h2>
-    <p>Hardware you have access to:</p>
-
-    <ul>
-        <li class="fragment">Voice Input https://developers.google.com/glass/develop/gdk/voice</li>
-        <li class="fragment">Touch Gestures (https://developers.google.com/glass/develop/gdk/touch) (DPAD+Gestures)</li>
-        <li class="fragment">Location and Sensors https://developers.google.com/glass/develop/gdk/location-sensors</li>
-        <li class="fragment">Sensors: On Head State, Accelerometer, Gravity, Gyroscope, Light, Compass, Rotation</li>
-        <li class="fragment">Camera https://developers.google.com/glass/develop/gdk/camera</li>
-
-    </ul>
-    </section>
-    <section>
-    <h2>Let's generate and demo a quick app!</h2>
-    </section>
-</section>
-
-<section>
-<section>
-    <h2>Android Wear!</h2>
-    <img src="littletv.jpg" style="background:none; border:none; box-shadow:none;" height="250" width="300"/>
-    <p>Now Let's Learn About Making Android Wear Groovy</p>
-
-    <ul>
-        <li class="fragment">Glass most likely formed the starting point for Wear</li>
-        <li class="fragment">Watch just the first kind of Wear device</li>
-        <li class="fragment">Focused mostly on notifications as cards </li>
-        <li class="fragment">For now, needs to be tethered to mobile app for network access(changing as we speak!)</li>
-        <li class="fragment">Fun games too!</li>
-    </ul>
-</section>
-<section>
-    <h2>What Does A Wear App Look Like?</h2>
-    <p>Looks like many things!</p>
-
-    <ul>
-        <li class="fragment">A Watch Face</li>
-        <li class="fragment">Full Screen Game</li>
-        <li class="fragment">Scrolling Cards (either direction)</li>
-        <li class="fragment">Simple Cards (notification)</li>
-        <li class="fragment">The idea is to keep it simple.. there's not a lot of screen to work with!</li>
-        <li class="fragment">Recommended UI patterns here: https://developer.android.com/design/wear/patterns.html</li>
-    </ul>
-
-</section>
-<section>
-    <h2>... but Android is Hard!</h2>
-    <p>In comes Groovy... we can make this easier with SwissKnife!</p>
-
-    <ul>
-        <li class="fragment">Annotations and Injection kill boilerplate code!</li>
-        <li class="fragment">auto injects views on objects</li>
-        <li class="fragment">add callback methods with just an annotation</li>
-        <li class="fragment">execute elements on UI thread or background with annotation</li>
-        <li class="fragment">make anything parseable with annotation</li>
-        <li class="fragment">inject resources with @res annotations</li>
-        <li class="fragment">read intent extras with @Extra annotation</li>
-        <li class="fragment">See this great general android-swissknife tutorial http://bit.ly/1Kv7fXc</li>
-        <li class="fragment">SwissKnife source at https://github.com/Arasthel/SwissKnife</li>
-
-    </ul>
-
-</section>
-<section>
-    <h2>Some More libs to make Wear apps easier!</h2>
-    <p>Emmet (https://github.com/florent37/Wear-Emmet)</p>
-
-    <ul>
-        <li class="fragment">Wrapper lib for the google data layer APIs to communicate between the phone and the watch
-        (this gets data downloaded from the app to the watch)</li>
-        <li class="fragment">We will see an example shortly. When Wear is wifi enabled we won't need this as bad!</li>
-
-    </ul>
-
-</section>
-<section>
-    <h2>Some More libs to make Wear apps easier!</h2>
-    <p>Davinci (https://github.com/florent37/DaVinci)</p>
-
-    <ul>
-        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
-    </ul>
-
-</section>
-<section>
-    <h2>Some More libs to make Wear apps easier!</h2>
-    <p>Sugar ORM (http://satyan.github.io/sugar/)</p>
-
-    <ul>
-        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
-    </ul>
-
-</section>
-<section>
-    <h2>Chuck Norris Quote Wear Demo!</h2>
-    <p>Let's demo an app that brings this all together! Channeling my inner Ken Kousen, let's get some Chuck Norris going!</p>
-    <p>We will use grooid-templates to make a new wear app. It starts as a Chuck Norris app, you can take it from there!</p>
-    <p>lazybones create grooid-wear-new-project testCarlosWear</p>
-
-  
-    <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
-</section>
-<section>
-    <h2>Chuck Norris Quote Wear Demo!</h2>
-
-    <p> If you see this error don't fret! run the build again and it will work:
-      Execution failed for task ':mobile:compileDebugGroovy'.
-      Unable to load class android.support.v7.app.ActionBarActivity due to missing dependency android/support/v4/view/LayoutInflaterFactory
-    </p>
-    <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
-</section>
-<section>
-    <h2>Android + Wear + Grails 3 + Lego Minstorm EV3 Demo</h2>
-    <p>Let's tie this together and mash up all sorts of Groovy Stuff!</p>
-
-    <ul>
-
-        <li class="fragment">Grails 3 Lego Rover Project</li>
-        <li class="fragment">Android Mobile Tether App to Configure</li>
-        <li class="fragment">EV3 Lego Robot Running Groovy</li>
-        <li class="fragment">Wear App to Drive the Robot!</li>
-    </ul>
-
-</section>
-
 
 <section>
     <h1>THE END</h1>
