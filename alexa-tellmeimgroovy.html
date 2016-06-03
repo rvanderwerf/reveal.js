@@ -79,7 +79,7 @@
             <li>...thanks Lee!</li>
         </ul>
     </section>
-    <section>
+    <!--<section>
         <h2>This talk powered by bourbon</h2>
         <img src="bourbonpowered.jpg" height="150" width="250" style="background:none; border:none; box-shadow:none; "/>
         <ul>
@@ -89,7 +89,7 @@
             <li class="fragment">If @Danveloper built this it would be powered by Jägermeister</li>
 
         </ul>
-    </section>
+    </section>-->
 
     <section>
     <h2>What we will cover</h2>
@@ -510,6 +510,15 @@
         </ul>
 
     </section>
+        <section>
+            <h2>Audio Protip</h2>
+
+           <p>Use ffmpeg to resample your mp3 so amazon likes it (s3 is easiest).</p>
+            <P>
+                ffmpeg -y -i <inputfile> -ar 16000 -ab 48k -codec:a libmp3lame -ac 1 <outputfile>.mp3
+            </P>
+
+        </section>
     <section>
     <h2>SSML Markup</h2>
 
@@ -656,6 +665,21 @@
         </section>
         <section>
             <h2>Demo - Grails Twitter Search</h2>
+
+
+        </section>
+
+        <section>
+            <h2>Source Links</h2>
+
+            <ul>
+                <li>Grails 3 Plugin: https://github.com/rvanderwerf/grails-alexa-skills</li>
+                <li>Twitter AWS Groovy Lambda App:  https://github.com/rvanderwerf/alexa-twitter-groovy</li>
+                <li>Twitter Grails 3 App:  https://github.com/rvanderwerf/twitterAuth</li>
+                <li>Hero Quiz Groovy Lambda App:  https://github.com/rvanderwerf/heroQuiz</li>
+                <li>Run Skills in Browser:  http://echosim.io</li>
+                <li>Amazon Developer Portal to register Skills: https://developer.amazon.com</li>
+            </ul>
 
 
         </section>
