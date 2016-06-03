@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="css/reveal.min.css">
-    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -45,7 +45,8 @@
 <section>
     <h1><img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
 
-    <img style="border:none; background:white" src="gr8conf-generic.png" alt="GR8Conf groovy gradle grails" height="150" width="250"/></h1>
+        <img style="border:none; background:white" src="presentation-16-9-first.png" alt="GR8Conf groovy gradle grails" height="150" width="350"/>
+        <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" /></h1>
     <h3>Alexa, tell me I'm Groovy!</h3>
     <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
 
@@ -121,7 +122,7 @@
             Twitter app for Grails using OAuth, Spring Security
         </li>
         <li class="fragment">
-            Alexa Skills Plugin - coming soon!
+            Alexa Skills Plugin
         </li>
 
     </ul>
@@ -282,7 +283,7 @@
             <li class="fragment">App developer never talks directly to device</li>
             <li class="fragment">Device must initiate interaction</li>
             <li class="fragment">Alexa server response with JSON body</li>
-            <li class="fragment">Currently text to speech only</li>
+            <li class="fragment">Currently text to speech or small sounds clips (90s low quality)</li>
             <li class="fragment">Run as Lamba function or separate webapp</li>
         </ul>
     </section>
@@ -302,26 +303,41 @@
 
     </section>
     <section>
-        <h2>Skills SDK</h2>
-        <img src="star-trek-jean-luc-picard.png" style="background:none; border:none; box-shadow:none;"/>
+        <h2>Skills SDK - Don't Call Us, We'll Call You</h2>
+
 
         <ul>
-            <li class="fragment">Works with Lambda or self hosted webapp</li>
-            <li class="fragment">Home sub-API only works with Lambda</li>
-            <li class="fragment">Let's conver the main components</li>
+            <li class="fragment">We host this as a web service that parses JSON requests</li>
+            <li class="fragment">Responds in kind with JSON</li>
+            <li class="fragment">Alexa Java speechlet SDK gets us mostly there</li>
 
         </ul>
 
     </section>
+
+    <section>
+        <h2>Skills SDK - Speechlet SDK</h2>
+
+
+        <ul>
+            <li class="fragment">Does some things for us like validate the request and call events</li>
+            <li class="fragment">Gives us decent classes that use an API form SpeechResponses</li>
+            <li class="fragment">Also helps us build Card responses</li>
+            <li class="fragment">Let's dig in to the specifics!</li>
+
+        </ul>
+
+    </section>
+
     <section>
         <h2>Skills SDK - Intent Schema</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="spock1.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
             <li class="fragment">This tells Alexa what actions your app can do</li>
             <li class="fragment">Describes intents and slots used</li>
             <li class="fragment">When you upload this, Alexa calculates speech variations to launch them</li>
-            <li class="fragment">See sample IntentSchema.json</a>
+            <li class="fragment">See sample IntentSchema.json
             </li>
 
 
@@ -330,10 +346,10 @@
     </section>
     <section>
         <h2>Skills SDK - Slots</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="slots.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
-            <li class="fragment">This is how Alexa parameterizes commands</li>
+            <li class="fragment">This is how Alexa parametrizes commands</li>
             <li class="fragment">Very simple list of options</li>
             <li class="fragment">Slots don't work well for multi-word responses it seems</a>
             </li>
@@ -344,10 +360,10 @@
     </section>
     <section>
         <h2>Skills SDK - Sample Utterances</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="fear_understand.gif" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
-            <li class="fragment">Train Alexa on what the commands are like a menu</li>
+            <li class="fragment">Train Alexa on what the commands it will understand</li>
             <li class="fragment">This is the phrases that activate the intents</li>
             <li class="fragment">Use {} and | to use parameters</li>
             <li class="fragment">When you upload this, Alexa calculates speech variations to launch Intents</li>
@@ -358,10 +374,10 @@
     </section>
     <section>
         <h2>The Alexa App</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="eFX-Tricorder.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
-            <li class="fragment">This is where you can do non-speechy interactions</li>
+            <li class="fragment">This is where you can do non-speech interactions</li>
             <li class="fragment">See a log of what you've done</li>
             <li class="fragment">Install Skills</li>
             <li class="fragment">Can use mobile app or go to echo.amazon.com</li>
@@ -371,12 +387,12 @@
     </section>
     <section>
         <h2>Skills SDK - Cards</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="tribble-card.gif" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
             <li class="fragment">This is similar to Android cards</li>
             <li class="fragment">You can launch different cards for different intents</li>
-            <li class="fragment">There are 3 main cards: Simple, Standing, and LinkAccount</li>
+            <li class="fragment">There are 3 main cards: Simple, Standard, and LinkAccount</li>
             <li class="fragment">Amazon limits what kind of content can be on each type of card</li>
 
 
@@ -398,7 +414,7 @@
     </section>
     <section>
         <h2>Skills SDK - Intents</h2>
-        <img src="geordi-and-data.png" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+        <img src="CCG_Data_laughing.png" height="400" width="300" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
             <li class="fragment">Uses concept of Intents to trigger bits of your code</li>
@@ -477,6 +493,54 @@
         </ul>
 
     </section>
+
+
+
+
+        <section>
+        <h2>That's cool, but can it only to text to speech?</h2>
+
+        <ul>
+            <li class="fragment">Nope! We can use SSML to play sounds clips!</li>
+            <li class="fragment">Limited to 90s, 48kbit SSL hosted mp3 only</li>
+            <li class="fragment">Very picky about formats and unhelpful error messages</li>
+            <li class="fragment">Can do other commands like pronounce words</li>
+              <li class="fragment">Let's check out the SSML Reference here</li>
+
+        </ul>
+
+    </section>
+    <section>
+    <h2>SSML Markup</h2>
+
+    <P>Audio SSML Example</P>
+    <p>
+    <pre><code>
+        <speak>
+          <audio src=\"https://s3.amazonaws.com/vanderfox-sounds/test.mp3\"/> ${speechText}
+        </speak>
+    </code></pre>
+
+</section>
+<section>
+<h2>SSML Markup</h2>
+
+<P>Pronounce SSML Example</P>
+<p>
+<pre><code>
+    <speak>
+    Here is a number spoken as a cardinal number:
+    <say-as interpret-as="cardinal">12345</say-as>.
+    Here is the same number with each digit spoken separately:
+    <say-as interpret-as="digits">12345</say-as>.
+    Here is a word spelled out: <say-as interpret-as="spell-out">hello</say-as>
+    </speak>
+</code></pre>
+<p>Complete SSML reference <a href="http://amzn.to/1OaLmAZ">http://amzn.to/1OaLmAZ</a></p>
+</section>
+
+
+
         <section>
             <h2>Testing - couple options</h2>
 
@@ -517,7 +581,7 @@
         </section>
         <section>
 
-            <h2>Twitter LambdaApp</h2>
+            <h2>Twitter Lambda App</h2>
 
             <ul>
                 <li class="fragment">Uses Groovy, Lambda, and Spring Social</li>
@@ -528,6 +592,7 @@
             </ul>
 
         </section>
+
         <section>
             <h2>Demo - Groovy Lambda Twitter Search</h2>
 
@@ -596,7 +661,19 @@
         </section>
 
         <section>
-            <h1>THE END</h1>
+            <h2>Special Thanks</h2>
+
+            <ul>
+                <li>Lee Fox for his help writing the code and figuring this stuff out</li>
+                <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h1>THE END  <img src="prosper.jpg" style="background:none; border:none; box-shadow:none;"/>
+            </h1>
             <h3>I hope you have enjoyed the session!</h3>
             <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
         </section>
@@ -607,7 +684,7 @@
 </div>
 
 </div>
-<div id="myLogo" style="background: url('gr8confeu-2015-presentation-16-9-following.png');
+<div id="myLogo" style="background: url('presentation-16-9-following.png');
                         position: absolute;
                         bottom: 0px;
                         right: 0px;
