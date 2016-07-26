@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Alexa Workshop</title>
+
+    <meta name="description" content="Workshop on how to use Groovy and Grails to make Amazon Alexa Skills">
+    <meta name="author" content="Ryan Vanderwerf">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1><img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+        <img style="border:none; background:white" src="presentation-16-9-first.png" alt="GR8Conf groovy gradle grails" height="150" width="350"/>
+        <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" /></h1>
+    <h3>Alexa Workshop</h3>
+    <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
+
+
+    <p>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - OCI</a> ...and Lee Fox @FoxInATX</small>
+    </p>
+
+</section>
+
+<section>
+    <h2>About Ryan </h2>
+
+    <ul>
+        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
+        <li>Father of 2 girls under 12</li>
+        <li>Co-Chair Austin Groovy and Grails User Group</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
+    </ul>
+</section>
+<section>
+    <h2>About Lee </h2>
+
+    <ul>
+        <li>Director of Cloud at Starmount</li>
+        <li>Father of 2 boys under 13</li>
+        <li>Presenter at Agile Austin</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>Master of all things AWS and Devops</li>
+
+    </ul>
+</section>
+
+    <!--<section>
+        <h2>This talk powered by bourbon</h2>
+        <img src="bourbonpowered.jpg" height="150" width="250" style="background:none; border:none; box-shadow:none; "/>
+        <ul>
+            <li class="fragment">This is the product months of putting this together and drinking this</li>
+            <li class="fragment">Conclusion: Bourbon is delicious!</li>
+            <li class="fragment">Conclusion: Always test your code the next day when you are sober :)</li>
+            <li class="fragment">If @Danveloper built this it would be powered by Jägermeister</li>
+
+        </ul>
+    </section>-->
+
+    <section>
+    <h2>What we will cover today</h2>
+    <ul>
+        <li>What is Alexa and what devices it covers</li>
+
+        <li class="fragment">
+            How does Alexa work?
+        </li>
+        <li class="fragment">
+            Alexa software concepts and components
+        </li>
+
+        <li class="fragment">
+            Brief Lamba Overview
+        </li>
+        <li class="fragment">
+            Lamba Groovy App Setup
+        </li>
+        <li class="fragment">
+            Twitter app for Groovy and Lambda
+        </li>
+        <li class="fragment">
+            Superhero quiz for Groovy and Lamba
+        </li>
+        <li class="fragment">
+            Let's do more.. like account linking!
+        </li>
+        <li class="fragment">
+            Twitter app for Grails using OAuth, Spring Security
+        </li>
+        <li class="fragment">
+            Alexa Skills Plugin
+        </li>
+
+
+
+    </ul>
+
+    <aside class="notes">
+
+    </aside>
+</section>
+<section>
+<h2>Workshop - Order of things today</h2>
+<ul>
+    <li>Break up into groups</li>
+
+    <li class="fragment">
+        Get our credentials distributed to teams
+    </li>
+    <li class="fragment">
+        Build our first Lambda Skill in Groovy(Guided)
+    </li>
+
+    <li class="fragment">
+        Advanced Groovy Lamba Skill + breakout
+    </li>
+    <li class="fragment">
+        Break
+    </li>
+    <li class="fragment">
+        Grails Plugin Overview
+    </li>
+    <li class="fragment">
+        Build our first Grails Skill (Guided)
+    </li>
+    <li class="fragment">
+        Let's do more.. like account linking with Grails! (breakout)
+    </li>
+    <li class="fragment">
+        Wrap-up
+    </li>
+
+
+
+</ul>
+
+<aside class="notes">
+
+</aside>
+</section>
+
+<!-- Example of nested vertical slides -->
+
+<section>
+    <section>
+        <h2>What is Alexa?</h2>
+        <img src="scotty-animated.gif" style="background:none; border:none; box-shadow:none;"/>
+    </section>
+
+    <section>
+        <p>
+            Alexa is a cloud based voice recognition service
+        </p>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-16-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>There are 3 SDKS - Skills, AVS, and Home API</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>ECHO</p>
+
+    </section>
+    <section>
+        <p>
+            Echo
+        </p>
+        <img src="amazon-echo-3-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>ECHO</p>
+
+    </section>
+    <section>
+        <h3>
+            Echo
+        </h3>
+        <img src="640_echo-parts.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+    </section>
+    <section>
+        <img src="echo-breakdown.png" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+        <li class="fragment">The first one</li>
+        <li class="fragment">Multi dimensional mic array</li>
+            <li class="fragment">Nice speaker with downfiring subwoofer</li>
+            <li class="fragment">Some simple home automation ability</li>
+            <li class="fragment">Wifi and Bluetooth capabilities</li>
+            <li class="fragment">Aways on listening for wake word (Alexa or Amazon)</li>
+
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Dot
+        </h3>
+        <img src="499938-amazon-echo-dot.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+        <li>
+        <ul class="fragment">Baby brother - has the fancy mics but minimal speaker for voice</ul>
+        <ul class="fragment">Has Wifi and bluetooth capabilities</ul>
+        <ul class="fragment">The big deal: a 3.5mm audio output jack!</ul>
+        <ul class="fragment">Aways on listening for wake word (Alexa or Amazon)</ul>
+        </li>
+        </ul>
+
+    </section>
+    <section>
+        <h3>
+            Dot
+        </h3>
+        <img src="Amazon-Echo-Dot-iFixit-teardown_1.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+    </section>
+    <section>
+        <h3>
+            Tap
+        </h3>
+        <img src="amazontap_xray-2-970x647-c.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+    </section>
+    <section>
+        <h3>
+            Tap
+        </h3>
+
+        <ul>
+            <li class="fragment">On the go - portable bluetooth speaker with battery and simple mic</li>
+            <li class="fragment">Has Wifi and bluetooth capabilities</li>
+            <li class="fragment">The big deal: a 3.5mm audio output jack!</li>
+            <li class="fragment">Not always listening - have to 'tap' button to wake</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            FireTV
+        </h3>
+
+        <ul>
+            <li class="fragment">Available as a 'stick' or box with voice remote</li>
+            <li class="fragment">Mostly meant for TV apps - cheapest option for Alexa</li>
+            <li class="fragment">Recent OS updates support Alexa on both V1 and V2</li>
+            <li class="fragment">Must push voice remote button to start apps</li>
+            <li class="fragment">The same skills work here too!</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - Google Chirp
+        </h3>
+        <img src="google-chrip.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+
+        <ul>
+            <li class="fragment">Not yet released Google version of Echo</li>
+
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - MyCroft
+        </h3>
+        <img src="mycroft.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">Open source/hardware version</li>
+            <li class="fragment">Built on Raspberry Pi - all open</li>
+            <li class="fragment">Can buy on Kickstarer and Indiegogo</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Yes, There are others - Make your own Echo!
+        </h3>
+        <img src="raspberrypi-dyi.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">Some examples:</li>
+            <li class="fragment">Github repo: http://bit.ly/1PrOq6A</li>
+            <li class="fragment">Official DIY: http://bit.ly/1OMpfwP</li>
+            <li class="fragment">Video guide: http://bit.ly/1WRZO5u</li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Back to Alexa Skills - how does it work?
+        </h3>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-18-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">App developer never talks directly to device</li>
+            <li class="fragment">Device must initiate interaction</li>
+            <li class="fragment">Alexa server response with JSON body</li>
+            <li class="fragment">Currently text to speech or small sounds clips (90s low quality)</li>
+            <li class="fragment">Run as Lamba function or separate webapp</li>
+        </ul>
+    </section>
+
+</section>
+<section>
+    <section>
+        <h2>SDKs</h2>
+        <img src="data-tng-taking.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+              <li class="fragment">Skills SDK - custom skill or Home</li>
+              <li class="fragment">Voice SDK - build a device like and Echo</li>
+              <li class="fragment">We'll focus on the Skills API today</li>
+
+            </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Don't Call Us, We'll Call You</h2>
+
+
+        <ul>
+            <li class="fragment">We host this as a web service that parses JSON requests</li>
+            <li class="fragment">Responds in kind with JSON</li>
+            <li class="fragment">Alexa Java speechlet SDK gets us mostly there</li>
+
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>Skills SDK - Speechlet SDK</h2>
+
+
+        <ul>
+            <li class="fragment">Does some things for us like validate the request and call events</li>
+            <li class="fragment">Gives us decent classes that use an API form SpeechResponses</li>
+            <li class="fragment">Also helps us build Card responses</li>
+            <li class="fragment">Let's dig in to the specifics!</li>
+
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>Skills SDK - Intent Schema</h2>
+        <img src="spock1.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This tells Alexa what actions your app can do</li>
+            <li class="fragment">Describes intents and slots used</li>
+            <li class="fragment">When you upload this, Alexa calculates speech variations to launch them</li>
+            <li class="fragment">See sample IntentSchema.json
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Slots</h2>
+        <img src="slots.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is how Alexa parametrizes commands</li>
+            <li class="fragment">Very simple list of options</li>
+            <li class="fragment">Slots don't work well for multi-word responses it seems</a>
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Sample Utterances</h2>
+        <img src="fear_understand.gif" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Train Alexa on what the commands it will understand</li>
+            <li class="fragment">This is the phrases that activate the intents</li>
+            <li class="fragment">Use {} and | to use parameters</li>
+            <li class="fragment">When you upload this, Alexa calculates speech variations to launch Intents</li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>The Alexa App</h2>
+        <img src="eFX-Tricorder.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is where you can do non-speech interactions</li>
+            <li class="fragment">See a log of what you've done</li>
+            <li class="fragment">Install Skills</li>
+            <li class="fragment">Can use mobile app or go to echo.amazon.com</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Cards</h2>
+        <img src="tribble-card.gif" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">This is similar to Android cards</li>
+            <li class="fragment">You can launch different cards for different intents</li>
+            <li class="fragment">There are 3 main cards: Simple, Standard, and LinkAccount</li>
+            <li class="fragment">Amazon limits what kind of content can be on each type of card</li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Speechlet - Open App</h2>
+        <img src="star-trek-translator.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Uses special keywords: Open, Ask/About, Get/From, Give/From, Want/To/ </li>
+            <li class="fragment">Full list of invocation commands at <a href="http://amzn.to/1NpPlZo">http://amzn.to/1NpPlZo</a>
+            </li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - Intents</h2>
+        <img src="CCG_Data_laughing.png" height="400" width="300" style="background:none; border:none; box-shadow:none;"/>
+
+        <ul>
+            <li class="fragment">Uses concept of Intents to trigger bits of your code</li>
+            <li class="fragment">Intents are: onSessionStarted, onLaunch, onIntent, onSessionEnded</a>
+            </li>
+            <li class="fragment">The only intent you -have- to override is 'onIntent'</li>
+
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onSessionStarted</h2>
+
+        <ul>
+            <li class="fragment">This is called first</li>
+            <li class="fragment">This passes in Session and SessionStartedRequest objects</a></li>
+            <li class="fragment">Use this to do any session setup stuff you want similar to Session listener in Servlets</li>
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onLaunch</h2>
+
+        <ul>
+            <li class="fragment">This is called second</li>
+            <li class="fragment">This passes in Session and LaunchRequest objects</a></li>
+            <li class="fragment">Use this to do any app setup stuff you want similar to Session listener in Servlets</li>
+            <li class="fragment">In this case, we load the twitter credentials for the user</li>
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onIntent</h2>
+
+        <ul>
+            <li class="fragment">This is the meat</li>
+            <li class="fragment">Once Alexa figures out what intent the user asked for, launches this</li>
+            <li class="fragment">See the sample IntenSchema.json</li>
+            <li class="fragment">In this case, we load the twitter credentials for the user</li>
+            <li class="fragment">This is NOT optional - you must override</li>
+            <li class="fragment">It is considered best practice to support a 'HelpIntent' with a menu</li>
+
+        </ul>
+
+    </section>
+    <section>
+        <h2>Skills SDK - onSessionEnded</h2>
+
+        <ul>
+            <li class="fragment">This is the last intent called when done</li>
+            <li class="fragment">Put session cleanup code there</li>
+
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+
+    </section>
+
+    <section>
+        <section>
+        <h2>Let's Make a Groovy Lambda Skill!</h2>
+
+        <ul>
+            <li class="fragment">This is the last intent called when done</li>
+            <li class="fragment">Put session cleanup code there</li>
+
+            <li class="fragment">This is optional - don't have to override</li>
+
+        </ul>
+
+    </section>
+
+
+
+
+        <section>
+        <h2>That's cool, but can it only to text to speech?</h2>
+
+        <ul>
+            <li class="fragment">Nope! We can use SSML to play sounds clips!</li>
+            <li class="fragment">Limited to 90s, 48kbit SSL hosted mp3 only</li>
+            <li class="fragment">Very picky about formats and unhelpful error messages</li>
+            <li class="fragment">Can do other commands like pronounce words</li>
+              <li class="fragment">Let's check out the SSML Reference here</li>
+
+        </ul>
+
+    </section>
+        <section>
+            <h2>Audio Protip</h2>
+
+           <p>Use ffmpeg to resample your mp3 so amazon likes it (s3 is easiest).</p>
+            <P>
+                ffmpeg -y -i <inputfile> -ar 16000 -ab 48k -codec:a libmp3lame -ac 1 <outputfile>.mp3
+            </P>
+
+        </section>
+    <section>
+    <h2>SSML Markup</h2>
+
+    <P>Audio SSML Example</P>
+    <p>
+    <pre><code>
+        <speak>
+          <audio src=\"https://s3.amazonaws.com/vanderfox-sounds/test.mp3\"/> ${speechText}
+        </speak>
+    </code></pre>
+
+</section>
+<section>
+<h2>SSML Markup</h2>
+
+<P>Pronounce SSML Example</P>
+<p>
+<pre><code>
+    <speak>
+    Here is a number spoken as a cardinal number:
+    <say-as interpret-as="cardinal">12345</say-as>.
+    Here is the same number with each digit spoken separately:
+    <say-as interpret-as="digits">12345</say-as>.
+    Here is a word spelled out: <say-as interpret-as="spell-out">hello</say-as>
+    </speak>
+</code></pre>
+<p>Complete SSML reference <a href="http://amzn.to/1OaLmAZ">http://amzn.to/1OaLmAZ</a></p>
+</section>
+
+
+
+        <section>
+            <h2>Testing - couple options</h2>
+
+            <ul>
+                <li class="fragment">Using the developer.amazon.com test tab</li>
+                <li class="fragment">*NEW* Use <a href="https://echosim.io">echosim.io</a> browser tester!</li>
+
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Yeah It's Not Perfect</h2>
+            <p><img src="data-tng-laughing.jpg"  style="background:none; border:none; box-shadow:none;"/>
+            </p>
+            <ul>
+                <li class="fragment">Not multi-language yet</li>
+                <li class="fragment">May have troubles with strong accents</li>
+                <li class="fragment">Currently meant for NA</li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Superhero Quiz App</h2>
+            <p><img src="calllingsuperheros.jpg"  style="background:none; border:none; box-shadow:none;"/>
+            </p>
+            <ul>
+                <li class="fragment">Uses Groovy Lambdas and DynamoDB</li>
+                <li class="fragment">Asks you superhero trivia</li>
+                <li class="fragment">Let's try it out!</li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Groovy Lambda Superhero Quiz</h2>
+        </section>
+        <section>
+
+            <h2>Twitter Lambda App</h2>
+
+            <ul>
+                <li class="fragment">Uses Groovy, Lambda, and Spring Social</li>
+                <li class="fragment">Lambda version uses hard-coded credentials</li>
+                <li class="fragment">Let's try it out!</li>
+                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/alexa-twitter-groovy">https://github.com/rvanderwerf/alexa-twitter-groovy</a></li>
+
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Demo - Groovy Lambda Twitter Search</h2>
+
+
+        </section>
+        <section>
+            <h2>Let's do more advanced stuff!</h2>
+
+            <ul>
+                <li class="fragment">How can I make the app use MY twitter credentials?</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">There are rules</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth</li>
+                <li class="fragment">Supports Implicit or Authorization code</li>
+                <li class="fragment">Use an Intent to send an AccountLinkCard</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Setting up your own server</h2>
+
+            <ul>
+                <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
+                <li class="fragment">You can use self-signed certs in dev only</li>
+                <li class="fragment">Self signed certs MUST have hostname match common name</li>
+                <li class="fragment">Trusted certs support most cert providers</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Grails Twitter Search</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth, Groovy, Grails, and Spring Social</li>
+                <li class="fragment">Supports OAUTH to authenicate a user</li>
+                <li class="fragment">Uses Spring Security UI to register accounts</li>
+                <li class="fragment">Provides Admin UI to manage users and credentials</li>
+                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/twitterAuth">https://github.com/rvanderwerf/twitterAuth</a></li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Grails Twitter Search</h2>
+
+
+        </section>
+
+        <section>
+            <h2>Source Links</h2>
+
+            <ul>
+                <li>Grails 3 Plugin: https://github.com/rvanderwerf/grails-alexa-skills or http://grails.org/plugins.html#plugin/alexa-skills</li>
+                <li>Twitter AWS Groovy Lambda App:  https://github.com/rvanderwerf/alexa-twitter-groovy</li>
+                <li>Twitter Grails 3 App:  https://github.com/rvanderwerf/twitterAuth</li>
+                <li>Hero Quiz Groovy Lambda App:  https://github.com/rvanderwerf/heroQuiz</li>
+                <li>Run Skills in Browser:  http://echosim.io</li>
+                <li>Amazon Developer Portal to register Skills: https://developer.amazon.com</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h2>Special Thanks</h2>
+
+            <ul>
+                <li>Lee Fox for his help writing the code and figuring this stuff out</li>
+                <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h1>THE END  <img src="prosper.jpg" style="background:none; border:none; box-shadow:none;"/>
+            </h1>
+            <h3>I hope you have enjoyed the session!</h3>
+            <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com or Lee Fox @FoxInATX or lee.h.fox@gmail.com</p>
+        </section>
+    </section>
+<section>
+
+
+
+</section>
+
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('presentation-16-9-following.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1910px;
+                        height: 1080px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
