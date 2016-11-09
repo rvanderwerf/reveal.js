@@ -45,7 +45,7 @@
 <section>
     <h1><img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
 
-        <img style="border:none; background:white" src="gr8confus2016.png" alt="GR8Conf groovy gradle grails" height="150" />
+        <!--<img style="border:none; background:white" src="gr8confus2016.png" alt="GR8Conf groovy gradle grails" height="150" />-->
         <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" /></h1>
     <h3>Alexa, tell me I'm Groovy!</h3>
     <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
@@ -116,6 +116,9 @@
 
         <li class="fragment">
             Superhero quiz for Groovy and Lamba
+        </li>
+        <li class="fragment">
+            Groovy Podcast Skill
         </li>
         <li class="fragment">
             Let's do more.. like account linking!
@@ -243,27 +246,18 @@
     </section>
     <section>
         <h3>
-            Yes, There are others - Google Chirp
+            Yes, There are others - Google Home
         </h3>
         <img src="google-chrip.jpg" style="background:none; border:none; box-shadow:none;"/>
 
 
         <ul>
-            <li class="fragment">Not yet released Google version of Echo</li>
+            <li class="fragment">Now available, SDK due in December</li>
+            <li class="fragment">Speech flow looks very good!</li>
 
         </ul>
     </section>
-    <section>
-        <h3>
-            Yes, There are others - MyCroft
-        </h3>
-        <img src="mycroft.jpg" style="background:none; border:none; box-shadow:none;"/>
-        <ul>
-            <li class="fragment">Open source/hardware version</li>
-            <li class="fragment">Built on Raspberry Pi - all open</li>
-            <li class="fragment">Can buy on Kickstarer and Indiegogo</li>
-        </ul>
-    </section>
+
     <section>
         <h3>
             Yes, There are others - Make your own Echo!
@@ -501,6 +495,7 @@
             <li class="fragment">Very picky about formats and unhelpful error messages</li>
             <li class="fragment">Can do other commands like pronounce words</li>
               <li class="fragment">Let's check out the SSML Reference <a href="http://amzn.to/1OaLmAZ">here</a></li>
+            <li class="fragment">New! Audio Player support! <a href="http://amzn.to/2fRikwA">here</a></li>
 
         </ul>
 
@@ -563,11 +558,12 @@
             <ul>
                 <li class="fragment">Not multi-language yet</li>
                 <li class="fragment">May have troubles with strong accents</li>
-                <li class="fragment">Currently meant for NA</li>
+                <li class="fragment">Currently meant for NA - but launched in UK and Germany</li>
 
             </ul>
 
         </section>
+
         <section>
             <h2>Superhero Quiz App</h2>
             <p><img src="calllingsuperheros.jpg"  style="background:none; border:none; box-shadow:none;"/>
@@ -584,6 +580,18 @@
             <h2>Demo - Groovy Lambda Superhero Quiz</h2>
         </section>
 
+        <section>
+            <h2>Groovy Podcast App</h2>
+            <p><img src="groovypodcast_image512-uf.jpg"  style="background:none; border:none; box-shadow:none;"/>
+            </p>
+            <ul>
+                <li class="fragment">Uses Groovy Lambdas and DynamoDB</li>
+                <li class="fragment">Plays Groovy Podcasts on demand</li>
+                <li class="fragment">Let's try it out!</li>
+
+            </ul>
+
+        </section>
         <section>
             <h2>Let's do more advanced stuff!</h2>
 
@@ -655,8 +663,9 @@
                 <li class="fragment">Must have a VALID privacy policy and terms of use</li>
                 <li class="fragment">Must supply proper HELP anytime during session</li>
                 <li class="fragment">Must supply ability to stop skill by saying "STOP" or "CANCEL"</li>
+                <li class="fragment">Must be clear it doesn't violate any trademark or IP</li>
                 <li class="fragment">A real person will fire up the app and use it to test</li>
-                <li class="fragment">Process takes about 2 days for feedback</li>
+                <li class="fragment">Process takes about 2-4 days for feedback</li>
             </ul>
 
 
@@ -670,7 +679,7 @@
                 <li class="fragment">Use custom slots wherever possible</li>
                 <li class="fragment">Make sure Alexa always responds to a request when prompted</li>
                 <li class="fragment">Be Specific - Guide user during prompts tell the user what to say</li>
-                <li class="fragment">Use misspellings or phoentics in your code to help Alexa understand</li>
+                <li class="fragment">Use misspellings or phonetics in your code to help Alexa understand</li>
 
             </ul>
 
@@ -685,6 +694,7 @@
                 <li class="fragment">Some invocation don't work - Hello, Amazon, Echo. Grails is often mis-interpreted</li>
                 <li class="fragment">SSL Self-signed certs - common name must match hostname of app</li>
                 <li class="fragment">SSML Audio - follow tips given, it's very picky and needs valid CA cert</li>
+                <li class="fragment">Audio player skills - audio content must be streamed in SSL as well</li>
 
 
             </ul>
@@ -715,7 +725,8 @@
                 <li>Alexa Workshop Labs  http://bit.ly/2ajJR4Y</li>
                 <li>Lamba Groovy Example from Talk http://bit.ly/2anfNTp</li>
                 <li>HelloWorld Grails Account Linking Sample from lab http://bit.ly/2ahQpE1</li>
-
+                <li>Java SDK updated with AudioPlayer support <a href="http://bit.ly/2ejX41o">here</a></li>
+                <li>Groovy Podcast Skill <a href="http://bit.ly/2fCAHQN">here</a></li>
             </ul>
 
 
