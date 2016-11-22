@@ -45,22 +45,22 @@
 <section>
     <h1><img src="homer_glasshole.jpg" style="background:none; border:none; box-shadow:none;" height="201" width="500"/>
     <img src="smart-watch.jpg" style="background:none; border:none; box-shadow:none;" height="150" width="200"/>
-    <img style="border:none; background:white" src="gr8confus-2015.png" alt="GR8Conf groovy gradle grails" height="150" width="250"/></h1>
+    </h1>
     <h3>Learn how to get your Groovy on Google Glass and Android Wear!</h3>
+    <h3>G3 Summit 2016</h3>
 
 
     <p>
-        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - ReachForce</a></small>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - OCI Grails Team</a></small>
     </p>
 
 </section>
 
 <section>
     <h2>About Me</h2>
-
     <ul>
-        <li>Chief Architect/Director @ ReachForce - we make B2 marketing data better www.reachforce.com</li>
-        <li>Father of 2 girls under 10</li>
+        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
+        <li>Father of 2 girls under 12</li>
         <li>Co-Chair Austin Groovy and Grails User Group</li>
         <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
         <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
@@ -96,7 +96,7 @@
             Let's build a Wear App with Groovy!
         </li>
         <li class="fragment">
-            Walkthrough and demo of some Groovy Android Wear Apps!
+            Walkthrough and demo of some Groovy Android Wear Apps
         </li>
     </ul>
 
@@ -154,7 +154,7 @@
     <section>
         <h2>Is Glass Coming Back?</h2>
         <p>For business it never left. Consumer? maybe not for a while. Google has promised to build a new one since the
-          processor was discontinued by TI, and indeed new models have recently gone through the FCC based on Intel.
+          but they are intented for limited enterprise use (Lots of medical).
           This will definately keep evolving for business use, for the use case for everyday for consumers? Likely not. The world
           wasn't socially ready for people to walk around all the time with those on.
         </p>
@@ -181,7 +181,7 @@
 
         <ul>
           <li class="fragment">Mirror API (Server Side/REST Interface/Google API)</li>
-          <li class="fragment"> GDK 19(4.4.2)</li>
+          <li class="fragment">GDK 19(4.4.2)</li>
           <li class="fragment">Flow Designer (Tool to help visualize app flow/cards)</li>
         </ul>
 
@@ -198,8 +198,8 @@
         </ul>
         <p class="fragment">There is no emulator - what do I do?</p>
         <ul>
-          <li class="fragment">Find even new/unused pairs on ebay for 750 or used for even less. You can use ASM (Android Screen Monitor) with ADB to share what someone sees</li>
-          <li class="fragment">more people would try to make stuff if they made an emulator. My theory is they will make one after the new Intel versions come out</li>
+          <li class="fragment">Find even new/unused pairs on ebay for 650 or used for even less</li>
+          <li class="fragment">You can use ASM or Seven-Square with ADB to share what someone sees</li>
         </ul>
 
     </section>
@@ -231,7 +231,7 @@
             <li class="fragment">step 1 authorize your app on your google account: https://console.developers.google.com/</li>
             <li class="fragment">step 2 build your app! Grails 3 app would fit excellent here</li>
             <li class="fragment">Demo Mirror API app in Java (candidate to port to Grails 3!)https://github.com/googleglass/mirror-quickstart-java</li>
-            <li class="fragment">What can it do? deliver notifications and manage contacts, mostly</li>
+            <li class="fragment">What can it do? deliver notification in your timeline and manage contacts, mostly</li>
         </ul>
     </section>
 
@@ -317,7 +317,7 @@
     <ul>
         <li class="fragment">Wrapper lib for the google data layer APIs to communicate between the phone and the watch
         (this gets data downloaded from the app to the watch)</li>
-        <li class="fragment">We will see an example shortly. When Wear is wifi enabled we won't need this as bad!</li>
+        <li class="fragment">We will see an example shortly. With wifi enabled we won't need this as bad!</li>
 
     </ul>
 
@@ -327,7 +327,8 @@
     <p>Davinci (https://github.com/florent37/DaVinci)</p>
 
     <ul>
-        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
+        <li class="fragment">lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
+        <li class="fragment">fork that works with newer Google Play Services https://github.com/MDXDave/WearImageLoader </li>
     </ul>
 
 </section>
@@ -336,7 +337,7 @@
     <p>Sugar ORM (http://satyan.github.io/sugar/)</p>
 
     <ul>
-        <li class="fragment">  lib to ease downloading images to wear devices that don't have direct net access - big time saver</li>
+        <li class="fragment">lib to ease downloading images to wear devices that don't have direct net access - big time saver (or use JOOQ!)</li>
     </ul>
 
 </section>
@@ -346,7 +347,7 @@
     <p>We will use grooid-templates to make a new wear app. It starts as a Chuck Norris app, you can take it from there!</p>
     <p>lazybones create grooid-wear-new-project testCarlosWear</p>
 
-  
+
     <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
 </section>
 <section>
@@ -358,7 +359,7 @@
     </p>
     <img src="norris-ceaseanddesist.jpg" style="background:none; border:none; box-shadow:none;" />
 </section>
-<section>
+<!--<section>
     <h2>Android + Wear + Grails 3 + Lego Minstorm EV3 Demo</h2>
     <p>Let's tie this together and mash up all sorts of Groovy Stuff!</p>
 
@@ -370,7 +371,7 @@
         <li class="fragment">Wear App to Drive the Robot!</li>
     </ul>
 
-</section>
+</section>-->
 
 
 <section>
@@ -378,16 +379,17 @@
     <h3>I hope you have enjoyed the session!</h3>
     <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
 </section>
-
+</section>
 </div>
 
 </div>
-<div id="myLogo" style="background: url('gr8confeu-2015-presentation-16-9-following.png');
+<div id="myLogo" style="background: url('./images/framed-background-home-to-grails.png');
                         position: absolute;
                         bottom: 0px;
                         right: 0px;
-                        width: 1910px;
+                        width: 1920px;
                         height: 1080px;"></div>
+</div>
 </div>
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.min.js"></script>
