@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Alexa, Tell Me I'm Groovy!</title>
+
+    <meta name="author" content="Ryan Vanderwerf">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="description" content="Lecture on how to use Groovy and Grails to make Amazon Alexa Skills">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1><img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+        <!--<img style="border:none; background:white" src="gr8confus2016.png" alt="GR8Conf groovy gradle grails" height="150" />-->
+        <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" /></h1>
+    <h3>Alexa, Help Me Manage My Cloud!</h3>
+
+    <h4>Cloud Austin 12 Clouds of Christmas 2016</h4>
+
+
+    <p>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - OCI</a> ...and Lee Fox <a href="http://twitter.com/FoxInATX">@FoxInATX</a></small>
+    </p>
+
+</section>
+
+<section>
+    <h2>About Ryan</h2>
+
+    <ul>
+        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
+        <li>Father of 2 girls under 12</li>
+        <li>Co-Chair Austin Groovy and Grails User Group</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
+    </ul>
+</section>
+   <section>
+        <h2>About Lee </h2>
+
+        <ul>
+            <li>Cloud Architect/Operations Manager at Starmount</li>
+            <li>Father of 2 boys under 13</li>
+            <li>Past Technology Chair of Agile Austin</li>
+            <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+            <li>Amateur Chef (His Chicken Cordon Bleu is like crazy good.)</li>
+            <li>Master of all things AWS and DevOps</li>
+
+        </ul>
+    </section>
+
+    <!--<section>
+        <h2>This talk powered by bourbon</h2>
+        <img src="bourbonpowered.jpg" height="150" width="250" style="background:none; border:none; box-shadow:none; "/>
+        <ul>
+            <li class="fragment">This is the product months of putting this together and drinking this</li>
+            <li class="fragment">Conclusion: Bourbon is delicious!</li>
+            <li class="fragment">Conclusion: Always test your code the next day when you are sober :)</li>
+            <li class="fragment">If @Danveloper built this it would be powered by Jägermeister</li>
+
+        </ul>
+    </section>-->
+
+    <section>
+    <h2>What we will cover</h2>
+    <ul>
+        <li>How do we extend Chatops to TalkOps</li>
+
+        <li class="fragment">
+            Live demo using dynamic AWS credentials w/Account Linking
+        </li>
+        <li class="fragment">
+            Security - How Account Linking Works
+        </li>
+
+        <li class="fragment">
+            Useful links to our source
+        </li>
+
+    </ul>
+
+    <aside class="notes">
+
+    </aside>
+</section>
+
+<!-- Example of nested vertical slides -->
+
+<section>
+    <section>
+        <h2>Chatops extended - Talkops?</h2>
+        <img src="scotty-animated.gif" style="background:none; border:none; box-shadow:none;"/>
+    </section>
+
+    <section>
+        <p>
+           Live AWS Demo w/Account Linking
+        </p>
+        <ul>
+            <li class="fragment">Uses Account Linking</li>
+            <li class="fragment">Uses Java SDK (community), Grails App (w/Alexa Pluin), Spring Security w/OAuth2 Plugin</li>
+
+
+
+        </ul>
+
+    </section>
+    <section>
+        <p>
+           How Account Linking Works
+        </p>
+        <ul>
+            <li class="fragment">Echo app passes your Amazon ID to our App</li>
+            <li class="fragment">Register your user ID in app - add your keys</li>
+            <li class="fragment">We use Spring Security OAuth2 to link your AWS to Web Account</li>
+            <li class="fragment">Run skill via Grails App to talk to AWS</li>
+
+        </ul>
+
+    </section>
+
+        <section>
+            <h2>Source Links</h2>
+
+            <ul>
+                <li>Grails 3 Plugin: http://bit.ly/2a9RQyz or http://bit.ly/2a9RQyz</li>
+                <li>Twitter AWS Groovy Lambda App:  http://bit.ly/2afiibI</li>
+                <li>Twitter Grails 3 App:  http://bit.ly/2aAg9d2</li>
+                <li>Hero Quiz Groovy Lambda App:  http://bit.ly/2aqLqAu</li>
+                <li>Run Skills in Browser:  http://echosim.io</li>
+                <li>Amazon Developer Portal to register Skills: https://developer.amazon.com</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h2>Source Links Continued</h2>
+
+            <ul>
+                <li>Lazybones template to generate Lambda Groovy Skills http://bit.ly/2afiKXE</li>
+                <li>Alexa Workshop Labs  http://bit.ly/2ajJR4Y</li>
+                <li>Lamba Groovy Example from Talk http://bit.ly/2anfNTp</li>
+                <li>HelloWorld Grails Account Linking Sample from lab http://bit.ly/2ahQpE1</li>
+                <li>Java SDK updated with AudioPlayer support <a href="http://bit.ly/2ejX41o">http://bit.ly/2ejX41o</a></li>
+                <li>Groovy Podcast Skill <a href="http://bit.ly/2fCAHQN">http://bit.ly/2fCAHQN</a></li>
+            </ul>
+
+
+        </section>
+        <section>
+            <h2>Special Thanks</h2>
+
+            <ul>
+                <li>Lee Fox for working on all of this with me</li>
+                <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h1>THE END  <img src="prosper.jpg" style="background:none; border:none; box-shadow:none;"/>
+            </h1>
+            <h3>I hope you have enjoyed the session!</h3>
+            <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
+            <p>Lee Fox on Twitter @FoxInATX or email lee.h.fox@gmail.com</p>
+        </section>
+    </section>
+
+
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('./images/framed-background-home-to-grails1600x1200.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1600px;
+                        height: 1200px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
