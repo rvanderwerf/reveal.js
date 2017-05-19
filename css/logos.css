@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+div.inforLogoUpper
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+div.ociLogoUpper
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+div.inforLogoLower
+{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+div.ociLogoLower
+{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}

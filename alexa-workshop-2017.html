@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Alexa Workshop</title>
+
+    <meta name="description" content="Workshop on how to use Groovy and Grails to make Amazon Alexa Skills">
+    <meta name="author" content="Ryan Vanderwerf">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/logos.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <div class="inforLogoUpper">
+        <img height="150" width="150" src="images/inforLogo.png">
+    </div>
+
+    <div class="ociLogoUpper">
+        <img height="156" width="200" src="oci-logo-smaller.png">
+    </div>
+
+    <div class="inforLogoLower">
+        <img height="150" width="150" src="images/gr8confeu2017.png">
+    </div>
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+
+    <h3>Alexa Workshop</h3>
+    <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
+
+    <p>
+        <small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf - OCI</a> ...and Lee Fox <a href="http://twitter.com/FoxInATX">@FoxInATX</a></small>
+    </p>
+
+</section>
+
+<section>
+    <h2>About Ryan </h2>
+
+    <ul>
+        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
+        <li>Father of 2 girls under 12</li>
+        <li>Co-Chair Austin Groovy and Grails User Group</li>
+        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+        <li>Into lots of Devops/Linux stuff and AWS</li>
+    </ul>
+</section>
+<section>
+    <h2>About Lee </h2>
+
+    <ul>
+        <ul>
+            <li>Cloud Architect at Infor</li>
+            <li>Agile, DevOps, and ChatOps advocate</li>
+            <li>Past Technology Chair of Agile Austin</li>
+            <li>Alexa and Google Home Developer</li>
+            <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+            <li>Trained Innovation Games Facilitator</li>
+            <li>Amateur Chef</li>
+        </ul>
+    </ul>
+</section>
+
+<section>
+<h2>Workshop - Order of things today</h2>
+<ul>
+    <li class="fragment">What is Alexa and about the devices</li>
+    <li class="fragment">Overview of How Skills Work - SDKs</li>
+    <li class="fragment">Break up into groups</li>
+
+    <li class="fragment">
+        Get our credentials distributed to teams
+    </li>
+    <li class="fragment">
+        Build our first Lambda Skill in Groovy(Guided)
+    </li>
+
+    <li class="fragment">
+        Advanced Groovy Lamba Skill + breakout
+    </li>
+    <li class="fragment">
+        Break
+    </li>
+    <li class="fragment">
+        Grails Plugin Overview
+    </li>
+    <li class="fragment">
+        Build our first Grails Skill (Guided)
+    </li>
+    <li class="fragment">
+        Let's do more.. like account linking with Grails! (breakout)
+    </li>
+    <li class="fragment">
+        Wrap-up
+    </li>
+
+
+
+</ul>
+
+<aside class="notes">
+
+</aside>
+</section>
+
+<!-- Example of nested vertical slides -->
+
+<section>
+    <section>
+        <h2>What is Alexa?</h2>
+        <img src="scotty-animated.gif" style="background:none; border:none; box-shadow:none;"/>
+    </section>
+
+    <section>
+        <p>
+            Alexa is a cloud based voice recognition service
+        </p>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-16-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>There are 3 SDKS - Skills, AVS, and Home API</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img src="amazon-echo-family.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Echo</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img src="images/echoLook.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Echo Look</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img height="500" src="images/echoShow.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Echo Show</p>
+
+    </section>
+    <section>
+        <p>
+            Other manufacturers
+        </p>
+        <img height="500" src="images/ecobee4.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Ecobee4</p>
+
+    </section>
+    <section>
+        <h3>
+            Back to Alexa Skills - how does it work?
+        </h3>
+        <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-18-638.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <ul>
+            <li class="fragment">App developer never talks directly to device</li>
+            <li class="fragment">Device must initiate interaction</li>
+            <li class="fragment">Alexa server response with JSON body</li>
+            <li class="fragment">Currently text to speech or small sounds clips (90s low quality)</li>
+            <li class="fragment">Run as Lamba function or separate webapp</li>
+        </ul>
+    </section>
+
+</section>
+<section>
+    <section>
+        <h2>Lab Time!</h2>
+<P>Follow along here <a href="http://bit.ly/2amrkok">http://bit.ly/alexa-lab</a></P>
+
+    </section>
+
+</section>
+<section>
+        <section>
+            <h2>Demo - Groovy Lambda Twitter Search</h2>
+
+
+        </section>
+        <section>
+            <h2>Let's do more advanced stuff!</h2>
+
+            <ul>
+                <li class="fragment">How can I make the app use MY twitter credentials?</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">There are rules</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth</li>
+                <li class="fragment">Supports Implicit or Authorization code</li>
+                <li class="fragment">Use an Intent to send an AccountLinkCard</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Setting up your own server</h2>
+
+            <ul>
+                <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
+                <li class="fragment">You can use self-signed certs in dev only</li>
+                <li class="fragment">Self signed certs MUST have hostname match common name</li>
+                <li class="fragment">Trusted certs support most cert providers</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Grails Twitter Search</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth, Groovy, Grails, and Spring Social</li>
+                <li class="fragment">Supports OAUTH to authenicate a user</li>
+                <li class="fragment">Uses Spring Security UI to register accounts</li>
+                <li class="fragment">Provides Admin UI to manage users and credentials</li>
+                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/twitterAuth">https://github.com/rvanderwerf/twitterAuth</a></li>
+
+            </ul>
+
+        </section>
+        <section>
+            <h2>Demo - Grails Twitter Search</h2>
+
+
+        </section>
+
+    </section>
+    <section>
+        <section>
+            <h2>Source Links</h2>
+
+            <ul>
+                <li>Grails 3 Plugin: https://github.com/rvanderwerf/grails-alexa-skills or http://grails.org/plugins.html#plugin/alexa-skills</li>
+                <li>Twitter AWS Groovy Lambda App:  https://github.com/rvanderwerf/alexa-twitter-groovy</li>
+                <li>Twitter Grails 3 App:  https://github.com/rvanderwerf/twitterAuth</li>
+                <li>Hero Quiz Groovy Lambda App:  https://github.com/rvanderwerf/heroQuiz</li>
+                <li>Run Skills in Browser:  http://echosim.io</li>
+                <li>Amazon Developer Portal to register Skills: https://developer.amazon.com</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h2>Special Thanks</h2>
+
+            <ul>
+                <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
+            </ul>
+
+
+        </section>
+
+        <section>
+            <h1>THE END  <img src="prosper.jpg" style="background:none; border:none; box-shadow:none;"/>
+            </h1>
+            <h3>I hope you have enjoyed the session!</h3>
+            <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com or Lee Fox @FoxInATX or lee.h.fox@gmail.com</p>
+        </section>
+    </section>
+
+
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('presentation-16-9-following-gr8confus2016.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1910px;
+                        height: 1080px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
