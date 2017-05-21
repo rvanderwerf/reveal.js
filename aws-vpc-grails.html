@@ -52,12 +52,13 @@
                     <h2>About Me</h2>
                     <h3>Learn the ropes of networking to maximize your potential</h3>
                     <ul>
-                        <li>Chief Architect @ ReachForce</li>
+                        <li>Software Engineer on Grails team at OCI (Home to Grails)</li>
+                        <li>Father of 2 kiddos under 12</li>
                         <li>Co-Chair Austin Groovy and Grails User Group</li>
-                        <li>Co-author of 'Effective Gradle Implementation' Video Series on Packt</li>
-                        <li>Heavily into DevOps as of late</li>
-                        <li>Also check out my other talks 'Getting Groovy with Lego Mindstorms EV3'</li>
-                        <li>..and getting Groovy and Google Glass and Android Wear!</li>
+                        <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+                        <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
+                        <li>Into lots of Devops/Linux stuff, AWS, and Conversational AI</li>
+                        <li>OCI - If you need Grails or Groovy support we can help!</li>
                     </ul>
                 </section>
 
@@ -69,11 +70,9 @@
                     <ul>
                         <li class="fragment"><strong>What is a VPC?</strong></li>
                         <li class="fragment"><strong>S3 Storage Service</strong></li>
-                        <li class="fragment"><strong>ElasticWolf</strong></li>
-                        <li class="fragment">sshoogr and gramazon - Basis for Groovy-based Ansible?</li>
-                        <li class="fragment"><strong>Grails Plugins (Grails 2.x and 3 what works)</strong></li>
+                        <li class="fragment">sshoogr</li>
+                        <li class="fragment"><strong>Grails 3 Plugins</strong></li>
                         <li class="fragment"><strong>Elastic Load Balancers</strong></li>
-                        <li class="fragment"><strong>Autoscaling</strong></li>
                         <li class="fragment"><strong>Others misc tips</strong></li>
 
                     </ul>
@@ -103,7 +102,7 @@
 														<li class="fragment"><strong>VPC Flow Logs</strong></li>
 													  <li class="fragment"><strong>S3 Endpoints</strong></li>
 														<li class="fragment"><strong>VPC Peering</strong></li>
-														<li class="fragment"><strong>ClassicLink - Lin</strong></li>
+														<li class="fragment"><strong>ClassicLink</strong></li>
                             <li class="fragment"><strong>Others misc tips</strong></li>
 
                         </ul>
@@ -224,7 +223,7 @@
                             <li class="fragment">Log your VPC Traffic into Cloudwatch Logs</li>
                             <li class="fragment">Pay $.50/GiB to injest logs, $0.03/GiB to archive them</li>
                             <li class="fragment">Cannot log Amazon DNS traffic, Windows License Activation, DHCP traffic</li>
-                            <li class="fragment">New as of June 2015 - AWS Partners working on tools</li>
+                            <li class="fragment">Use tools like Sumologic or ELK stack to ingest</li>
                             <li class="fragment">Can be used for a more complete IDS solution vs simple proxy or host based</li>
                             <li class="fragment">You may need this for security compliance</li>
                         </UL>
@@ -277,7 +276,6 @@
                         <h2>VPC - Misc EC2 Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">Reboot != Stop be careful</li>
                             <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage(OS reboot faster)</li>
                             <li class="fragment">If you issue an 'stop' command you machine will move and lose ephemeral state</li>
 
@@ -325,7 +323,7 @@
                         <li class="fragment">Common tools</li>
                         <li class="fragment">Regions with different functionality</li>
                         <li class="fragment">Glacier</li>
-                        <li class="fragment">Grails S3 Plugin</li>
+
                     </UL>
                     </section>
                     <section>
@@ -335,9 +333,7 @@
                             <h3>Limitations - Eventual Consistency</h3>
                             <li class="fragment">This means after write/update it will EVENTUALLY be consistent</li>
                             <li class="fragment">Make your app retry on read fail - it might not be synced yet</li>
-                            <li class="fragment">Different regions have different consistency rules</li>
-                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
-                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
+                            <li class="fragment">As of 2015 US-East has same consistency as other regions</li>
                         </UL>
                     </section>
                     <section>
@@ -347,7 +343,7 @@
                             <h3>Limitations - large files</h3>
                             <li class="fragment">Files over 5GB supported, but most tools don't handle properly</li>
                             <li class="fragment">S3 Tools must support mime/multipart</li>
-                            <li class="fragment">s3cmd(Linux) / CyberDuck 4(Mac/Win32) / S3 Browser(Win32) / Cloudberry Explorer(PRO Win32) / Bucket Explorer</li>
+                            <li class="fragment">s3cmd(Linux) / CyberDuck 4(Mac/Win32) / S3 Browser(Win32) / Cloudberry Explorer(PRO Win32) / Bucket Explorer(all)</li>
                             <li class="fragment">File > 5GB files work with these tools, it is EXTREMELY slow</li>
                         </UL>
                     </section>
@@ -364,232 +360,82 @@
                             <li class="fragment">For s3fs install on Ubuntu: http://zentraal.com/docs/installing-s3fs-on-ubuntu/</li>
                         </UL>
                     </section>
-                    <section>
-                        <h2>S3 Storage</h2>
 
-                        <UL style="list-style-type: none;">
-                            <h3>Different Function Between Different Regions</h3>
-                            <li class="fragment">US-East-1 Cheapest for full redundancy otherwise to save $ you can use RRS (Or Glacier)
-                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
-                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
-                            <li class="fragment">Barring these limitations (and budget!), use the region closed to your VPC instances and regions</li>
-                        </UL>
-                    </section>
 
                     <section>
                         <h2>S3 Storage</h2>
-                        <h2>Grails S3 Plugin</h2>
+                        <h2>Grails S3</h2>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">No longer maintained - doesn't work with Grails 2.2.x or 3.x</li>
-                            <li class="fragment">Source repo was on codehaus and never moved to github</li>
-                            <li class="fragment">Uploads and catalogs assets (will use bucket name you give as base for its bucket name)</li>
-                            <li class="fragment">Names files inside bucket with UUIDs to avoid collisions</li>
-                            <li class="fragment">Can give each asset a bucket and key pair or global</li>
-                            <!--<li class="fragment">Demo - s3-demo project</li>-->
+                            <li class="fragment">Use the AWS Gradle plugin instead of older S3 Grails plugins</li>
+                            <li class="fragment">With Grails 3+ based on Gradle, we use Gradle plugins for this now</li>
+                            <li class="fragment">S3 Gradle Plugin Demo
                         </UL>
                     </section>
 				</section>
                 <section>
                     <section>
-                        <h2>General AWS Grails Plugins</h2>
+                        <h2>General AWS Grails Plugins (3.x)</h2>
 
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Grails AWS Plugin</li>
+                            <li class="fragment">Grails AWS Plugin - never finished porting to Grails 3</li>
                             <li class="fragment">AWS SDK Plugin</li>
-                            <li class="fragment">DynamoDB GORM Plugin - not covered</li>
-                            <li class="fragment">Amazon Flexible Payments - not covered</li>
-                            <li class="fragment">SimpleDB GORM Plugin - not convered</li>
-                            <li class="fragment">CDN Asset Pipeline plugin - not covered</li>
-
-												</UL>
-                        </section>
-												<section>
-														<h2>General AWS Grails Plugins Continued</h2>
-
-														<UL style="list-style-type: none;">
-
-
-																<li class="fragment">AWS App Config Plugin - Store version info in DynamoDB</li>
-																<li class="fragment">Elastic Beanstalk Plugin - help launch on EB</li>
-																<li class="fragment">AWS Instance - Cognito/CloutWatch/SES/SQS/IAM clients</li>
-																<li class="fragment">AWS User-Org - Dynamo DB for User/Group strucutres</li>
-																<li class="fragment">Karman Plugin - Cloud File Karman library plugin</li>
-														</UL>
-														</section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>Actual Groovy/Grails Code to Manage S3 storage and SES Service (vs Java wrapper)</h3>
-                            <UL style="list-style-type: none;">
-															  <li class="fragment">Still maintained as of May 2015 (Grails 2.x though)
-																	 - cool wrapper for S3 stuff like torrents also SES</li>
-															<li class="fragment">Nifty wrapper for S3 stuff like torrents, public urls</li>
-														</UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>Has handy Gant scripts installed - used for SES stats</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Aws-Ses-Get-Send-Quota</li>
-                                <li class="fragment">Aws-Sws-Get-Send-Statistics</li>
-                                <li class="fragment">Aws-Ses-List-Verified-Emails</li>
-                                <li class="fragment">Aws-Ses-Send-Ping-Mail</li>
-                                <li class="fragment">Aws-Ses-Verify-Email</li>
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>Aws-Ses-Get-Send-Quota</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Gets your current Quota for Simple Email Service</li>
-                                <li class="fragment">Shows email limit per day, per second, # of emails </li>
-                                <li class="fragment">Output looks like this:<br/>
-                                    <p>
-                                        [AWS SES] The maximum number of emails the user is allowed to send in a 24-hour interval: 10000.0<br/>
-                                        [AWS SES] The maximum number of emails the user is allowed to send per second: 5.0               <br/>
-                                        [AWS SES] The number of emails sent during the previous 24 hours: 15.0                           <br/>
-                                    </p>
-
-
-                                </li>
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>Aws-Sws-Get-Send-Statistics</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Gets your email sending statistics</li>
-                                <li class="fragment">The output is a list of items, for the last two weeks of sending activity.</li>
-                                <li class="fragment">Example output:
-                                    <p>
-                                        [AWS SES]  -------------------------------------------------------------------------------
-                                        <br/>[AWS SES] |    time range    | attemps | rejects (SES) | complaints (recipient) | bounces |
-                                        <br/>[AWS SES] |-------------------------------------------------------------------------------|
-                                        <br/>[AWS SES] | 2013/06/26 22:42 |    1    |       0       |           0            |    0    |
-
-                                    </p>
-                                </li>
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>aws-ses-list-verified-emails</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Shows a list of all verified emails with</li>
-                                <li class="fragment">The output is a list of emails authorized to send email FROM</li>
-                                <li class="fragment">Example output:
-                                    <p>
-                                        [AWS SES] 1) support@reachforce.com
-
-                                    </p>
-                                </li>
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>aws-ses-send-ping-mail</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Script will verify a given email has been 'verified' by Amazon</li>
-
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>aws-ses-verify-email</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
-
-                            </UL>
-                        </section>
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>aws-ses-verify-email</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
-
-                            </UL>
-                        </section>
-
-                        <section>
-                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                            <h3>S3 File Management</h3>
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Demo</li>
-
-                            </UL>
-                        </section>
-
-                      <section>
-                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
-
-                        <h3>S3 File Management</h3>
-                        <UL style="list-style-type: none;">
-
-                            <li class="fragment">Handy for storing existing assets into S3</li>
-                            <li class="fragment">
-                                <i>Convert local File to S3 Storage</i><br>
-                                def s3file = new File("/tmp/test.txt").s3upload {
-                            path "folder/to/my/file/"
-                            }
-
-                            </li>
-                            <li class="fragment">
-                                <i>Upload directly from Stream</i>:<br>
-                                def file = request.getFile('photo')
-                                def uploadedFile = file.inputStream.s3upload(file.originalFilename) {
-                                bucket "file-upload-from-inputstream"
-                                }
-                            </li>
+                            <li class="fragment">Karman Plugin - Cloud File Karman library plugin</li>
 
                         </UL>
-                     </section>
+                        </section>
 
                     <section>
-                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+                            <h2>General AWS Gradle Plugins</h2>
+                             <p>With Grails 3 being based on Boot and Gradle, many old plugins became obsolete. We now use Gradle plugins to manage these things.</p>
 
-                        <h3>SES Management</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Gradle CDN Asset Pipeline plugin - push assets to CDNs</li>
+                                <li class="fragment">Gradle AWS Plugin - group of plugins does most things AWS</li>
+                                <li class="fragment">Gradle Beanstalk Plugin - plugin to deploy WARs</li>
+
+                            </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - Karman Plugin</h2>
+
+
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">AFAIK skip this - the mail plugin handles all of this</li>
+                            <li class="fragment">Standardized interface for storing / retrieving files in the cloud</li>
                             <li class="fragment">
-                                // settings for mail plugin to work with SES
-                                grails {
-                                mail {
-                                host = "email-smtp.us-east-1.amazonaws.com"
-                                port = 25
-                                username = "SESUsername"
-                                password = "SESPassword"
-                                props = ["mail.smtp.starttls.enable":"true",
-                                "mail.smtp.port":"587","mail.debug":"true","mail.smtp.auth":"true"]
-                                // uncomment to force all emails to one address
-                                // grails.mail.overrideAddress="test@address.com"
-                                grails.mail.default.from = "support@reachforce.com"
-                                }
-                                }
-
+                                Supports AWS, OpenStack, Rackspace, and Azure
                             </li>
+                            <li class="fragment">Source at https://github.com/bertramdev/karman-core</li>
+                            <li class="fragment">http://bertramdev.github.io/karman/guide/</li>
+                            <li class="fragment">Uses LocalStorage provider by default</li>
 
                         </UL>
                     </section>
 
+                    <section>
+                        <h2>General AWS Grails Plugins - Karman Plugin</h2>
+
+                        <pre><code data-trim data-noescape>
+provider = StorageProvider.create(
+    provider: 's3',
+    accessKey: ACCESS_KEY,
+    secretKey: SECRET_KEY,
+    //optional
+    region: 'eu-west-1',
+    protocol: 'https',
+    useGzip: false,
+    keepAlive: false,
+    maxConnections: 50
+)
+
+//example getting file contents
+def file = provider['mybucket']['example.txt']
+return file.text
+                        </code></pre>
+                    </section>
 
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
@@ -602,9 +448,9 @@
                                 This is the one to use for most powerful work of services - can access almost all of AWS services that JDK supports
 
                             </li>
-                            <li>Uses AWS Web Service API wrapped in a Java Library</li>
-                            <li>Error handing can be more difficult than using web service api directly</li>
-                            <li>Works with Grails 3, yay!</li>
+                            <li class="fragment">Uses AWS Web Service API wrapped in a Java Library</li>
+                            <li class="fragment">Recently pared down to more limited services with more value</li>
+                            <li class="fragment">Works with Grails 3!</li>
 
 
                         </UL>
@@ -616,28 +462,26 @@
                         <h3>Services Supported</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">EC2 - ELB,CloudWatch, Elastic Beanstalk</li>
-                            <li class="fragment">RDS - Elastic Mapreduce, SDB, Dynamo, Redshift, SimpleDB</li>
-                            <li class="fragment">S3/Glacier</li>
-                            <li class="fragment">SES (us-east-1,us-west-2,eu-west-1 only)</li>
-                            <li class="fragment">SQS, SWF</li>
-                            <li class="fragment">CloudFormation,CloudFront</li>
-                            <li class="fragment">Elastic Beanstalk, Transcoder, Opsworks(Old Chef) </li>
-                            <li class="fragment">Cloudformation, CloudSearch, Elasticache </li>
+                            <li class="fragment">DynamoDB</li>
+                            <li class="fragment">S3</li>
+                            <li class="fragment">Kinesis</li>
+                            <li class="fragment">SES (Simple Email Service)</li>
+                            <li class="fragment">SNS (Simple Notification Service)</li>
+                            <li class="fragment">SQS</li>
                         </UL>
                     </section>
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
-                        <h3>EC2</h3>
+                        <h3>DynamoDB</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Grails service wrapper is 'amazonWebService'</li>
-                            <li class="fragment">Call amazonWebService.ec2. - for default region, call amazonWebService.getEc2('region'). for others</li>
-                            <li class="fragment">RunInstancesRequest class defines parameters to launch an instance (It seems picky about nulls)</li>
-                            <li class="fragment">use amazonWebService.runInstances() to start instances</li>
-                            <li class="fragment">Complete docs at: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/</li>
+                            <li class="fragment">Uses data modeling based on DynamoDBMapper</li>
+                            <li class="fragment">These is current GORM for DynamoDB so this is the best bet</li>
+                            <li class="fragment">Use annotations like @DynamoDBTable on bean to define table</li>
+                            <li class="fragment">Use @DynamoDBAttribute on attributes to define attibutes for table</li>
+                            <li class="fragment">Docs/Examples at: https://github.com/agorapulse/grails-aws-sdk/tree/master/grails-aws-sdk-dynamodb</li>
 
                         </UL>
                     </section>
@@ -646,15 +490,11 @@
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
-                        <h3>RDS</h3>
+                        <h3>DynamoDB</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Not sure why you would spin up entire databases, but you can!</li>
-                            <li class="fragment">Most practical use would be to automate snapshots of the database</li>
-                            <li class="fragment">If you have a small simple database, service is good</li>
-                            <li class="fragment">Cannot start/top RDS instances, and pay premium to use their licenses if using commercial DBs</li>
-                            <li class="fragment">If you have the skill or have large DB requirements, set up your own database - there is probably an AMI for it </li>
-                            <li class="fragment">Has good multi-az failover (but pricey!) with PIOPS EBS Volumes (You can raid your own PIOPS drives!)</li>
+                            <li>Demo</li>
+
                         </UL>
                     </section>
 
@@ -665,83 +505,90 @@
                         <h3>S3</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">manage buckets, upload/download and delete files</li>
-                            <li class="fragment">Transfer Manager - handles multipart uploads (big files, batch, fast!)</li>
-                            <li class="fragment">full docs here: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/package-summary.html</li>
-<!--
-                            <li class="fragment">s3browser demo</li>
--->
+                            <li class="fragment">AmazonS3Service - manage buckets, upload/download and delete files</li>
+                            <li class="fragment">Extend AmazonS3Service on each bucket for operations per bucket </li>
+                            <li class="fragment">Declare static final BUCKET_NAME on extended service to set bucket </li>
+                            <li class="fragment">Docs here: https://github.com/agorapulse/grails-aws-sdk/tree/master/grails-aws-sdk-s3</li>
+                            <!--
+                                                        <li class="fragment">s3browser demo</li>
+                            -->
                         </UL>
                     </section>
+
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
-                        <h3>Glacier</h3>
+                        <h3>S3 - Demo</h3>
+
+                    </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Kinesis</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">cold storage for data - not immediately available on demand</li>
-                            <li class="fragment">vaults - organize your archives and policies (where your files go)</li>
-                            <li class="fragment">Upload files via amazonWebService.glacier.uploadArchive(UploadArchiveRequest uploadArchiveRequest) or UploadMultiPart </li>
-                            <li class="fragment">Files are retrieved via 'initiateJob'</li>
-                            <li class="fragment">Call 'listJobs' until your job is done.</li>
-                            <li class="fragment">Can use Amazon SNS to notify you when jobs are complete</li>
-                            <li class="fragment">When done get files from your vault via GetJobOutput</li>
+                            <li class="fragment">Kinesis is a message broker for distributed logs similar to Kafka</li>
+                            <li class="fragment">Good comparison between the two: http://www.dani-sola.com/kafka-vs-kinesis/</li>
+                            <li class="fragment">AmazonKinesisService is the main artefacts</li>
+                            <li class="fragment">Includes four abstract utility classes to consume streams</li>
+                            <li class="fragment">If you want tight integration with Lambda this is helpful</li>
+                        </UL>
+                    </section>
 
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>SES (Simple Email Service)</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Allows sending email via plain text or via GSP templates</li>
+                            <li class="fragment">Provides artefacts AmazonSESService and AmazonSESTemplateService</li>
+                            <li class="fragment">Also supports certain types of attachments (Unsupported types at http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html</li>
+                            <li class="fragment">Doesn't handle any SES management (use the AWS console) - just sending</li>
 
                         </UL>
                     </section>
+
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
-                        <h3>Glacier</h3>
-                        <img src="./aws-glacier.png"/>
-                    </section>
-                    <section>
-                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
-
-
-                        <h3>SQS</h3>
+                        <h3>SQS (Simple Queue Service)</h3>
                         <UL style="list-style-type: none;">
 
-                            <li class="fragment">Simple queue service</li>
-                            <li class="fragment">Create / Delete Queues</li>
-                            <li class="fragment">Receive Message</li>
-                            <li class="fragment">Can also assign permissions and batch messages</li>
+                            <li class="fragment">Provides Artefact AmazonSQSService</li>
+                            <li class="fragment">Can manage queues</li>
+                            <li class="fragment">Can send, receive and delete messages</li>
+                            <li class="fragment">A typical use would be a Quartz job to poll for messages</li>
                             <li class="fragment">Messages can remain in queue for 12 hours</li>
 
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>SNS (Simple Notification Service)</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Provides Artefact AmazonSNSService</li>
+                            <li class="fragment">Supports registering and pushing to mobile</li>
+                            <li class="fragment">Can send, receive and delete messages</li>
+                            <li class="fragment">Also manages topics (create/delete/publish)</li>
+                            <li class="fragment">Sub/Unsub to topics (also via SMS!) </li>
 
                         </UL>
                     </section>
                 </section>
 
                 <section>
-				<section>
-                    <h2>ElasticWolf</h2>
 
-                    <UL style="list-style-type: none;">
-
-                        <li class="fragment">More powerful than web console gui</li>
-                        <li class="fragment">Can control things like auto-scaling</li>
-                        <li class="fragment">Created partly for new GovCloud because they had no UI at all initially</li>
-                        <li class="fragment">Managed by sales organization instead of IT</li>
-                        <li class="fragment">Actively Maintained on Github</li>
-
-
-                    </UL>
-				</section>
-                    <section>
-                        <h2>ElasticWolf</h2>
-
-                        <UL style="list-style-type: none;">
-
-                            <li class="fragment">Demo</li>
-
-
-
-                        </UL>
-                    </section>
                     <section>
                         <h2>sshoogr</h2>
 
@@ -754,35 +601,33 @@
                             <li class="fragment">creating tunnels in a simple and concise way</li>
                             <li class="fragment">gradle plugin also for  </li>
                             <li class="fragment">project very active (last commit 1 month ago)</li>
-                            <li class="fragment">sshoogr+gradle+DSL == Groovy Based Ansible???
-														</ul>
-                            </li>
+                            <li class="fragment">sshoogr+gradle+DSL == Groovy Based Ansible???</li>
+                            <li class="fragment">Repos at https://github.com/aestasit/sshoogr</li>
+                        </ul>
 
-                        <p>Repos for these: https://github.com/aestasit/sshoogr and https://github.com/aestasit/gramazon-gradle</p>
 
 
                         </UL>
                     </section>
-										<section>
+										<!--<section>
 												<h2>gramazon</h2>
 
 												<UL style="list-style-type: none;">
 
-														<li class="fragment">gramazon - Groovy based API for Amazon EC2
+														<li class="fragment">gramazon - Groovy based API for Amazon EC2 (not maintained?)
 														<ul>
 																<li class="fragment">interface library that can be used to interact with the Amazon EC2 system and control server resources on demand from your Groovy scripts or from Gradle, using a plug-in.></li>
 																<li class="fragment">uses gradle to run commands</li>
 																<li class="fragment">maybe could be used as basis for a groovy version of chef or puppet?</li>
-																<li class="fragment">project very active (last commit 1 month ago)</li>
 																<li class="fragment">gradle project template available as well as 'gradle-ssh-plugin'</li>
 												</ul></li>
-												<p>Repos for these: https://github.com/aestasit/sshoogr and https://github.com/aestasit/gramazon-gradle</p>
+												<p>Repos for this https://github.com/aestasit/gramazon-gradle</p>
 
 
 												</UL>
-										</section>
+										</section>-->
                 </section>
-                <section>
+                <!--<section>
                     <section>
                         <h2>Autoscaling Overview</h2>
 
@@ -806,11 +651,11 @@
                             <li class="fragment">Step 1: Create Launch Config(Just like launching instance but a template)</li>
                             <li class="fragment">Step 2: Create Autoscale Group</li>
                             <li class="fragment">Step 3: Create Policies</li>
-                            <li class="fragment">Demo with ElasticWolf (can use web console now too)</li>
+                            <li class="fragment">Demo web console now too</li>
 
 
                         </UL>
-                    </section>
+                    </section>-->
 										<section>
 												<h2>Use CodeDeploy with ASG</h2>
 
@@ -818,7 +663,7 @@
 
 														<li class="fragment">Enable app to have Codedeploy payload</li>
 														<li class="fragment">With ASG adds a node, app is auto-deployed!</li>
-                            <li class="fragment">Use AMInator or Packer to bake AMIs to feed the ASG</li>
+                            <li class="fragment">Use Docker with ASG: https://github.com/andyshinn/docker-codedeploy-example</li>
 
 
 												</UL>
@@ -836,20 +681,7 @@
 
 												</UL>
 										</section>
-                    <section>
-                        <h2>Elastic Beanstalk</h2>
-                        <p>Finally a good solution to push your application to Elastic Beanstalk on Grails!</p>
 
-                        <UL style="list-style-type: none;">
-
-                            <li class="fragment">Ken Liu now has first class citizen support in Grails for Elastic Beanstalk!</li>
-                            <li class="fragment">Easy to set up and configure, just add keys and params to Config.groovy</li>
-                            <li class="fragment">Use command 'aws-eb-deploy' and 'aws-eb-stop' - that's it!</li>
-                            <li class="fragment">Detailed online manual available at http://kenliu.net/grails-elastic-beanstalk/manual.html</li>
-
-                        </UL>
-
-                    </section>
                 </section>
                 <section>
                     <section>
@@ -857,15 +689,27 @@
 
                         <UL style="list-style-type: none;">
 
-                            <li>Elastic Beanstalk plugin by Ken Liu: http://grails.org/plugin/aws-elastic-beanstalk</li>
-                            <li>Elastic Beanstalk Intro @ Bobby Warner's Blog: http://goo.gl/PQaAxx</li>
+                            <li>Gradle beanstalk plugin https://github.com/EvidentSolutions/gradle-beanstalk-plugin</li>
+                            <li>Old but useful Elastic Beanstalk Intro @ Bobby Warner's Blog: http://goo.gl/PQaAxx</li>
+                            <li>Grails AWS SDK Plugin https://github.com/agorapulse/grails-aws-sdk/</li>
+                            <li>Grails AWS Plugin https://github.com/grails-aws/grails-aws</li>
+                            <li>Gradle AWS Plugin https://github.com/classmethod/gradle-aws-plugin</li>
+                            <li>sshoogr Gradle plugin https://github.com/aestasit/sshoogr</li>
+
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>Useful resources</h2>
+
+                        <UL style="list-style-type: none;">
+
+
                             <li>Another Beanstalk: http://goo.gl/0SeYyS</li>
-                            <li>Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
                             <li>Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
                             <li>Building an S3 Browser in Grails http://goo.gl/u6lRYB</li>
-														<li>Grails AWS SDK Plugin https://goo.gl/I9qrcl</li>
-														<li>VPC Deep Dive Slides http://goo.gl/o4g8yj</li>
-														<li>Deploying Grails 3 and CDN on Elastic Beanstalk https://goo.gl/x163Fv</li>
+                            <li>VPC Deep Dive Slides http://goo.gl/o4g8yj</li>
+                            <li>Deploying Grails 3 and CDN on Elastic Beanstalk https://goo.gl/x163Fv</li>
                             <li>AWS Global Interactive Map https://goo.gl/qpHR09</li>
                         </UL>
                     </section>
