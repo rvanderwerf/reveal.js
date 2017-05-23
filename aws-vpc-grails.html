@@ -41,8 +41,9 @@
 
 				<section>
 					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
-					<h3>Learn the ropes of VPC networking to maximize your potential</h3>
-                    <!--<img style="border:none" src="gr8conf-banner.png" alt="GR8Conf groovy gradle grails" height="240" width="800"/>-->
+					<h3>Learn the ropes of VPC networking and working with Grails and AWS</h3>
+                    <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" />
+                    <img style="border:none" src="gr8conf-2017.jpg" alt="GR8Conf groovy gradle grails" />
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
 					</p>
@@ -50,7 +51,7 @@
 
                 <section>
                     <h2>About Me</h2>
-                    <h3>Learn the ropes of networking to maximize your potential</h3>
+
                     <ul>
                         <li>Software Engineer on Grails team at OCI (Home to Grails)</li>
                         <li>Father of 2 kiddos under 13</li>
@@ -68,10 +69,11 @@
 
 
                     <ul>
-                        <li class="fragment"><strong>What is a VPC?</strong></li>
+                        <li class="fragment"><strong>VPC Network Basics</strong></li>
                         <li class="fragment"><strong>S3 Storage Service</strong></li>
+                        <li class="fragment"><strong>Grails 3 AWS Plugins</strong></li>
+                        <li class="fragment"><strong>Gradle AWS Plugins</strong></li>
                         <li class="fragment">sshoogr</li>
-                        <li class="fragment"><strong>Grails 3 Plugins</strong></li>
                         <li class="fragment"><strong>Elastic Load Balancers</strong></li>
                         <li class="fragment"><strong>Others misc tips</strong></li>
 
@@ -92,7 +94,7 @@
 
 
                         <ul style="list-style-type: none;">
-											   		<li class="fragment"><strong>Proper Architecture (Go Multi-AZ!)</strong></li>
+											   		<li class="fragment"><strong>Proper Architecture</strong></li>
                             <li class="fragment"><strong>Routing</strong></li>
                             <li class="fragment"><strong>NAT</strong></li>
                             <li class="fragment"><strong>ACL Firewall</strong></li>
@@ -114,7 +116,40 @@
 							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
 						</a>-->
 					</section>
-					<section>
+                    <section>
+                        <h2>VPC Terms</h2>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Region - Geographic region that consists a group of availability zones</li>
+                            <li class="fragment">Availability Zone - Collection of data centers with 50-100 miles of each other (AZ)</li>
+                            <li class="fragment">Multi-AZ - Ability to spread application across availability zones</li>
+                            <li class="fragment">Subnet - group of IP address that are addressed as a block</li>
+                            <li class="fragment">CIDR Block - a higher level block of many addresses and subnets</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>AWS Services</h2>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Route53 - Amazon's DNS Service</li>
+                            <li class="fragment">EC2 Amazon's Compute Service</li>
+                            <li class="fragment">S3 - Amazon's Simple Storage Service (Object Storage)</li>
+                            <li class="fragment">EBS - Elastic Block Storage (Like Network Attached Hard Disk)</li>
+                            <li class="fragment">Lambda - Amazon's Serverless App System</li>
+                            <li class="fragment">ELB - Elastic Load Balancer (1st generation)</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Regions</h2>
+                        <img src="regions.jpg"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Availability Zones</h2>
+                        <img src="zones.gif"  />
+
+                    </section>
+                    <section>
 						<h2>VPC Overview</h2>
                         <UL style="list-style-type: none;">
                             <li class="fragment">Now required on new AWS accounts</li>
@@ -122,6 +157,8 @@
                             <li class="fragment">Costs nothing extra - you have nothing to lose</li>
                         </UL>
 					</section>
+
+
 					<section>
 						<h2>VPC - Routing/Subnets</h2>
                         <img src="vpc-subnet-default.png"  />
@@ -139,7 +176,8 @@
                             <li class="fragment">auto-scaling instances can access internet through NAT</li>
                             <li class="fragment">Web Servers, Web facing apps can live behind ELB yet be able to run OS updates </li>
                             <li class="fragment">S3 Buckets accessible</li>
-                            <li class="fragment">can access your secure subnet as well</li>
+                            <li class="fragment">Can access your secure subnet as well</li>
+
                         </UL>
                     </section>
 										<section>
@@ -246,12 +284,7 @@
 												  <img src="one-to-two-vpcs-flying-v.png"  />
 													<p> (From AWS Docs)
 										</section>
-										<section>
-												<h2>VPC - Peering Lifecycle</h2>
 
-												  <img src="peering-lifecycle-diagram.png"  />
-													<p> (From AWS Docs)
-										</section>
 										<section>
 												<h2>VPC - S3 Endpoints</h2>
 												<h3>S3 Endpoints - Speed Up S3 Access!</h3>
@@ -296,6 +329,8 @@
 
                         <UL style="list-style-type: none;">
                             <li class="fragment">Create internal ELB's inside your vpc for microservices</li>
+                            <li class="fragment">There are 2 types: ELB and ALB (Application Load Balancer)</li>
+                            <li class="fragment">ALB - point to a target group for an application instead of a server
                             <li class="fragment">Limit 3600s timeout on idle max now</li>
 														<li class="fragment">Cannot use sticky source IP with HTTPS!</li>
                             <li class="fragment">Use Haproxy for anything very advanced, can accommodate many options</li>
@@ -306,9 +341,9 @@
                         <h2>VPC - Misc EC2 Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">EBS Based Instances</li>
+                            <li class="fragment">EBS Based Instances are the way to go</li>
                             <li class="fragment">Use EBS backed instances for anything not build for cloud</li>
-                            <li class="fragment">If you can build server on the fly with Chef/Puppet like tools, go for ephemeral based</li>
+                            <li class="fragment">If you can build server on the fly with automation then throw away use ephemeral</li>
                             <li class="fragment">EBS backed instances have no swap by default - be sure to specify ephemeral disks on launch, use as swap</li>
                             <li class="fragment">EBS backed instances have no ephemeral disks on by default be sure to use them on launch of instance and AMIs</li>
                         </UL>
@@ -386,18 +421,7 @@
                         </UL>
                         </section>
 
-                    <section>
-                            <h2>General AWS Gradle Plugins</h2>
-                             <p>With Grails 3 being based on Boot and Gradle, many old plugins became obsolete. We now use Gradle plugins to manage these things.</p>
 
-                            <UL style="list-style-type: none;">
-
-                                <li class="fragment">Gradle CDN Asset Pipeline plugin - push assets to CDNs</li>
-                                <li class="fragment">Gradle AWS Plugin - group of plugins does most things AWS</li>
-                                <li class="fragment">Gradle Beanstalk Plugin - plugin to deploy WARs</li>
-
-                            </UL>
-                    </section>
                     <section>
                         <h2>General AWS Grails Plugins - Karman Plugin</h2>
 
@@ -445,10 +469,11 @@ return file.text
 
                             <li class="fragment">Wrapper for AWS Java SDK</li>
                             <li class="fragment">
-                                This is the one to use for most powerful work of services - can access almost all of AWS services that JDK supports
+                                This is the one to use for most powerful work of services - can access select AWS services
 
                             </li>
                             <li class="fragment">Uses AWS Web Service API wrapped in a Java Library</li>
+                            <li class="fragment">If a service you want isn't supported by the plugin you can use Java lib directly</li>
                             <li class="fragment">Recently pared down to more limited services with more value</li>
                             <li class="fragment">Works with Grails 3!</li>
 
@@ -478,7 +503,7 @@ return file.text
                         <UL style="list-style-type: none;">
 
                             <li class="fragment">Uses data modeling based on DynamoDBMapper</li>
-                            <li class="fragment">These is current GORM for DynamoDB so this is the best bet</li>
+                            <li class="fragment">There is no current GORM for DynamoDB so this is the best bet</li>
                             <li class="fragment">Use annotations like @DynamoDBTable on bean to define table</li>
                             <li class="fragment">Use @DynamoDBAttribute on attributes to define attibutes for table</li>
                             <li class="fragment">Docs/Examples at: https://github.com/agorapulse/grails-aws-sdk/tree/master/grails-aws-sdk-dynamodb</li>
@@ -532,7 +557,7 @@ return file.text
 
                             <li class="fragment">Kinesis is a message broker for distributed logs similar to Kafka</li>
                             <li class="fragment">Good comparison between the two: http://www.dani-sola.com/kafka-vs-kinesis/</li>
-                            <li class="fragment">AmazonKinesisService is the main artefacts</li>
+                            <li class="fragment">AmazonKinesisService is the main artefact</li>
                             <li class="fragment">Includes four abstract utility classes to consume streams</li>
                             <li class="fragment">If you want tight integration with Lambda this is helpful</li>
                         </UL>
@@ -578,6 +603,7 @@ return file.text
                         <UL style="list-style-type: none;">
 
                             <li class="fragment">Provides Artefact AmazonSNSService</li>
+                            <li class="fragment">Allows notifications between apps, valuable for Lambda</li>
                             <li class="fragment">Supports registering and pushing to mobile</li>
                             <li class="fragment">Can send, receive and delete messages</li>
                             <li class="fragment">Also manages topics (create/delete/publish)</li>
@@ -585,7 +611,18 @@ return file.text
 
                         </UL>
                     </section>
+                    <section>
+                        <h2>General AWS Gradle Plugins</h2>
+                        <p>With Grails 3 being based on Boot and Gradle, many old plugins became obsolete. We now use Gradle plugins to manage these things.</p>
 
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Gradle CDN Asset Pipeline plugin - push assets to CDNs</li>
+                            <li class="fragment">Gradle AWS Plugin - group of plugins does most things AWS</li>
+                            <li class="fragment">Gradle Beanstalk Plugin - plugin to deploy WARs</li>
+
+                        </UL>
+                    </section>
                     <section>
                         <h2>General AWS Gradle Plugins - CDN Asset Pipeline plugin</h2>
 
@@ -642,8 +679,7 @@ return file.text
                             <li class="fragment">executing remote commands</li>
                             <li class="fragment">copying files and directories</li>
                             <li class="fragment">creating tunnels in a simple and concise way</li>
-                            <li class="fragment">gradle plugin also for  </li>
-                            <li class="fragment">project very active (last commit 1 month ago)</li>
+                            <li class="fragment">works as a gradle plugin</li>
                             <li class="fragment">sshoogr+gradle+DSL == Groovy Based Ansible???</li>
                             <li class="fragment">Repos at https://github.com/aestasit/sshoogr</li>
                         </ul>
@@ -699,7 +735,7 @@ return file.text
 
                         </UL>
                     </section>-->
-										<section>
+										<!--<section>
 												<h2>Use CodeDeploy with ASG</h2>
 
 												<UL style="list-style-type: none;">
@@ -719,11 +755,11 @@ return file.text
 														<li class="fragment">Custom metrics are the way to go....http://goo.gl/gGh0jO</li>
 														<li class="fragment">Why? CPU usage and network IO not good enough to scale!</li>
 														<li class="fragment">Use health check plugins - add your own metrics</li>
-														<li class="fragment">If you can mix ELB with ASG's and have ASG monitor ELB 'health'</li>
+														<li class="fragment">You can mix ELB with ASG's and have ASG monitor ELB health</li>
 
 
 												</UL>
-										</section>
+										</section>-->
 
                 </section>
                 <section>
@@ -756,6 +792,13 @@ return file.text
                             <li>AWS Global Interactive Map https://goo.gl/qpHR09</li>
                         </UL>
                     </section>
+
+                </section>
+                <section>
+                    <h1>THE END - Thank You!
+                    </h1>
+                    <h3>I hope you have enjoyed the session!</h3>
+                    <p>Free free to contact me on twitter @RyanVanderwerf or email rvanderwerf@gmail.com</p>
 
                 </section>
 
