@@ -49,7 +49,7 @@
         <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" /></h1>
     <h3>Alexa, tell me I'm Groovy!</h3>
     <h4>Learn how to build Alexa Skills with Groovy and Grails</h4>
-    <h4>G3 Summit 2016</h4>
+    <h4>GR8Conf US 2017</h4>
 
 
     <p>
@@ -62,15 +62,16 @@
     <h2>About Ryan</h2>
 
     <ul>
-        <li>Software Engineer on Grails team at OCI (New home to Grails)</li>
-        <li>Father of 2 girls under 12</li>
+        <li>Software Engineer on Grails team at OCI (Home to Grails)</li>
+        <li>Father of 2 kiddos under 12</li>
         <li>Co-Chair Austin Groovy and Grails User Group</li>
         <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
         <li>I like to modify all the things (cars, home automation, phones, gadgets)</li>
-        <li>Into lots of Devops/Linux stuff and AWS</li>
+        <li>Into lots of Devops/Linux stuff, AWS, and Conversational AI</li>
+        <li>OCI - If you need Grails or Groovy support we can help!</li>
     </ul>
 </section>
-   <!-- <section>
+   <section>
         <h2>About Lee </h2>
 
         <ul>
@@ -83,7 +84,6 @@
 
         </ul>
     </section>
--->
     <!--<section>
         <h2>This talk powered by bourbon</h2>
         <img src="bourbonpowered.jpg" height="150" width="250" style="background:none; border:none; box-shadow:none; "/>
@@ -105,18 +105,16 @@
             How does Alexa work?
         </li>
         <li class="fragment">
+          Evolution of UI
+        </li>
+        <li class="fragment">
             Alexa software concepts and components
         </li>
-
         <li class="fragment">
             Brief Lamba Overview
         </li>
         <li class="fragment">
             Lamba Groovy App Setup
-        </li>
-
-        <li class="fragment">
-            Superhero quiz for Groovy and Lamba
         </li>
         <li class="fragment">
             Groovy Podcast Skill
@@ -125,10 +123,10 @@
             Let's do more.. like account linking!
         </li>
         <li class="fragment">
-            Twitter app for Grails using OAuth, Spring Security
+            Alexa Skills Plugin for Grails
         </li>
         <li class="fragment">
-            Alexa Skills Plugin
+           VictorOPS - Account Linking, Grails, Spring Security and OAuth
         </li>
 
     </ul>
@@ -151,7 +149,8 @@
             Alexa is a cloud based voice recognition service
         </p>
         <img src="building-spoken-language-apps-and-experiences-for-amazon-echo-16-638.jpg" style="background:none; border:none; box-shadow:none;"/>
-        <p>There are 3 SDKS - Skills, AVS, and Home API</p>
+        <p>There are 2 Main SDKS - Skills and AVS</p>
+        <p>Skills has 4 Types - Custom, Smart Home, Flash, and Video</p>
 
     </section>
     <section>
@@ -202,6 +201,8 @@
         <ul class="fragment">The big deal: a 3.5mm audio output jack!</ul>
         <ul class="fragment">Aways on listening for wake word (Alexa or Amazon)</ul>
         <ul class="fragment">Gen 2 has +/- volume buttons on top instead of 'ring'</ul>
+        <ul class="fragment">v2 under $50US</ul>
+
         </li>
         </ul>
 
@@ -225,12 +226,11 @@
         <h3>
             Tap
         </h3>
-
         <ul>
             <li class="fragment">On the go - portable bluetooth speaker with battery and simple mic</li>
             <li class="fragment">Has Wifi and bluetooth capabilities</li>
             <li class="fragment">A 3.5mm audio INPUT jack!</li>
-            <li class="fragment">Not always listening - have to 'tap' button to wake</li>
+            <li class="fragment">Now always listening or push button- have to 'tap' button to wake</li>
         </ul>
     </section>
     <section>
@@ -247,6 +247,37 @@
         </ul>
     </section>
     <section>
+        <p>
+            The Devices
+        </p>
+        <img src="images/echoLook.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Echo Look</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img height="500" src="images/echoShow.jpg" style="background:none; border:none; box-shadow:none;"/>
+        <p>Echo Show</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <img height="500" src="dashwand.png" style="background:none; border:none; box-shadow:none;"/>
+        <p>Dash Wand</p>
+
+    </section>
+    <section>
+        <p>
+            The Devices
+        </p>
+        <p>...and many more such as lamps, phones, cars, appliances all on their way</p>
+
+    </section>
+    <section>
         <h3>
             Yes, There are others - Google Home
         </h3>
@@ -254,8 +285,9 @@
 
 
         <ul>
-            <li class="fragment">Now available, SDK due in December</li>
+            <li class="fragment">Now available, SDK available through api.ai</li>
             <li class="fragment">Speech flow looks very good but integrations currently lacking!</li>
+            <li class="fragment">Look for a talk on this at GR8Conf EU this year!</li>
 
         </ul>
     </section>
@@ -380,10 +412,9 @@
         <img src="data-tng-taking.jpg" style="background:none; border:none; box-shadow:none;"/>
 
         <ul>
-              <li class="fragment">Skills SDK - custom skill or Home</li>
+              <li class="fragment">Skills SDK - custom, home, flash, and video skill types</li>
               <li class="fragment">Voice SDK - build a device like and Echo</li>
-              <li class="fragment">Flash Briefing SDK - Point to RSS feed</li>
-              <li class="fragment">We'll focus on the Skills API today</li>
+              <li class="fragment">We'll focus on the Skills(custom) API today</li>
 
             </ul>
 
@@ -411,6 +442,7 @@
             <li class="fragment">Gives us decent interfaces that use an API form SpeechResponses</li>
             <li class="fragment">Also helps us build Card responses and stream Audio</li>
             <li class="fragment">Let's dig in to the specifics!</li>
+            <li class="fragment">I've forked and fixed up the Java SDK to be more current at </li>
 
         </ul>
 
@@ -467,6 +499,7 @@
         <ul>
             <li class="fragment">This is where you can do non-speech interactions</li>
             <li class="fragment">See a log of what you've done</li>
+            <li class="fragment">See cards returned by skills</li>
             <li class="fragment">Install Skills / browse Skills library by category</li>
             <li class="fragment">Can use mobile app or go to echo.amazon.com</li>
 
@@ -479,7 +512,7 @@
 
         <ul>
             <li class="fragment">This is similar to Android cards but more basic</li>
-            <li class="fragment">You can launch different cards for different intents</li>
+            <li class="fragment">You can launch a seperate card and speech response for intents</li>
             <li class="fragment">There are 3 main cards: Simple(text only), Standard(1 pic), and LinkAccount</li>
             <li class="fragment">Amazon limits what kind of content can be on each type of card (no HTML/js/css)</li>
 
@@ -529,10 +562,7 @@
             </li>
             <li class="fragment">These are tacked on as a List to a SpeechletResponse via SpeechletResponse.newTellResponse</li>
             <li class="fragment">These are only suitable for long duration playback like music or podcasts -
-                Use SSML for audio snippets in middle of skill</li>
-
-
-
+                Use SSML for audio snippets in conversation</li>
         </ul>
 
     </section>
@@ -591,23 +621,19 @@
  -->
     </section>
 
-    <section>
+  <!--  <section>
         <section>
         <h2>Let's Make a Groovy Lambda Skill!</h2>
 
 
-    </section>
-
-
-
+    </section>-->
 
         <section>
         <h2>That's cool, but can it only to text to speech?</h2>
 
         <ul>
             <li class="fragment">Nope! We can use SSML to play sounds clips!</li>
-            <li class="fragment">Limited to 90s, 48kbit SSL hosted mp3 only</li>
-            <li class="fragment">Very picky about formats and unhelpful error messages</li>
+            <li class="fragment">Limited to 90s, 48kbit SSL hosted mp3 only and picky about format</li>
             <li class="fragment">Can do other commands like pronounce words</li>
               <li class="fragment">Let's check out the SSML Reference <a href="http://amzn.to/1OaLmAZ">http://amzn.to/1OaLmAZ</a></li>
             <li class="fragment">New! Audio Player support! <a href="http://amzn.to/2fRikwA">http://amzn.to/2fRikwA</a></li>
@@ -671,28 +697,12 @@
             <p><img src="data-tng-laughing.jpg"  style="background:none; border:none; box-shadow:none;"/>
             </p>
             <ul>
-                <li class="fragment">Limited multi-language yet (English/German atm)</li>
+                <li class="fragment">Limited multi-language yet (English/German)</li>
                 <li class="fragment">May have troubles with strong accents</li>
-                <li class="fragment">Currently meant for NA - but launched in UK and Germany</li>
+                <li class="fragment">Has most trouble with names and chaining commands</li>
 
             </ul>
 
-        </section>
-
-        <section>
-            <h2>Superhero Quiz App</h2>
-            <p><img src="calllingsuperheros.jpg"  style="background:none; border:none; box-shadow:none;"/>
-            </p>
-            <ul>
-                <li class="fragment">Uses Groovy Lambdas and DynamoDB - Certified and Live at http://amzn.to/2ghW6z0</li>
-                <li class="fragment">Asks you superhero trivia</li>
-                <li class="fragment">Let's try it out! <a href="http://bit.ly/2aqLqAu">http://bit.ly/2aqLqAu</a> </li>
-
-            </ul>
-
-        </section>
-        <section>
-            <h2>Demo - Groovy Lambda Superhero Quiz</h2>
         </section>
 
         <section>
@@ -717,16 +727,7 @@
             </ul>
 
         </section>
-        <section>
-            <h2>Account Linking</h2>
 
-            <ul>
-                <li class="fragment">There are rules</li>
-                <li class="fragment">How do does Grails fit into this?</li>
-                <li class="fragment">Let's talk about account linking then take a look</li>
-            </ul>
-
-        </section>
         <section>
             <h2>Account Linking</h2>
 
@@ -751,20 +752,20 @@
 
         </section>
         <section>
-            <h2>Grails Twitter Search</h2>
+            <h2>VictorOPS</h2>
 
             <ul>
-                <li class="fragment">Uses OAuth, Groovy, Grails, and Spring Social</li>
+                <li class="fragment">Uses OAuth, Groovy, Grails, AWS DynamoDB</li>
                 <li class="fragment">Supports OAUTH to authenicate a user</li>
                 <li class="fragment">Uses Spring Security UI to register accounts</li>
-                <li class="fragment">Provides Admin UI to manage users and credentials</li>
-                <li class="fragment">Code at <a href="https://github.com/rvanderwerf/twitterAuth">https://github.com/rvanderwerf/twitterAuth</a></li>
+                <li class="fragment">Provides Admin UI to manage credentials for VictorOPS service</li>
+                <li class="fragment">Code at <a href="https://github.com/vanderfox/alexa-victorops">https://github.com/vanderfox/alexa-victorops</a></li>
 
             </ul>
 
         </section>
         <section>
-            <h2>Demo - Grails Twitter Search</h2>
+            <h2>Demo - VictorOPS</h2>
 
 
         </section>
@@ -801,7 +802,7 @@
 
         </section>
         <section>
-            <h2>Gotcha</h2>
+            <h2>Gotchas</h2>
             <p>Here are some gotchas </p>
             <ul>
                 <li class="fragment">Use number type for numbers- it will translated spoken word to numbers not words</li>
@@ -810,6 +811,7 @@
                 <li class="fragment">SSL Self-signed certs - common name must match hostname of app</li>
                 <li class="fragment">SSML Audio - follow tips given, it's very picky and needs valid CA cert</li>
                 <li class="fragment">Audio player skills - audio content must be streamed in SSL as well</li>
+                <li class="fragment">slot values don't have to be complete just enough to guide it</li>
 
 
             </ul>
@@ -847,6 +849,16 @@
 
         </section>
         <section>
+            <h2>Source Links Continued</h2>
+
+            <ul>
+                <li>VictorOPS Skill https://github.com/vanderfox/alexa-victorops</li>
+                <li>Library Intents </li>
+            </ul>
+
+
+        </section>
+        <section>
             <h2>Special Thanks</h2>
 
             <ul>
@@ -862,7 +874,7 @@
             </h1>
             <h3>I hope you have enjoyed the session!</h3>
             <p>Free free to contact me on twitter or google+ @RyanVanderwerf or email rvanderwerf@gmail.com</p>
-            <p>Lee Fox on Twitter @FoxInATX or email lee.h.fox@gmail.com</p>
+            <!--<p>Lee Fox on Twitter @FoxInATX or email lee.h.fox@gmail.com</p>-->
         </section>
     </section>
 
