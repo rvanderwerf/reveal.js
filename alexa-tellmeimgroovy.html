@@ -557,66 +557,8 @@
 
     </section>
 
-    <!-- <section>
-         <h2>Skills SDK - onSessionStarted</h2>
-
-         <ul>
-             <li class="fragment">This is called first</li>
-             <li class="fragment">This passes in Session and SessionStartedRequest objects</a></li>
-             <li class="fragment">Use this to do any session setup stuff you want similar to Session listener in Servlets</li>
-             <li class="fragment">This is optional - don't have to override</li>
-
-         </ul>
-
-     </section>
-     <section>
-         <h2>Skills SDK - onLaunch</h2>
-
-         <ul>
-             <li class="fragment">This is called second</li>
-             <li class="fragment">This passes in Session and LaunchRequest objects</a></li>
-             <li class="fragment">Use this to do any app setup stuff you want similar to Session listener in Servlets</li>
-             <li class="fragment">In this case, we load the twitter credentials for the user</li>
-             <li class="fragment">This is optional - don't have to override</li>
-
-         </ul>
-
-     </section>
-     <section>
-         <h2>Skills SDK - onIntent</h2>
-
-         <ul>
-             <li class="fragment">This is the meat</li>
-             <li class="fragment">Once Alexa figures out what intent the user asked for, launches this</li>
-             <li class="fragment">See the sample IntenSchema.json</li>
-             <li class="fragment">In this case, we load the twitter credentials for the user</li>
-             <li class="fragment">This is NOT optional - you must override</li>
-             <li class="fragment">It is considered best practice to support a 'HelpIntent' with a menu</li>
-
-         </ul>
-
-     </section>
-     <section>
-         <h2>Skills SDK - onSessionEnded</h2>
-
-         <ul>
-             <li class="fragment">This is the last intent called when done</li>
-             <li class="fragment">Put session cleanup code there</li>
-
-             <li class="fragment">This is optional - don't have to override</li>
-
-         </ul>
-
-     </section>
- -->
     </section>
 
-  <!--  <section>
-        <section>
-        <h2>Let's Make a Groovy Lambda Skill!</h2>
-
-
-    </section>-->
 
         <section>
         <h2>That's cool, but can it only to text to speech?</h2>
@@ -729,19 +671,97 @@
             </ul>
 
         </section>
-        <section>
-            <h2>Setting up your own server</h2>
+    <section>
+        <h2>Setting up your own server</h2>
 
-            <ul>
-                <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
-                <li class="fragment">You can use self-signed certs in dev only</li>
-                <li class="fragment">Self signed certs MUST have hostname match common name</li>
-                <li class="fragment">Trusted certs support most cert providers</li>
-                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
-            </ul>
+        <ul>
+            <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
+            <li class="fragment">You can use self-signed certs in dev only</li>
+            <li class="fragment">Self signed certs MUST have hostname match common name</li>
+            <li class="fragment">Trusted certs support most cert providers</li>
+            <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+        </ul>
+
+    </section>
+
+    <section>
+        <section>
+            <h2>Visuals on the Echo Show</h2>
+        </section>
+
+        <section>
+            <h2>Enable the New Directives</h2>
+
+            <img src="directives.jpeg"/>
 
         </section>
         <section>
+            <h2>BodyTemplate1</h2>
+
+            <img src="BodyTemplate1.jpeg"/>
+
+        </section>
+        <section>
+            <h2>BodyTemplate2</h2>
+
+            <img src="BodyTemplate2.jpeg"/>
+
+        </section>
+        <section>
+            <h2>BodyTemplate3</h2>
+
+            <img src="BodyTemplate3.jpeg"/>
+
+        </section>
+        <section>
+            <h2>ListTemplate1</h2>
+
+            <img src="ListTemplate1.jpeg"/>
+
+        </section>
+        <section>
+            <h2>ListTemplate2</h2>
+
+            <img src="ListTemplate2.jpeg"/>
+
+        </section>
+
+        <section>
+        <h2>The Code</h2>
+            <pre>
+            BodyTemplate1 template = new BodyTemplate1()
+            template.setTitle("Hero Quiz")
+            BodyTemplate1.TextContent textContent = new BodyTemplate1.TextContent()
+            RichText richText = new RichText()
+            richText.text = cardText
+            textContent.setPrimaryText(richText)
+            template.setTextContent(textContent)
+            Image backgroundImage = new Image()
+            ImageInstance imageInstance = new ImageInstance()
+            imageInstance.setUrl("https://s-media-cache-ak0.pinimg.com/originals/e4/30/78/e43078050e9a8d5bc2f8a1ed09a77227.png")
+            ArrayList<ImageInstance> imageInstances = new ArrayList()
+            imageInstances.add(imageInstance)
+            backgroundImage.setSources(imageInstances)
+            template.setBackgroundImage(backgroundImage)
+            RenderTemplateDirective renderTemplateDirective = new RenderTemplateDirective()
+            renderTemplateDirective.setTemplate(template)
+            renderTemplateDirective
+            </pre>
+        </section>
+        <section>
+            <h2>See It In Action</h2>
+
+            Alexa, enable Hero Quiz
+
+        </section>
+
+    </section>
+
+
+
+
+
+    <section>
             <h2>VictorOPS</h2>
 
             <ul>
@@ -852,7 +872,6 @@
             <h2>Special Thanks</h2>
 
             <ul>
-                <!--<li>Lee Fox for working on all of this with me</li>-->
                 <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
             </ul>
 
