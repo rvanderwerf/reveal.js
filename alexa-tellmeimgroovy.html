@@ -72,7 +72,7 @@
         <h2>About Lee </h2>
 
         <ul>
-            <li>Cloud Architect/Operations Manager at Starmount</li>
+            <li>Cloud Architect/Operations Manager at Infor</li>
             <li>Agile, DevOps, and ChatOps advocate</li>
             <li>Past Technology Chair of Agile Austin</li>
             <li>Alexa and Google Home Developer</li>
@@ -108,22 +108,21 @@
             Alexa software concepts and components
         </li>
         <li class="fragment">
-            Brief Lamba Overview
+            Groovy Podcast Skill - Lambdas
         </li>
         <li class="fragment">
-            Lamba Groovy App Setup
-        </li>
-        <li class="fragment">
-            Groovy Podcast Skill
+            Echo Show - Display Templates
         </li>
         <li class="fragment">
             Let's do more.. like account linking!
         </li>
+
         <li class="fragment">
-            Alexa Skills Plugin for Grails
+           VictorOPS - Account Linking, Grails+Alexa Plugin, Spring Security and OAuth
         </li>
+
         <li class="fragment">
-           VictorOPS - Account Linking, Grails, Spring Security and OAuth
+            Publishing and UX Tips
         </li>
 
     </ul>
@@ -510,19 +509,7 @@
         </ul>
 
     </section>
-    <section>
-        <h2>Skills SDK - Speechlet - Open App</h2>
-        <img src="star-trek-translator.jpg" height="200" width="300" style="background:none; border:none; box-shadow:none;"/>
 
-        <ul>
-            <li class="fragment">Uses special keywords: Open, Ask/About, Get/From, Give/From, Want/To/ </li>
-            <li class="fragment">Full list of invocation commands at <a href="http://amzn.to/1NpPlZo">http://amzn.to/1NpPlZo</a>
-            </li>
-
-
-        </ul>
-
-    </section>
     <section>
         <h2>Skills SDK - Intents</h2>
         <img src="CCG_Data_laughing.png" height="250" width="150" style="background:none; border:none; box-shadow:none;"/>
@@ -619,19 +606,7 @@
             <ul>
                 <li class="fragment">Using the developer.amazon.com test tab</li>
                 <li class="fragment">Use <a href="https://echosim.io">echosim.io</a> browser tester!(No Audio skills support)</li>
-
-            </ul>
-
-        </section>
-
-        <section>
-            <h2>Yeah It's Not Perfect</h2>
-            <p><img src="data-tng-laughing.jpg"  style="background:none; border:none; box-shadow:none;"/>
-            </p>
-            <ul>
-                <li class="fragment">Limited multi-language yet (English/German)</li>
-                <li class="fragment">May have troubles with strong accents</li>
-                <li class="fragment">Has most trouble with names and chaining commands</li>
+                <li class="fragment">Use a physical device that is attached to your account (share with beta feature!)</li>
 
             </ul>
 
@@ -649,40 +624,6 @@
             </ul>
 
         </section>
-        <section>
-            <h2>Let's do more advanced stuff!</h2>
-
-            <ul>
-                <li class="fragment">How can I make the an app to use MY credentials?</li>
-                <li class="fragment">How do does Grails fit into this?</li>
-                <li class="fragment">Let's talk about account linking then take a look</li>
-            </ul>
-
-        </section>
-
-        <section>
-            <h2>Account Linking</h2>
-
-            <ul>
-                <li class="fragment">Uses OAuth</li>
-                <li class="fragment">Supports Implicit or Authorization code</li>
-                <li class="fragment">Use an Intent to send an AccountLinkCard</li>
-                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
-            </ul>
-
-        </section>
-    <section>
-        <h2>Setting up your own server</h2>
-
-        <ul>
-            <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
-            <li class="fragment">You can use self-signed certs in dev only</li>
-            <li class="fragment">Self signed certs MUST have hostname match common name</li>
-            <li class="fragment">Trusted certs support most cert providers</li>
-            <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
-        </ul>
-
-    </section>
 
     <section>
         <section>
@@ -727,7 +668,7 @@
         </section>
 
         <section>
-        <h2>The Code</h2>
+            <h2>The Code</h2>
             <pre>
             BodyTemplate1 template = new BodyTemplate1()
             template.setTitle("Hero Quiz")
@@ -754,6 +695,42 @@
             Alexa, enable Hero Quiz
 
         </section>
+
+        <section>
+            <h2>Let's do more advanced stuff!</h2>
+
+            <ul>
+                <li class="fragment">How can I make the an app to use MY credentials?</li>
+                <li class="fragment">How do does Grails fit into this?</li>
+                <li class="fragment">Let's talk about account linking then take a look</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Account Linking</h2>
+
+            <ul>
+                <li class="fragment">Uses OAuth</li>
+                <li class="fragment">Supports Implicit or Authorization code</li>
+                <li class="fragment">Use an Intent to send an AccountLinkCard</li>
+                <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+            </ul>
+
+        </section>
+    <section>
+        <h2>Setting up your own server</h2>
+
+        <ul>
+            <li class="fragment">Must use SSL and be accessible to Alexa via internet</li>
+            <li class="fragment">You can use self-signed certs in dev only</li>
+            <li class="fragment">Self signed certs MUST have hostname match common name</li>
+            <li class="fragment">Trusted certs support most cert providers</li>
+            <li class="fragment">Docs at <a href="http://amzn.to/1OQWqkq">http://amzn.to/1OQWqkq</a></li>
+        </ul>
+
+    </section>
+
 
     </section>
 
@@ -872,7 +849,7 @@
             <h2>Special Thanks</h2>
 
             <ul>
-                <li>Bendoit Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
+                <li>Benoit Hédiard for his awesome Groovy Lamba code sample from GGX</li>
             </ul>
 
 
