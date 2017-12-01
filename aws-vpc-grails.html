@@ -41,9 +41,10 @@
 
 				<section>
 					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
-					<h3>Learn the ropes of VPC networking and working with Grails and AWS</h3>
+					<h3>Learn the ropes of VPC networking and working with Grails, Gradle and AWS</h3>
+                    <h4>G3 Summit 2017</h4>
                     <img style="border:none; background:white" src="oci-logo-smaller.png" alt="OCI" />
-                    <img style="border:none" src="gr8conf-2017.jpg" alt="GR8Conf groovy gradle grails" />
+
 					<p>
 						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
 					</p>
@@ -153,7 +154,7 @@
 						<h2>VPC Overview</h2>
                         <UL style="list-style-type: none;">
                             <li class="fragment">Now required on new AWS accounts</li>
-                            <li class="fragment">Very different that EC2 'Classic' which has no private network layer</li>
+                            <li class="fragment">Very different than EC2 'Classic' which has no private network layer</li>
                             <li class="fragment">Costs nothing extra - you have nothing to lose</li>
                         </UL>
 					</section>
@@ -303,6 +304,8 @@
 														<li class="fragment">Use MFA Authentication device for all IAM users on console - hardware or phone app</li>
                             <li class="fragment">Set up your IAM roles for each user and use designated login url they give you</li>
                             <li class="fragment">Use resource level security with IAM to tier access to instances/resources</li>
+                            <li class="fragment">Test your security with real logins - it's easy to mess these up</li>
+                            <li class="fragment">Use policy simulator at the very least!
                         </UL>
                     </section>
                     <section>
@@ -315,10 +318,10 @@
                         </UL>
                     </section>
                     <section>
-                        <h2>VPC - Misc EC2 Tips</h2>
+                        <h2>VPC - VPN Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">VPN</li>
+
                             <li class="fragment">Use OpenVPN instead of metered AWS VPN - it runs fine on a tiny instance- save $$</li>
                             <li class="fragment">Use OpenVPN client to leave remote servers connected to VPC - it auto-reconnects</li>
 
@@ -341,7 +344,7 @@
                         <h2>VPC - Misc EC2 Tips</h2>
 
                         <UL style="list-style-type: none;">
-                            <li class="fragment">EBS Based Instances are the way to go</li>
+                            <li class="fragment">EBS Based Instances are the way to go for most common use </li>
                             <li class="fragment">Use EBS backed instances for anything not build for cloud</li>
                             <li class="fragment">If you can build server on the fly with automation then throw away use ephemeral</li>
                             <li class="fragment">EBS backed instances have no swap by default - be sure to specify ephemeral disks on launch, use as swap</li>
@@ -356,8 +359,8 @@
                     <UL style="list-style-type: none;">
                         <li class="fragment">Limitations</li>
                         <li class="fragment">Common tools</li>
-                        <li class="fragment">Regions with different functionality</li>
-                        <li class="fragment">Glacier</li>
+
+
 
                     </UL>
                     </section>
@@ -544,7 +547,15 @@ return file.text
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
 
 
-                        <h3>S3 - Demo</h3>
+                        <h3>S3 - Demo 1</h3>
+
+                    </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>S3 - Demo 2 S3 + Lambda function</h3>
 
                     </section>
 
@@ -563,6 +574,16 @@ return file.text
                         </UL>
                     </section>
 
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Kinesis / Lambda Demo</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Grails App sends message to stream </li>
+                            <li class="fragment">Lambda consumer is invoked and receives message</li>
+                        </UL>
+                    </section>
 
                     <section>
                         <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
@@ -608,6 +629,18 @@ return file.text
                             <li class="fragment">Can send, receive and delete messages</li>
                             <li class="fragment">Also manages topics (create/delete/publish)</li>
                             <li class="fragment">Sub/Unsub to topics (also via SMS!) </li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>SNS / Lambda Demo</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Sends a SNS notificatione</li>
+                            <li class="fragment">Tiggers a Lambda function to receive it</li>
 
                         </UL>
                     </section>
@@ -764,6 +797,20 @@ return file.text
                 </section>
                 <section>
                     <section>
+                        <h2>Example source:</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li>Grails 3 Demo with S3 and DynamoDB https://github.com/vanderfox/grails-aws-sdk-demo</li>
+                            <li>Gradle Plugin S3 Demo</li>
+                            <li>Lambda Serverless Demo https://github.com/rvanderwerf/kinesisLambdaConsumerDemo</li>
+                            <li>Grails AWS SDK Plugin https://github.com/agorapulse/grails-aws-sdk/</li>
+                            <li>Gradle AWS Plugin https://github.com/classmethod/gradle-aws-plugin</li>
+                            <li>sshoogr Gradle plugin https://github.com/aestasit/sshoogr</li>
+
+                        </UL>
+                    </section>
+                    <section>
                         <h2>Useful resources</h2>
 
                         <UL style="list-style-type: none;">
@@ -771,7 +818,6 @@ return file.text
                             <li>Gradle beanstalk plugin https://github.com/EvidentSolutions/gradle-beanstalk-plugin</li>
                             <li>Old but useful Elastic Beanstalk Intro @ Bobby Warner's Blog: http://goo.gl/PQaAxx</li>
                             <li>Grails AWS SDK Plugin https://github.com/agorapulse/grails-aws-sdk/</li>
-                            <li>Grails AWS Plugin https://github.com/grails-aws/grails-aws</li>
                             <li>Gradle AWS Plugin https://github.com/classmethod/gradle-aws-plugin</li>
                             <li>sshoogr Gradle plugin https://github.com/aestasit/sshoogr</li>
 
